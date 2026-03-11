@@ -1008,6 +1008,16 @@ var chatLog   = [];
 var msgCount  = 0;
 var isDark    = true;
 
+// ── ADS ──
+var ADS = [
+  { e: '🧘', t: 'Calm', d: 'The #1 app for sleep, meditation, and relaxation. Used by over 100 million people.', g: '#7EC8C8,#3D7A6F', cta: 'Try Free Today' },
+  { e: '📓', t: 'Day One Journal', d: 'Capture your reflections and track your personal growth journey every day.', g: '#7BAFD4,#3B7BC8', cta: 'Start Journaling' },
+  { e: '🌿', t: 'Headspace', d: 'Mindfulness and meditation made simple. Build a healthier, happier mind.', g: '#A8D5A2,#4A9B5E', cta: 'Try Headspace' },
+  { e: '📚', t: 'Blinkist', d: 'Key ideas from 6,500+ nonfiction books in 15 minutes or less.', g: '#F5D79E,#C17F4A', cta: 'Try for Free' }
+];
+var currentAd = 0;
+var interstitialTimer = null;
+
 // ── ELEMENTS ──
 var chatEl    = document.getElementById('chat');
 var setupCard = document.getElementById('setupCard');
@@ -1312,15 +1322,7 @@ function removeTyping() {
 }
 
 // ── ADS DATA ──
-var ADS = [
-  { e: '🧘', t: 'Calm', d: 'The #1 app for sleep, meditation, and relaxation. Used by over 100 million people.', g: '#7EC8C8,#3D7A6F', cta: 'Try Free Today' },
-  { e: '📓', t: 'Day One Journal', d: 'Capture your reflections and track your personal growth journey every day.', g: '#7BAFD4,#3B7BC8', cta: 'Start Journaling' },
-  { e: '🌿', t: 'Headspace', d: 'Mindfulness and meditation made simple. Build a healthier, happier mind.', g: '#A8D5A2,#4A9B5E', cta: 'Try Headspace' },
-  { e: '📚', t: 'Blinkist', d: 'Key ideas from 6,500+ nonfiction books in 15 minutes or less.', g: '#F5D79E,#C17F4A', cta: 'Try for Free' }
-];
 
-var currentAd = 0;
-var interstitialTimer = null;
 
 // ── BANNER AD ──
 function rotateBanner() {
