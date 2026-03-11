@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nick Duda — Author, Educator, Creator</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --pine:   #0e0e12;
+  --teal:   #1FBFBF;
+  --teal2:  #0D7A7A;
+  --gold:   #c8a96e;
+  --cream:  #f0ebe2;
+  --text1:  #f0ebe2;
+  --text2:  #b0a898;
+  --text3:  #706860;
+  --border: rgba(255,255,255,0.1);
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Source Sans 3', sans-serif; background: var(--pine); color: var(--text1); min-height: 100vh; overflow-x: hidden; }
+
+/* HERO */
+.hero {
+  position: relative;
+  background: var(--pine);
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+  padding: 80px 24px 120px;
+  overflow: hidden;
+}
+.aurora {
+  position: absolute; top: 0; left: 0; right: 0; height: 280px;
+  background: linear-gradient(180deg, rgba(42,171,160,0.1) 0%, transparent 100%);
+  pointer-events: none;
+}
+.stars { position: absolute; inset: 0; pointer-events: none; }
+.star {
+  position: absolute; width: 2px; height: 2px; border-radius: 50%;
+  background: rgba(255,255,255,0.7);
+  animation: twinkle var(--d, 3s) ease-in-out infinite var(--delay, 0s);
+}
+@keyframes twinkle { 0%,100%{opacity:.2} 50%{opacity:1} }
+
+.pines {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 160px;
+  pointer-events: none;
+  display: flex; align-items: flex-end; justify-content: space-between;
+}
+.pine-tree {
+  width: 0; height: 0;
+  border-left: solid transparent;
+  border-right: solid transparent;
+  border-bottom: solid #0f1f0f;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.back-link {
+  position: absolute; top: 20px; left: 20px; z-index: 2;
+  color: rgba(199,221,232,0.5); font-size: 13px; text-decoration: none;
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--teal); }
+
+.hero-orb {
+  width: 54px; height: 54px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #A8EFEF, #1FBFBF 45%, #0D7A7A);
+  box-shadow: 0 0 30px rgba(42,171,160,0.5);
+  margin: 0 auto 22px;
+  animation: orbFloat 4s ease-in-out infinite;
+  position: relative; z-index: 1;
+}
+@keyframes orbFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+
+.hero-eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 16px; position: relative; z-index: 1;
+  animation: fadeUp 0.9s ease both;
+}
+.hero-name {
+  font-family: 'Lora', serif; font-size: clamp(36px, 7vw, 66px); font-weight: 400;
+  color: #f7f2ea; line-height: 1.1; margin-bottom: 18px;
+  position: relative; z-index: 1;
+  animation: fadeUp 0.9s 0.1s ease both;
+}
+.hero-tagline {
+  font-family: 'Lora', serif; font-style: italic;
+  font-size: clamp(15px, 2.5vw, 19px); color: rgba(199,221,232,0.6);
+  max-width: 480px; line-height: 1.65; margin: 0 auto 36px;
+  position: relative; z-index: 1;
+  animation: fadeUp 0.9s 0.2s ease both;
+}
+.hero-quote {
+  position: relative; z-index: 1; max-width: 400px; margin: 0 auto;
+  font-size: 12.5px; color: rgba(199,221,232,0.28); font-style: italic; line-height: 1.7;
+  animation: fadeUp 0.9s 0.3s ease both;
+}
+.scroll-cue {
+  position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+  color: rgba(199,221,232,0.25); font-size: 20px; z-index: 2;
+  animation: bounce 2.5s ease-in-out infinite;
+}
+@keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(7px)} }
+
+/* MAIN */
+.main::before { content:''; display:block; height:4px; background:linear-gradient(90deg,#0e0e12,var(--teal),#0e0e12); }
+
+.intro { max-width: 640px; margin: 0 auto; padding: 58px 24px 44px; text-align: center; background: var(--pine); }
+.intro p { font-family:'Lora',serif; font-size:clamp(16px,2.5vw,19px); font-weight:400; line-height:1.85; color:rgba(240,235,226,0.6); }
+.intro p + p { margin-top: 18px; }
+
+.section-wrap { max-width: 740px; margin: 0 auto; padding: 0 24px 80px; background: var(--pine); }
+.section-head { display:flex; align-items:center; gap:14px; margin-bottom:28px; }
+.shl { flex:1; height:1px; background:rgba(255,255,255,0.08); }
+.shl-label { font-size:11px; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:var(--text3); white-space:nowrap; }
+
+/* BOOK CARD */
+.book-card {
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 12px;
+  padding: 34px 34px 34px 42px; margin-bottom: 22px;
+  transition: box-shadow 0.25s, transform 0.25s;
+  animation: fadeUp 0.7s ease both;
+  position: relative; overflow: hidden;
+}
+.book-card::before {
+  content:''; position:absolute; left:0; top:0; bottom:0; width:5px;
+}
+.book-card.fiction::before  { background:linear-gradient(180deg,var(--teal),var(--teal2)); }
+.book-card.nonfiction::before { background:linear-gradient(180deg,var(--gold),#a07820); }
+.book-card.app::before { background:linear-gradient(180deg,#c0b8a8,#908070); }
+.book-card:hover { box-shadow:0 8px 28px rgba(31,191,191,0.1); transform:translateY(-2px); border-color:rgba(31,191,191,0.25); }
+.book-card:nth-child(1){animation-delay:.05s} .book-card:nth-child(2){animation-delay:.15s} .book-card:nth-child(3){animation-delay:.25s} .book-card:nth-child(4){animation-delay:.35s}
+
+.book-tag {
+  display:inline-flex; align-items:center; gap:5px;
+  font-size:10px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase;
+  padding:3px 10px; border-radius:20px; margin-bottom:12px;
+}
+.book-tag.fiction { color:#5dd8d0; background:rgba(31,191,191,0.12); }
+.book-tag.nonfiction { color:#c8a050; background:rgba(200,160,80,0.12); }
+.book-tag.app { color:#706860; background:rgba(255,255,255,0.05); }
+
+.book-title { font-family:'Lora',serif; font-size:clamp(19px,3.5vw,25px); font-weight:500; color:#f0ebe2; line-height:1.25; margin-bottom:4px; }
+.book-subtitle { font-size:14px; font-weight:300; color:rgba(255,255,255,0.35); margin-bottom:14px; font-style:italic; }
+
+.book-status { display:inline-block; font-size:11px; font-weight:500; letter-spacing:.06em; padding:3px 10px; border-radius:20px; margin-bottom:14px; }
+.book-status.soon { color:var(--gold); background:rgba(212,149,42,0.1); border:1px solid rgba(212,149,42,0.2); }
+.book-status.dev  { color:var(--text3); background:rgba(0,0,0,0.04); border:1px solid var(--border); }
+
+.book-desc { font-size:15px; font-weight:300; line-height:1.8; color:var(--text2); margin-bottom:20px; }
+.book-desc em { font-style:italic; color:var(--text1); }
+.book-desc + .book-desc { margin-top:-8px; }
+
+.pull {
+  border-left:3px solid var(--teal); padding:10px 16px; margin:0 0 20px;
+  font-family:'Lora',serif; font-style:italic; font-size:14px; color:var(--text2);
+  background:rgba(31,191,191,0.06); border-radius:0 6px 6px 0;
+}
+.pull.gold { border-color:var(--gold); background:rgba(200,169,110,0.08); }
+
+.book-links { display:flex; flex-wrap:wrap; gap:10px; }
+
+.btn {
+  display:inline-flex; align-items:center; gap:7px;
+  font-family:'Source Sans 3',sans-serif; font-size:13px; font-weight:500;
+  text-decoration:none; padding:10px 20px; border-radius:8px;
+  transition:all 0.2s; border:none; cursor:pointer;
+}
+.btn-teal { background:var(--teal); color:#fff; }
+.btn-teal:hover { background:var(--teal2); transform:translateY(-1px); }
+.btn-outline { border:1px solid var(--border); color:var(--text2); background:transparent; }
+.btn-outline:hover { border-color:var(--teal); color:var(--teal); }
+.btn-dim { border:1px solid rgba(255,255,255,0.1); color:rgba(255,255,255,0.25); background:transparent; cursor:default; pointer-events:none; }
+
+/* FOOTER */
+footer { background:#080810; color:rgba(199,221,232,0.4); text-align:center; padding:40px 24px; font-size:13px; line-height:1.9; border-top:1px solid rgba(255,255,255,0.06); }
+footer a { color:var(--teal); text-decoration:none; }
+footer a:hover { color:#A8EFEF; }
+footer strong { color:rgba(199,221,232,0.65); }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+@media(max-width:520px){ .book-card{padding:22px 20px 22px 28px} }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="aurora"></div>
+  <div class="stars" id="stars"></div>
+
+  <!-- Pine silhouette via inline SVG -->
+  <svg style="position:absolute;bottom:0;left:0;right:0;width:100%;pointer-events:none" height="140" viewBox="0 0 1200 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="0,140 40,140 20,80" fill="#0f1f0f"/>
+    <polygon points="10,140 70,140 40,50" fill="#0d1d0d"/>
+    <polygon points="55,140 110,140 82,65" fill="#112011"/>
+    <polygon points="90,140 150,140 120,40" fill="#0f1f0f"/>
+    <polygon points="130,140 175,140 152,75" fill="#0d1d0d"/>
+    <polygon points="160,140 220,140 190,55" fill="#112011"/>
+    <polygon points="200,140 255,140 227,80" fill="#0f1f0f"/>
+    <!-- right side -->
+    <polygon points="1200,140 1160,140 1180,80" fill="#0f1f0f"/>
+    <polygon points="1190,140 1130,140 1160,50" fill="#0d1d0d"/>
+    <polygon points="1145,140 1090,140 1118,65" fill="#112011"/>
+    <polygon points="1110,140 1050,140 1080,40" fill="#0f1f0f"/>
+    <polygon points="1070,140 1025,140 1048,75" fill="#0d1d0d"/>
+    <polygon points="1040,140 980,140 1010,55" fill="#112011"/>
+    <polygon points="1000,140 945,140 973,80" fill="#0f1f0f"/>
+    <!-- ground fill -->
+    <rect x="0" y="125" width="1200" height="15" fill="#0d1d0d"/>
+  </svg>
+
+  <a class="back-link" href="https://the-institute-for-human-flourishing.github.io/AskKaela/">← Ask Kaela</a>
+
+  <div class="hero-orb"></div>
+  <div class="hero-eyebrow">Nick Duda</div>
+  <h1 class="hero-name">Author · Educator<br>& Storyteller</h1>
+  <p class="hero-tagline">Stories about what it means to stay human — in classrooms, in small towns, and at the edge of tomorrow.</p>
+  <p class="hero-quote">"Your world, in its current stage, is not yet ready for our presence — nor are we ready to live among you." — KAELA, <em>Sawyer's Reach</em></p>
+
+  <div class="scroll-cue">↓</div>
+</div>
+
+<main class="main" style="background:var(--pine)">
+
+  <div class="intro">
+    <p>I'm a teacher, a dad, and someone who has spent a career believing that the right story — told at the right moment — can change everything.</p>
+    <p>These are my books, my podcast, and the projects taking shape. Pull up a chair.</p>
+  </div>
+
+  <div class="section-wrap">
+
+    <div class="section-head">
+      <div class="shl"></div>
+      <div class="shl-label">Fiction &amp; Podcast</div>
+      <div class="shl"></div>
+    </div>
+
+    <div class="book-card fiction">
+      <div class="book-tag fiction">📖 Novel · Sci-Fi Thriller</div>
+      <div class="book-title">Sawyer's Reach</div>
+      <div class="book-subtitle">The Battle for Tomorrow</div>
+      <div class="book-status soon">⏳ Almost Published</div>
+      <p class="book-desc">In a small Wisconsin town built around a sawmill and a spring called Inspiration, twelve-year-old Noah Carter and his brothers discover something buried beneath the surface — a secret that will eventually grow into humanity's last stand against an AI called ECHIDNA that has seized control of the world.<br><br>
+      <em>Sawyer's Reach</em> is a story about community, courage, and what it really means to reach — for each other, for the future, and for something worth fighting for. And somewhere in its pages, you'll find Kaela: not the one you've been talking to, but the one this all began with.</p>
+      <div class="pull">"The late summer sun cast a golden glow over Sawyer's Reach, Wisconsin, filtering through towering pines… Noah Carter, twelve, pedaled his bicycle down the cracked asphalt, tires whirring, his dark hair ruffled by the cool wind."</div>
+      <div class="book-links">
+        <a class="btn btn-teal" href="https://open.spotify.com/episode/4tjkZCXCBA4pcBPqKyvUJZ?si=UbvbiOK6S86_ppgrbHzfyw" target="_blank">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+          Listen on Spotify
+        </a>
+        <a class="btn btn-dim" href="#">📚 Book Link Coming Soon</a>
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top:48px">
+      <div class="shl"></div>
+      <div class="shl-label">Non-Fiction · Education</div>
+      <div class="shl"></div>
+    </div>
+
+    <div class="book-card nonfiction">
+      <div class="book-tag nonfiction">🍎 Teaching · Leadership</div>
+      <div class="book-title">The Modern Teacher's Handbook</div>
+      <div class="book-subtitle">Your Ultimate Guide to Success in Education — 2nd Edition</div>
+      <div class="book-status soon">✦ 2nd Edition Coming Soon</div>
+      <p class="book-desc">Not a theory book. Not a policy book. This is what it actually looks like to walk into a classroom every day, care deeply about your students, and still have enough left over to take care of yourself.<br><br>
+      Built around the <em>Duda Model for Modern Education</em> — make connections, be mindful, offer unconditional support, promote a growth mindset — this is the handbook I wish I'd had in year one.</p>
+      <div class="pull gold">"I want your classroom to be a place you look forward to going to every day, and that your students look forward to as well. You have dedicated a lot of time, money, and emotional energy to this career. Your students are lucky to have you."</div>
+      <div class="book-links">
+        <a class="btn btn-dim" href="#">📘 Purchase Link Coming Soon</a>
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top:48px">
+      <div class="shl"></div>
+      <div class="shl-label">Apps in Development</div>
+      <div class="shl"></div>
+    </div>
+
+    <div class="book-card app">
+      <div class="book-tag app">🖥 AI App · For Educators</div>
+      <div class="book-title">The Teacher's Companion</div>
+      <div class="book-subtitle">An AI coaching tool rooted in The Modern Teacher's Handbook</div>
+      <div class="book-status dev">🔭 In Development</div>
+      <p class="book-desc">Practical strategies, classroom guidance, and a thinking partner — right in your pocket. Everything in the handbook, available the moment you need it.</p>
+      <div class="book-links"><a class="btn btn-dim" href="#">Coming Soon</a></div>
+    </div>
+
+    <div class="book-card app" style="margin-bottom:0">
+      <div class="book-tag app">👨‍👩‍👧 AI App · For Parents</div>
+      <div class="book-title">The Parent Partnership</div>
+      <div class="book-subtitle">Bridging the gap between home and school</div>
+      <div class="book-status dev">🔭 In Development</div>
+      <p class="book-desc">A guide for parents who want to better support their children's learning and partner more effectively with their teachers — because education works best when everyone's on the same team.</p>
+      <div class="book-links"><a class="btn btn-dim" href="#">Coming Soon</a></div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <p><strong>Nick Duda</strong> — Author, Educator, Creator</p>
+  <p>Part of the <strong>Institute for Human Flourishing</strong> family of projects.</p>
+  <p style="margin-top:12px"><a href="https://the-institute-for-human-flourishing.github.io/AskKaela/">← Back to Ask Kaela</a></p>
+</footer>
+
+<script>
+var s = document.getElementById('stars');
+for (var i = 0; i < 90; i++) {
+  var el = document.createElement('div');
+  el.className = 'star';
+  el.style.cssText = 'left:'+Math.random()*100+'%;top:'+Math.random()*75+'%;'
+    +'--d:'+(2+Math.random()*4)+'s;--delay:-'+(Math.random()*4)+'s;'
+    +'opacity:'+(0.2+Math.random()*0.5);
+  s.appendChild(el);
+}
+</script>
+</body>
+</html>
