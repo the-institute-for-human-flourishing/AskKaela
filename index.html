@@ -875,6 +875,147 @@ textarea::placeholder { color: var(--text3); }
   30% { transform: translateY(-5px); }
 }
 
+
+/* ── SAVE CHAT BUTTON ── */
+.save-chat-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: var(--surface2);
+  color: var(--text2);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s, color 0.2s;
+}
+.save-chat-btn:hover { background: var(--accent); color: #fff; }
+.save-chat-btn.saved { background: #2a7a4a; color: #fff; }
+
+/* ── HISTORY PANEL ── */
+.history-panel {
+  position: fixed;
+  top: 0; right: -320px;
+  width: 310px; height: 100%;
+  background: var(--surface1);
+  border-left: 1px solid var(--border);
+  z-index: 300;
+  display: flex; flex-direction: column;
+  transition: right 0.3s ease;
+  overflow: hidden;
+}
+.history-panel.open { right: 0; }
+.history-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 16px 12px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.history-title { font-size: 15px; font-weight: 600; color: var(--text1); }
+.history-close {
+  background: none; border: none; color: var(--text2);
+  font-size: 16px; cursor: pointer; padding: 4px 8px;
+}
+.history-privacy {
+  font-size: 11px; color: var(--text3);
+  padding: 8px 16px;
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.history-list {
+  overflow-y: auto;
+  flex: 1;
+  padding: 8px 0;
+}
+.history-empty {
+  text-align: center;
+  color: var(--text3);
+  font-size: 13px;
+  padding: 40px 20px;
+  line-height: 1.6;
+}
+.history-item {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.15s;
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.history-item:hover { background: var(--surface2); }
+.history-item-body { flex: 1; min-width: 0; }
+.history-item-title {
+  font-size: 13px; font-weight: 500; color: var(--text1);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  margin-bottom: 3px;
+}
+.history-item-date { font-size: 11px; color: var(--text3); }
+.history-item-preview {
+  font-size: 12px; color: var(--text2);
+  margin-top: 4px;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.history-item-del {
+  background: none; border: none; color: var(--text3);
+  cursor: pointer; font-size: 14px; padding: 2px 4px;
+  flex-shrink: 0; opacity: 0.5; transition: opacity 0.2s;
+}
+.history-item-del:hover { opacity: 1; color: #e07070; }
+
+/* ── PANEL OVERLAY ── */
+.panel-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 299;
+  display: none;
+}
+.panel-overlay.open { display: block; }
+
+/* ── SESSION VIEW ── */
+.session-view {
+  position: fixed;
+  top: 0; right: 0;
+  width: 310px; height: 100%;
+  background: var(--surface1);
+  border-left: 1px solid var(--border);
+  z-index: 301;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.session-view-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.session-back {
+  background: none; border: none; color: var(--accent);
+  font-size: 13px; cursor: pointer; padding: 0;
+}
+.session-delete {
+  background: none; border: none; color: #e07070;
+  font-size: 12px; cursor: pointer; padding: 4px 8px;
+  border-radius: 6px; transition: background 0.2s;
+}
+.session-delete:hover { background: rgba(224,112,112,0.15); }
+.session-view-title {
+  font-size: 14px; font-weight: 600; color: var(--text1);
+  padding: 14px 16px 4px;
+  flex-shrink: 0;
+}
+.session-view-date {
+  font-size: 11px; color: var(--text3);
+  padding: 0 16px 12px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.session-view-body {
+  overflow-y: auto;
+  flex: 1;
+  padding: 14px 16px;
+  font-size: 13px; line-height: 1.7; color: var(--text2);
+  white-space: pre-wrap;
+}
 </style>
 </head>
 <body>
@@ -893,6 +1034,9 @@ textarea::placeholder { color: var(--text3); }
     </div>
     <div class="header-btns">
       <button class="disclaimer-link" id="disclaimerBtn" title="Disclaimer">Disclaimer</button>
+      <button class="icon-btn" id="historyBtn" title="My Conversations">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </button>
       <button class="icon-btn" id="themeBtn" title="Toggle light/dark mode">🌙</button>
       <button class="icon-btn" id="newBtn" title="New conversation">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
@@ -923,6 +1067,9 @@ textarea::placeholder { color: var(--text3); }
   <div class="input-wrap" id="inputWrap" style="display:none">
     <div class="input-row">
       <textarea id="msgInput" placeholder="Tell Kaela what's on your mind…" rows="1"></textarea>
+      <button class="save-chat-btn" id="saveChatBtn" title="Save this conversation">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+      </button>
       <button class="send" id="sendBtn">
         <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
           <path d="M12 19V5M5 12l7-7 7 7"/>
@@ -940,6 +1087,28 @@ textarea::placeholder { color: var(--text3); }
       <div class="banner-ad-desc" id="bannerDesc">Complement your inner work</div>
     </div>
     <button class="banner-ad-cta">Learn More</button>
+  </div>
+
+  <!-- HISTORY PANEL -->
+  <div class="history-panel" id="historyPanel">
+    <div class="history-header">
+      <div class="history-title">My Conversations</div>
+      <button class="history-close" id="historyClose">✕</button>
+    </div>
+    <div class="history-privacy">🔒 Conversations are saved only on this device</div>
+    <div class="history-list" id="historyList"></div>
+  </div>
+  <div class="panel-overlay" id="panelOverlay"></div>
+
+  <!-- SESSION VIEW -->
+  <div class="session-view" id="sessionView" style="display:none">
+    <div class="session-view-header">
+      <button class="session-back" id="sessionBack">← Back</button>
+      <button class="session-delete" id="sessionDelete">🗑 Delete</button>
+    </div>
+    <div class="session-view-title" id="sessionViewTitle"></div>
+    <div class="session-view-date" id="sessionViewDate"></div>
+    <div class="session-view-body" id="sessionViewBody"></div>
   </div>
 
   <!-- DISCLAIMER MODAL -->
@@ -1468,6 +1637,208 @@ function initDisclaimer() {
     modal.style.display = 'none';
   });
 }
+
+// ── SESSIONS ──
+var SESSIONS_KEY = 'askkaela_sessions';
+var MAX_SESSIONS = 50;
+var currentSessionId = null;
+
+function getSessions() {
+  try { return JSON.parse(localStorage.getItem(SESSIONS_KEY) || '[]'); }
+  catch(e) { return []; }
+}
+
+function saveSessions(arr) {
+  localStorage.setItem(SESSIONS_KEY, JSON.stringify(arr));
+}
+
+function saveCurrentChat() {
+  if (!chatLog || chatLog.length === 0) return;
+
+  var sessions = getSessions();
+
+  // Build a readable transcript from chatLog
+  var transcript = chatLog.map(function(msg) {
+    var role = msg.role === 'user' ? 'You' : 'Kaela';
+    // chatLog stores content as array of parts
+    var text = '';
+    if (typeof msg.content === 'string') {
+      text = msg.content;
+    } else if (Array.isArray(msg.content)) {
+      text = msg.content.map(function(p) { return p.text || ''; }).join('');
+    }
+    return role + ': ' + text;
+  }).join('\n\n');
+
+  // Auto-title from first user message
+  var firstUser = chatLog.find(function(m) { return m.role === 'user'; });
+  var firstText = '';
+  if (firstUser) {
+    if (typeof firstUser.content === 'string') firstText = firstUser.content;
+    else if (Array.isArray(firstUser.content)) firstText = firstUser.content.map(function(p){ return p.text||''; }).join('');
+  }
+  var title = firstText.length > 50 ? firstText.substring(0, 48) + '…' : (firstText || 'Conversation');
+
+  var now = new Date();
+  var dateStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+              + ' ' + now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+
+  if (currentSessionId) {
+    // Update existing session
+    var idx = sessions.findIndex(function(s) { return s.id === currentSessionId; });
+    if (idx !== -1) {
+      sessions[idx].transcript = transcript;
+      sessions[idx].savedAt = dateStr;
+      sessions[idx].title = title;
+      saveSessions(sessions);
+      return sessions[idx];
+    }
+  }
+
+  // New session
+  var session = {
+    id: 'session-' + Date.now(),
+    title: title,
+    savedAt: dateStr,
+    transcript: transcript
+  };
+  currentSessionId = session.id;
+  sessions.unshift(session);
+  if (sessions.length > MAX_SESSIONS) sessions = sessions.slice(0, MAX_SESSIONS);
+  saveSessions(sessions);
+  return session;
+}
+
+function deleteSession(id) {
+  var sessions = getSessions().filter(function(s) { return s.id !== id; });
+  saveSessions(sessions);
+  if (currentSessionId === id) currentSessionId = null;
+}
+
+// ── HISTORY PANEL ──
+var historyBtn    = document.getElementById('historyBtn');
+var historyPanel  = document.getElementById('historyPanel');
+var historyClose  = document.getElementById('historyClose');
+var historyList   = document.getElementById('historyList');
+var panelOverlay  = document.getElementById('panelOverlay');
+var saveChatBtn   = document.getElementById('saveChatBtn');
+var sessionViewEl = document.getElementById('sessionView');
+var sessionBack   = document.getElementById('sessionBack');
+var sessionDelete = document.getElementById('sessionDelete');
+var sessionViewTitle = document.getElementById('sessionViewTitle');
+var sessionViewDate  = document.getElementById('sessionViewDate');
+var sessionViewBody  = document.getElementById('sessionViewBody');
+var viewingSessionId = null;
+
+function openHistoryPanel() {
+  renderHistoryList();
+  historyPanel.classList.add('open');
+  panelOverlay.classList.add('open');
+}
+
+function closeHistoryPanel() {
+  historyPanel.classList.remove('open');
+  panelOverlay.classList.remove('open');
+  sessionViewEl.style.display = 'none';
+  viewingSessionId = null;
+}
+
+function renderHistoryList() {
+  var sessions = getSessions();
+  historyList.innerHTML = '';
+  if (sessions.length === 0) {
+    historyList.innerHTML = '<div class="history-empty">No saved conversations yet.<br><br>Tap the 💾 button during a chat to save it here.</div>';
+    return;
+  }
+  sessions.forEach(function(s) {
+    var item = document.createElement('div');
+    item.className = 'history-item';
+
+    var body = document.createElement('div');
+    body.className = 'history-item-body';
+
+    var titleEl = document.createElement('div');
+    titleEl.className = 'history-item-title';
+    titleEl.textContent = s.title;
+
+    var dateEl = document.createElement('div');
+    dateEl.className = 'history-item-date';
+    dateEl.textContent = s.savedAt;
+
+    var preview = document.createElement('div');
+    preview.className = 'history-item-preview';
+    // Show first Kaela line as preview
+    var kaelaLine = (s.transcript || '').split('\n\n').find(function(l){ return l.indexOf('Kaela:') === 0; }) || '';
+    preview.textContent = kaelaLine.replace('Kaela: ', '').substring(0, 100);
+
+    body.appendChild(titleEl);
+    body.appendChild(dateEl);
+    body.appendChild(preview);
+
+    var delBtn = document.createElement('button');
+    delBtn.className = 'history-item-del';
+    delBtn.title = 'Delete';
+    delBtn.textContent = '🗑';
+    delBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (confirm('Delete this conversation?')) {
+        deleteSession(s.id);
+        renderHistoryList();
+      }
+    });
+
+    item.appendChild(body);
+    item.appendChild(delBtn);
+    item.addEventListener('click', function() { openSessionView(s); });
+    historyList.appendChild(item);
+  });
+}
+
+function openSessionView(s) {
+  viewingSessionId = s.id;
+  sessionViewTitle.textContent = s.title;
+  sessionViewDate.textContent = 'Saved ' + s.savedAt;
+  sessionViewBody.textContent = s.transcript || '';
+  sessionViewEl.style.display = 'flex';
+  sessionViewEl.style.flexDirection = 'column';
+}
+
+historyBtn.addEventListener('click', openHistoryPanel);
+historyClose.addEventListener('click', closeHistoryPanel);
+panelOverlay.addEventListener('click', closeHistoryPanel);
+
+sessionBack.addEventListener('click', function() {
+  sessionViewEl.style.display = 'none';
+  viewingSessionId = null;
+});
+
+sessionDelete.addEventListener('click', function() {
+  if (!viewingSessionId) return;
+  if (confirm('Delete this conversation?')) {
+    deleteSession(viewingSessionId);
+    sessionViewEl.style.display = 'none';
+    viewingSessionId = null;
+    renderHistoryList();
+  }
+});
+
+saveChatBtn.addEventListener('click', function() {
+  if (!chatLog || chatLog.length === 0) return;
+  saveCurrentChat();
+  // Visual feedback
+  saveChatBtn.classList.add('saved');
+  saveChatBtn.title = 'Saved!';
+  setTimeout(function() {
+    saveChatBtn.classList.remove('saved');
+    saveChatBtn.title = 'Save this conversation';
+  }, 2000);
+});
+
+// Reset session ID on new chat
+var origNewBtn = document.getElementById('newBtn');
+origNewBtn.addEventListener('click', function() {
+  currentSessionId = null;
+});
 
 // Run after DOM is fully loaded
 if (document.readyState === 'loading') {
