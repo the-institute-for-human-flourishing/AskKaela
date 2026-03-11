@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Ask Kaela — Ancient Stories, Real Answers</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8776178244604751"
+     crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 
@@ -1864,43 +1866,40 @@ function storeSessions(arr) {
   localStorage.setItem(SESSIONS_KEY, JSON.stringify(arr));
 }
 
-function autoTitle(text) {
-  // Try to extract topic from early user messages in chatLog
+function autoTitle(phase3Text) {
+  // Build a short topic title from the first user message in this conversation
   var firstUser = '';
   for (var i = 0; i < chatLog.length; i++) {
     if (chatLog[i].role === 'user' && chatLog[i].parts && chatLog[i].parts[0]) {
-      firstUser = chatLog[i].parts[0].text || '';
+      firstUser = (chatLog[i].parts[0].text || '').trim();
       break;
     }
   }
-  if (firstUser.length > 60) firstUser = firstUser.substring(0, 57) + '…';
-  if (!firstUser) {
-    var snippet = text.substring(0, 50).replace(/\n/g, ' ').trim();
-    if (snippet.length === 50) snippet += '…';
-    return snippet;
-  }
-  return firstUser;
+  // Trim to a reasonable length and append "— Action Steps"
+  if (firstUser.length > 48) firstUser = firstUser.substring(0, 45) + '…';
+  if (firstUser) return firstUser + ' — Action Steps';
+  // Fallback: pull opening words from phase3 text
+  var snippet = phase3Text.replace(/\n/g, ' ').trim().substring(0, 40);
+  return (snippet || 'My Journey') + ' — Action Steps';
 }
 
 function extractSteps(text) {
-  var marker = 'Your Path Forward:';
-  var idx = text.indexOf(marker);
-  if (idx !== -1) return text.substring(idx + marker.length).trim();
-  // Fallback: return last half of text as steps
-  return text.substring(Math.floor(text.length / 2)).trim();
+  // The entire Phase 3 response IS the action steps — return it all, cleaned up
+  return text.trim();
 }
 
 function extractTopic(text) {
-  // Pull intro before the tale labels
-  var cutoffs = ['The Tale:', 'The Story:'];
-  var cut = text.length;
-  for (var i = 0; i < cutoffs.length; i++) {
-    var pos = text.indexOf(cutoffs[i]);
-    if (pos !== -1 && pos < cut) cut = pos;
+  // "What I Explored" = the first user message that started the conversation
+  var firstUser = '';
+  for (var i = 0; i < chatLog.length; i++) {
+    if (chatLog[i].role === 'user' && chatLog[i].parts && chatLog[i].parts[0]) {
+      firstUser = (chatLog[i].parts[0].text || '').trim();
+      break;
+    }
   }
-  var topic = text.substring(0, cut).trim();
-  if (topic.length > 220) topic = topic.substring(0, 217) + '…';
-  return topic || text.substring(0, 200).trim();
+  if (firstUser) return firstUser;
+  // Fallback: opening of the phase3 text
+  return text.substring(0, 200).trim();
 }
 
 function saveSession(text) {
