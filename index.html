@@ -1016,6 +1016,103 @@ textarea::placeholder { color: var(--text3); }
   font-size: 13px; line-height: 1.7; color: var(--text2);
   white-space: pre-wrap;
 }
+
+/* ══════════════════════════════
+   MOBILE RESPONSIVE
+   ══════════════════════════════ */
+@media (max-width: 600px) {
+
+  /* Shell fills full screen */
+  .shell {
+    max-width: 100%;
+    min-height: 100dvh;
+  }
+
+  /* Header — tighter on small screens */
+  .header { padding: 12px 14px 10px; }
+  .logo-name { font-size: 17px; }
+  .logo-tag { font-size: 9px; }
+  .logo-icon { width: 30px; height: 30px; }
+  .orb-small { width: 24px !important; height: 24px !important; }
+  .header-btns { gap: 5px; }
+  .disclaimer-link { font-size: 10px; padding: 3px 8px; }
+  .icon-btn { width: 30px; height: 30px; font-size: 14px; }
+
+  /* Chat area */
+  .chat { padding: 12px 12px; gap: 12px; }
+
+  /* Setup card */
+  .setup-card { padding: 22px 16px; margin-top: 6px; }
+  .setup-title { font-size: 20px; }
+  .setup-sub { font-size: 13px; }
+  .orb-large { width: 64px !important; height: 64px !important; }
+
+  /* Messages */
+  .bubble { font-size: 14px; padding: 10px 13px; }
+  .avatar { width: 26px; height: 26px; }
+
+  /* Input row */
+  .input-wrap { padding: 8px 10px 10px; }
+  .input-row { padding: 6px 6px 6px 14px; }
+  textarea { font-size: 14px; }
+  .send { width: 36px; height: 36px; }
+  .save-chat-btn { width: 34px; height: 34px; }
+
+  /* Banner ad — more compact */
+  .banner-ad { padding: 8px 12px; gap: 10px; }
+  .banner-ad-thumb { width: 36px; height: 36px; font-size: 16px; flex-shrink: 0; }
+  .banner-ad-name { font-size: 12px; }
+  .banner-ad-desc { display: none; }
+  .banner-ad-cta { font-size: 11px; padding: 5px 10px; white-space: nowrap; }
+
+  /* History panel — full width slide-in */
+  .history-panel {
+    width: 100%;
+    right: -100%;
+  }
+  .history-panel.open { right: 0; }
+
+  /* Session view — full width */
+  .session-view {
+    width: 100%;
+  }
+
+  /* Modal */
+  .modal-card { border-radius: 16px; }
+  .modal-body { padding: 16px; }
+  .modal-body p { font-size: 13px; }
+
+  /* Interstitial */
+  .interstitial-card {
+    margin: 12px;
+    border-radius: 16px;
+  }
+  .interstitial-visual { height: 100px; font-size: 36px; }
+  .interstitial-name { font-size: 18px; }
+  .interstitial-desc { font-size: 13px; }
+
+  /* Copy goals button */
+  .copy-goals-btn { font-size: 12px; padding: 7px 12px; }
+
+  /* Phase action buttons */
+  .phase3-actions { flex-direction: column; }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+  .logo-name { font-size: 15px; }
+  .logo-tag { display: none; }
+  .disclaimer-link { display: none; }
+  .header-btns { gap: 4px; }
+  .bubble { font-size: 13px; }
+}
+
+/* Fix for iOS safari bottom bar */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .input-wrap {
+    padding-bottom: calc(10px + env(safe-area-inset-bottom));
+  }
+}
 </style>
 </head>
 <body>
