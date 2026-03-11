@@ -1429,10 +1429,18 @@ themeBtn.addEventListener('click', function() {
 });
 
 // ── START ──
-var savedKey = localStorage.getItem(STORAGE_KEY);
-if (savedKey) {
-  GEMINI_KEY = savedKey;
-  beginChat();
+function initApp() {
+  var savedKey = localStorage.getItem(STORAGE_KEY);
+  if (savedKey) {
+    GEMINI_KEY = savedKey;
+    beginChat();
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
 }
 
 startBtn.addEventListener('click', function() {
