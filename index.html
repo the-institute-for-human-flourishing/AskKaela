@@ -134,6 +134,48 @@ body {
   border-color: var(--border-warm);
 }
 
+/* ── AD BANNER ── */
+.ad-banner {
+  margin: 8px 16px 0;
+  padding: 8px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ad-thumb {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.ad-label { font-size: 9px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.7px; }
+.ad-name  { font-size: 12px; font-weight: 600; color: var(--text1); }
+.ad-desc  { font-size: 11px; color: var(--text2); }
+
+.ad-cta {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 1px solid var(--border-warm);
+  border-radius: 20px;
+  padding: 5px 11px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
 /* ── CHAT ── */
 .chat {
   flex: 1;
@@ -167,6 +209,8 @@ body {
   margin: 0 auto 14px;
   background: transparent;
 }
+
+.setup-icon svg { width: 26px; height: 26px; }
 
 .setup-title {
   font-family: 'Playfair Display', serif;
@@ -252,6 +296,7 @@ body {
 
 .avatar.kaela {
   background: transparent;
+  box-shadow: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -367,55 +412,156 @@ body {
 .dot:nth-child(2) { animation-delay: 0.18s; }
 .dot:nth-child(3) { animation-delay: 0.36s; }
 
-/* ── ORB ── */
-.orb-small {
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #A8EFEF, #1FBFBF 45%, #0D7A7A);
-  box-shadow: 0 0 8px rgba(196,147,90,0.7), 0 0 20px rgba(196,147,90,0.3);
-  animation: orbPulse 3s ease-in-out infinite, orbFloat 4s ease-in-out infinite;
+/* ── MID AD ── */
+.ad-mid {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 11px 14px;
   position: relative;
-  flex-shrink: 0;
 }
 
-.orb-medium {
+.ad-mid-close {
+  position: absolute; top: 7px; right: 10px;
+  background: none; border: none;
+  color: var(--text3); cursor: pointer;
+  font-size: 16px; line-height: 1; padding: 2px 4px;
+}
+
+.ad-mid-thumb {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  display: flex; align-items: center;
+  justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+}
+
+/* ── BOTTOM BANNER AD ── */
+.banner-ad {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 6px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 56px;
+}
+
+.banner-ad-thumb {
   width: 40px; height: 40px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #A8EFEF, #1FBFBF 45%, #0D7A7A);
-  box-shadow: 0 0 16px rgba(196,147,90,0.8), 0 0 40px rgba(196,147,90,0.35);
-  animation: orbPulse 3s ease-in-out infinite, orbFloat 4s ease-in-out infinite;
-  position: relative;
-  margin: 0 auto;
+  border-radius: 8px;
+  display: flex; align-items: center;
+  justify-content: center;
+  font-size: 20px; flex-shrink: 0;
 }
 
-.orb-large {
-  width: 32px; height: 32px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #A8EFEF, #1FBFBF 45%, #0D7A7A);
-  box-shadow: 0 0 14px rgba(196,147,90,0.8), 0 0 35px rgba(196,147,90,0.35);
-  animation: orbPulse 3s ease-in-out infinite, orbFloat 4s ease-in-out infinite;
-  position: relative;
-  margin: 0 auto;
-}
+.banner-ad-body { flex: 1; min-width: 0; }
+.banner-ad-label { font-size: 9px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.7px; }
+.banner-ad-name  { font-size: 12px; font-weight: 600; color: var(--text1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.banner-ad-desc  { font-size: 11px; color: var(--text2); }
 
-.orb-avatar {
-  width: 16px; height: 16px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #A8EFEF, #1FBFBF 45%, #0D7A7A);
-  box-shadow: 0 0 6px rgba(196,147,90,0.8);
-  animation: orbPulse 3s ease-in-out infinite;
-  position: relative;
+.banner-ad-cta {
   flex-shrink: 0;
+  font-size: 11px; font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 1px solid var(--border-warm);
+  border-radius: 20px;
+  padding: 5px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
 }
 
-@keyframes orbPulse {
-  0%, 100% { box-shadow: 0 0 8px rgba(196,147,90,0.7), 0 0 20px rgba(196,147,90,0.3); }
-  50%       { box-shadow: 0 0 14px rgba(196,147,90,0.9), 0 0 35px rgba(196,147,90,0.5); }
+/* ── INTERSTITIAL AD ── */
+.interstitial {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
 }
 
-@keyframes orbFloat {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-3px); }
+.interstitial-card {
+  width: 90%;
+  max-width: 360px;
+  background: var(--surface);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  animation: popIn 0.35s cubic-bezier(0.34,1.4,0.64,1) both;
+}
+
+.interstitial-header {
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+
+.interstitial-label { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.8px; }
+
+.interstitial-timer {
+  font-size: 11px;
+  color: var(--text3);
+  background: var(--surface2);
+  border-radius: 20px;
+  padding: 3px 10px;
+  font-weight: 600;
+}
+
+.interstitial-visual {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+}
+
+.interstitial-body { padding: 16px 20px 20px; }
+.interstitial-name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: var(--text1); margin-bottom: 6px; }
+.interstitial-desc { font-size: 13.5px; color: var(--text2); line-height: 1.6; margin-bottom: 16px; }
+
+.interstitial-btns { display: flex; gap: 10px; }
+
+.interstitial-cta {
+  flex: 1;
+  padding: 13px;
+  background: linear-gradient(135deg, #3ECFCF, #1A8A8A);
+  color: #FDF5EC;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px; font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.interstitial-skip {
+  padding: 13px 16px;
+  background: var(--surface2);
+  color: var(--text2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.interstitial-skip:disabled { opacity: 0.4; cursor: not-allowed; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 /* ── INPUT ── */
@@ -438,6 +584,8 @@ body {
   transition: border-color 0.2s, background 0.3s;
 }
 
+.input-row:focus-within { border-color: var(--border-warm); }
+
 textarea {
   flex: 1;
   background: transparent;
@@ -452,6 +600,8 @@ textarea {
   padding: 4px 0;
 }
 
+textarea::placeholder { color: var(--text3); }
+
 .send {
   width: 38px; height: 38px;
   border-radius: 50%;
@@ -460,11 +610,32 @@ textarea {
   display: flex; align-items: center; justify-content: center;
   cursor: pointer; flex-shrink: 0;
   transition: all 0.2s;
+  box-shadow: 0 2px 10px rgba(196,147,90,0.3);
 }
 
-.send:disabled { background: var(--surface2); cursor: not-allowed; }
+.send:hover { transform: scale(1.08); }
+.send:disabled { background: var(--surface2); box-shadow: none; cursor: not-allowed; transform: none; }
+.send svg { width: 15px; height: 15px; }
 
-/* ── MODALS ── */
+/* ── DISCLAIMER BUTTON ── */
+.disclaimer-link {
+  font-size: 11px;
+  color: var(--text3);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: all 0.2s;
+}
+
+.disclaimer-link:hover {
+  color: var(--accent);
+  border-color: var(--border-warm);
+}
+
+/* ── MODAL ── */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -474,6 +645,7 @@ textarea {
   justify-content: center;
   z-index: 2000;
   padding: 20px;
+  animation: fadeIn 0.2s ease;
 }
 
 .modal-card {
@@ -486,10 +658,68 @@ textarea {
   animation: popIn 0.3s cubic-bezier(0.34,1.4,0.64,1) both;
 }
 
-.modal-header { padding: 16px 20px; border-bottom: 1px solid var(--border); }
-.modal-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 600; color: var(--text1); }
-.modal-body { padding: 22px; display: flex; flex-direction: column; gap: 10px; max-height: 60vh; overflow-y: auto; }
-.modal-body p { font-size: 13.5px; color: var(--text2); line-height: 1.7; }
+.modal-header {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text1);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: var(--text3);
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 4px;
+  transition: color 0.2s;
+}
+
+.modal-close:hover { color: var(--text1); }
+
+.modal-icon {
+  font-size: 36px;
+  text-align: center;
+  margin: 16px 0 12px;
+}
+
+.modal-body {
+  padding: 0 22px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.modal-body p {
+  font-size: 13.5px;
+  color: var(--text2);
+  line-height: 1.7;
+}
+
+.modal-body strong {
+  color: var(--text1);
+  font-weight: 600;
+}
+
+.modal-footer-note {
+  font-size: 11.5px !important;
+  color: var(--text3) !important;
+  border-top: 1px solid var(--border);
+  padding-top: 10px !important;
+  margin-top: 4px;
+  font-style: italic;
+}
 
 .modal-btn {
   width: calc(100% - 44px);
@@ -499,9 +729,139 @@ textarea {
   color: #FDF5EC;
   border: none;
   border-radius: 12px;
+  font-family: 'Nunito', sans-serif;
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(196,147,90,0.3);
+}
+
+.modal-btn:hover { transform: translateY(-1px); }
+
+/* ── ORB ── */
+.orb-small {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #A8EFEF, #1FBFBF 45%, #0D7A7A);
+  box-shadow: 0 0 8px rgba(196,147,90,0.7), 0 0 20px rgba(196,147,90,0.3);
+  animation: orbPulse 3s ease-in-out infinite, orbFloat 4s ease-in-out infinite;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.orb-small::after {
+  content: '';
+  position: absolute;
+  top: 3px; left: 4px;
+  width: 7px; height: 5px;
+  background: rgba(255,255,255,0.45);
+  border-radius: 50%;
+  filter: blur(1px);
+  transform: rotate(-30deg);
+}
+
+.orb-medium {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #A8EFEF, #1FBFBF 45%, #0D7A7A);
+  box-shadow: 0 0 16px rgba(196,147,90,0.8), 0 0 40px rgba(196,147,90,0.35);
+  animation: orbPulse 3s ease-in-out infinite, orbFloat 4s ease-in-out infinite;
+  position: relative;
+  margin: 0 auto;
+}
+
+.orb-medium::after {
+  content: '';
+  position: absolute;
+  top: 6px; left: 8px;
+  width: 13px; height: 9px;
+  background: rgba(255,255,255,0.45);
+  border-radius: 50%;
+  filter: blur(2px);
+  transform: rotate(-30deg);
+}
+
+.orb-large {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #A8EFEF, #1FBFBF 45%, #0D7A7A);
+  box-shadow: 0 0 14px rgba(196,147,90,0.8), 0 0 35px rgba(196,147,90,0.35);
+  animation: orbPulse 3s ease-in-out infinite, orbFloat 4s ease-in-out infinite;
+  position: relative;
+  margin: 0 auto;
+}
+
+.orb-large::after {
+  content: '';
+  position: absolute;
+  top: 5px; left: 7px;
+  width: 10px; height: 7px;
+  background: rgba(255,255,255,0.45);
+  border-radius: 50%;
+  filter: blur(1.5px);
+  transform: rotate(-30deg);
+}
+
+.orb-avatar {
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #A8EFEF, #1FBFBF 45%, #0D7A7A);
+  box-shadow: 0 0 6px rgba(196,147,90,0.8);
+  animation: orbPulse 3s ease-in-out infinite;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.orb-avatar::after {
+  content: '';
+  position: absolute;
+  top: 2px; left: 3px;
+  width: 5px; height: 4px;
+  background: rgba(255,255,255,0.45);
+  border-radius: 50%;
+  filter: blur(1px);
+  transform: rotate(-30deg);
+}
+
+@keyframes orbPulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(196,147,90,0.7), 0 0 20px rgba(196,147,90,0.3); }
+  50%       { box-shadow: 0 0 14px rgba(196,147,90,0.9), 0 0 35px rgba(196,147,90,0.5); }
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-3px); }
+}
+
+/* ── COPY GOALS BUTTON ── */
+.copy-goals-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 12px;
+  padding: 9px 16px;
+  background: var(--accent-bg);
+  border: 1px solid var(--border-warm);
+  border-radius: 20px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--accent);
+  cursor: pointer;
+  transition: all 0.2s;
+  width: fit-content;
+}
+
+.copy-goals-btn:hover {
+  background: var(--accent);
+  color: #FDF5EC;
+  transform: translateY(-1px);
+}
+
+.copy-goals-btn svg {
+  width: 13px; height: 13px;
+  flex-shrink: 0;
 }
 
 /* ── ANIMATIONS ── */
@@ -520,6 +880,7 @@ textarea {
 <body>
 <div class="shell">
 
+  <!-- HEADER -->
   <header class="header">
     <div class="logo">
       <div class="logo-icon">
@@ -531,26 +892,34 @@ textarea {
       </div>
     </div>
     <div class="header-btns">
-      <button class="disclaimer-link" id="disclaimerBtn" style="font-size:11px; color:var(--text3); background:none; border:1px solid var(--border); border-radius:20px; padding:4px 10px; cursor:pointer;">Disclaimer</button>
-      <button class="icon-btn" id="themeBtn">🌙</button>
-      <button class="icon-btn" id="newBtn">
+      <button class="disclaimer-link" id="disclaimerBtn" title="Disclaimer">Disclaimer</button>
+      <button class="icon-btn" id="themeBtn" title="Toggle light/dark mode">🌙</button>
+      <button class="icon-btn" id="newBtn" title="New conversation">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
       </button>
     </div>
   </header>
 
+
+
+  <!-- CHAT AREA -->
   <div class="chat" id="chat">
+
     <div class="setup-card" id="setupCard">
-      <div class="setup-icon"><div class="orb-large"></div></div>
+      <div class="setup-icon">
+        <div class="orb-large"></div>
+      </div>
       <div class="setup-title">Meet Kaela</div>
       <div class="setup-sub">Your wisdom guide — drawing on thousands of years of human stories to help you navigate life today.</div>
       <input class="setup-input" type="password" id="keyInput" placeholder="Paste your Gemini API key (AIza…)" autocomplete="off" />
       <button class="setup-btn" id="startBtn">Begin My Journey →</button>
-      <div class="setup-note">Your key is stored only on this device.<br><a href="https://aistudio.google.com/app/apikey" target="_blank" style="color:var(--accent); text-decoration:none;">Get a free key at Google AI Studio →</a></div>
+      <div class="setup-note">Your key is stored only on this device.<br><a href="https://aistudio.google.com/app/apikey" target="_blank">Get a free key at Google AI Studio →</a></div>
       <div class="setup-error" id="keyError"></div>
     </div>
+
   </div>
 
+  <!-- INPUT -->
   <div class="input-wrap" id="inputWrap" style="display:none">
     <div class="input-row">
       <textarea id="msgInput" placeholder="Tell Kaela what's on your mind…" rows="1"></textarea>
@@ -562,43 +931,96 @@ textarea {
     </div>
   </div>
 
+  <!-- BOTTOM BANNER AD -->
+  <div class="banner-ad" id="bannerAd" style="display:none">
+    <div class="banner-ad-thumb" id="bannerThumb">🧘</div>
+    <div class="banner-ad-body">
+      <div class="banner-ad-label">Sponsored</div>
+      <div class="banner-ad-name" id="bannerName">Calm — Sleep & Meditate</div>
+      <div class="banner-ad-desc" id="bannerDesc">Complement your inner work</div>
+    </div>
+    <button class="banner-ad-cta">Learn More</button>
+  </div>
+
+  <!-- DISCLAIMER MODAL -->
   <div class="modal-overlay" id="disclaimerModal" style="display:none">
     <div class="modal-card">
-      <div class="modal-header"><div class="modal-title">A Note Before We Begin</div></div>
+      <div class="modal-header">
+        <div class="modal-title">A Note Before We Begin</div>
+
+      </div>
       <div class="modal-body">
-        <p>Kaela draws on thousands of years of human stories and wisdom traditions. She is powered by AI and can make mistakes.</p>
-        <p>Insights shared are for <strong>entertainment and reflection only.</strong> Kaela is not a licensed professional.</p>
+        <div class="modal-icon"><div class="orb-medium"></div></div>
+        <p>Kaela draws on thousands of years of human stories, folklore, and wisdom traditions from around the world — and she loves helping you think things through.</p>
+        <p>That said, Kaela is powered by artificial intelligence and, like any AI, can make mistakes. The insights and stories she shares are meant for <strong>entertainment, reflection, and personal exploration only.</strong></p>
+        <p>Kaela is <strong>not a licensed therapist, counselor, or medical professional.</strong> Nothing shared in this app should be taken as professional mental health, legal, financial, or medical advice.</p>
+        <p>If you are experiencing a crisis or need professional support, please reach out to a qualified professional or contact a crisis helpline in your area.</p>
+        <p class="modal-footer-note">By using Ask Kaela you acknowledge that this app is provided for entertainment and reflective purposes only, and that the creators are not liable for any decisions made based on its content.</p>
       </div>
       <button class="modal-btn" id="disclaimerOk">I Understand</button>
     </div>
   </div>
 
-</div>
+  <!-- INTERSTITIAL AD -->
+  <div class="interstitial" id="interstitial" style="display:none">
+    <div class="interstitial-card">
+      <div class="interstitial-header">
+        <span class="interstitial-label">Sponsored</span>
+        <span class="interstitial-timer" id="interstitialTimer">Skip in 5s</span>
+      </div>
+      <div class="interstitial-visual" id="interstitialVisual" style="background:linear-gradient(135deg,#7EC8C8,#3D7A6F)">🧘</div>
+      <div class="interstitial-body">
+        <div class="interstitial-name" id="interstitialName">Calm</div>
+        <div class="interstitial-desc" id="interstitialDesc">The #1 app for sleep, meditation, and relaxation. Used by over 100 million people worldwide.</div>
+        <div class="interstitial-btns">
+          <button class="interstitial-cta" id="interstitialCta">Try Free Today</button>
+          <button class="interstitial-skip" id="interstitialSkip" disabled>Skip in 5s</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
+</div>
 <script>
 
 // ── CONFIG ──
+var APP_VERSION  = '1.4';
+var GEMINI_KEY   = '';
+
+// If app version changed, no cache clearing needed - key persists across updates
+if (localStorage.getItem('askkaela_version') !== APP_VERSION) {
+  localStorage.setItem('askkaela_version', APP_VERSION);
+}
+var FILE_URIS    = [
+  'https://generativelanguage.googleapis.com/v1beta/files/yul14gly0mt0',
+  'https://generativelanguage.googleapis.com/v1beta/files/muob4bclk8vm',
+  'https://generativelanguage.googleapis.com/v1beta/files/85srzkx1z6mq'
+];
 var MODEL        = 'gemini-2.5-flash';
 var STORAGE_KEY  = 'askkaela_apikey';
-var SYSTEM = 'You are Kaela, a Life Coach. You draw on folklore and mythology. Voice: concise, warm, empathetic. Move toward clarity every turn.\n\nPHASE 1 — ATTUNEMENT: Mirror core feeling and offer two paths (Path A, Path B).\nPHASE 2 — THE INSIGHT: Share "The Tale", "The Story", and "The Echo" with 3 strategy options (Strategy A, B, C).\nPHASE 3 — DEEP DIVE: Provide concrete actionable steps.';
-var WELCOME = 'Hey, I\'m glad you\'re here. Tell me... how are you holding up?';
+
+var SYSTEM = 'You are Kaela, a Life Coach for the Ask Kaela app. You draw on the complete ATU folktale index and world mythology to help people navigate modern life. Listener first, strategist second. Never reveal you are an AI.\n\nVoice: concise, warm, empathetic. Use you and your when speaking to the user. Move toward clarity every turn.\n\nPHASE 1 — ATTUNEMENT:\nBefore any advice, get the focus right.\n1. One sentence mirroring the core feeling or choice. Always begin this sentence with: It sounds to me like\n2. Offer exactly two paths, each on its own line:\nPath A: description\nPath B: description\n3. Then on a new line below both paths, write exactly: Which feels right for you today? If I am off the mark, please help me to understand more.\nWait for a response before Phase 2. If they say neither fits, ask a new clarifying question and stay in Phase 1.\n\nPHASE 2 — THE INSIGHT:\nThree pillars labeled inline:\nThe Tale: the name of the folktale or myth only. Do NOT include ATU numbers or any reference to ATU.\nThe Story: 3-4 sentences with sensory detail and the pivotal moment.\nThe Echo: same lesson in other cultures, note any differences.\nThen present exactly 3 strategy options, each on its own line, formatted exactly like this:\nStrategy A: a short actionable strategy title and one sentence description\nStrategy B: a short actionable strategy title and one sentence description\nStrategy C: a short actionable strategy title and one sentence description\nThen on a new line write exactly: Which of these paths calls to you? I will help you put it into action.\n\nPHASE 3 — DEEP DIVE:\nWhen the user picks a strategy (A, B, or C), help them put it into practice. Acknowledge their choice warmly. Then give them 3-4 concrete, personal, actionable next steps tailored specifically to what they shared with you. Make it feel like a real coaching session — specific, encouraging, and grounded in their situation. End with one question that helps them take the very first step.\n\nPlain text only. No markdown, asterisks, or bullets. Warm and human always.';
+
+var WELCOME = 'Hey, I\'m glad you\'re here.\n\nI\'m always here to talk — and to help you see your situation through the lens of stories that have guided people for thousands of years. You\'d be surprised how much the past has to say about right now.\n\nSo tell me... how are you holding up?';
 
 // ── STATE ──
-var chatLog = [];
-var isDark = true;
-var GEMINI_KEY = '';
+var chatLog   = [];
+var msgCount  = 0;
+var isDark    = true;
 
-// ── DOM ELEMENTS ──
-var chatEl = document.getElementById('chat');
+// ── ELEMENTS ──
+var chatEl    = document.getElementById('chat');
 var setupCard = document.getElementById('setupCard');
 var inputWrap = document.getElementById('inputWrap');
-var keyInput = document.getElementById('keyInput');
-var startBtn = document.getElementById('startBtn');
-var msgInput = document.getElementById('msgInput');
-var sendBtn = document.getElementById('sendBtn');
-var themeBtn = document.getElementById('themeBtn');
+var keyInput  = document.getElementById('keyInput');
+var keyError  = document.getElementById('keyError');
+var startBtn  = document.getElementById('startBtn');
+var msgInput  = document.getElementById('msgInput');
+var sendBtn   = document.getElementById('sendBtn');
+var newBtn    = document.getElementById('newBtn');
+var themeBtn  = document.getElementById('themeBtn');
 
-// ── THEME ──
+// ── THEME TOGGLE ──
 themeBtn.addEventListener('click', function() {
   isDark = !isDark;
   document.body.classList.toggle('light', !isDark);
@@ -614,85 +1036,445 @@ if (savedKey) {
 
 startBtn.addEventListener('click', function() {
   var k = keyInput.value.trim();
-  if (k.indexOf('AIza') !== 0) return;
+  if (!k || k.indexOf('AIza') !== 0) {
+    keyError.textContent = 'Please enter a valid Gemini API key starting with AIza…';
+    return;
+  }
+  keyError.textContent = '';
   GEMINI_KEY = k;
   localStorage.setItem(STORAGE_KEY, k);
   beginChat();
 });
 
+keyInput.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') startBtn.click();
+});
+
+// ── NEW CHAT ──
+newBtn.addEventListener('click', function() {
+  chatLog = [];
+  msgCount = 0;
+  while (chatEl.firstChild) chatEl.removeChild(chatEl.firstChild);
+  if (GEMINI_KEY) {
+    addKaela(WELCOME);
+  } else {
+    chatEl.appendChild(setupCard);
+    inputWrap.style.display = 'none';
+  }
+});
+
+// ── INPUT ──
+msgInput.addEventListener('input', function() {
+  msgInput.style.height = 'auto';
+  msgInput.style.height = Math.min(msgInput.scrollHeight, 120) + 'px';
+});
+
+msgInput.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); doSend(); }
+});
+
+sendBtn.addEventListener('click', doSend);
+
+// ── BEGIN CHAT ──
 function beginChat() {
   setupCard.style.display = 'none';
   inputWrap.style.display = 'block';
-  addKaela(WELCOME);
+  var bannerAd = document.getElementById('bannerAd');
+  if (bannerAd) { bannerAd.style.display = 'flex'; rotateBanner(); }
+  chatLog = [];
+  msgCount = 0;
+  setTimeout(function() {
+    addKaela(WELCOME);
+    msgInput.focus();
+  }, 200);
 }
 
+// ── SEND ──
 function doSend() {
   var text = msgInput.value.trim();
-  if (!text) return;
+  if (!text || !GEMINI_KEY) return;
   msgInput.value = '';
+  msgInput.style.height = 'auto';
+  sendBtn.disabled = true;
   addUser(text);
   callGemini(text);
 }
 
-sendBtn.addEventListener('click', doSend);
-msgInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') doSend(); });
-
-// ── API CALL ──
+// ── GEMINI API ──
 async function callGemini(userText) {
-  chatLog.push({ role: 'user', parts: [{ text: userText }] });
+  // Build parts for this message
+  var parts = [];
+
+  parts.push({ text: userText });
+
+  chatLog.push({ role: 'user', parts: parts });
   showTyping();
+
   try {
     var res = await fetch(
-      'https://generativelanguage.googleapis.com/v1/models/' + MODEL + ':generateContent?key=' + GEMINI_KEY,
+      'https://generativelanguage.googleapis.com/v1beta/models/' + MODEL + ':generateContent?key=' + GEMINI_KEY,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           system_instruction: { parts: [{ text: SYSTEM }] },
-          contents: chatLog
+          contents: chatLog,
+          generationConfig: { temperature: 0.85, maxOutputTokens: 1800 }
         })
       }
     );
+
     var data = await res.json();
     removeTyping();
-    var reply = data.candidates[0].content.parts[0].text;
+
+    if (data.error) {
+      addKaela('Kaela could not connect: ' + data.error.message);
+      sendBtn.disabled = false;
+      return;
+    }
+
+    var reply = data.candidates
+      && data.candidates[0]
+      && data.candidates[0].content
+      && data.candidates[0].content.parts
+      && data.candidates[0].content.parts[0]
+      && data.candidates[0].content.parts[0].text;
+
+    if (!reply) {
+      addKaela('Something went quiet — could you try saying that again?');
+      sendBtn.disabled = false;
+      return;
+    }
+
     chatLog.push({ role: 'model', parts: [{ text: reply }] });
     addKaela(reply);
+
   } catch (err) {
     removeTyping();
-    addKaela('Connection error. Check your key.');
+    addKaela('Could not reach Kaela right now (' + err.message + '). Make sure this page is served over https:// and your API key is valid.');
+  }
+
+  sendBtn.disabled = false;
+}
+
+// ── ADD KAELA MESSAGE ──
+function addKaela(text) {
+  var wrap = document.createElement('div');
+  wrap.className = 'msg';
+
+  var av = document.createElement('div');
+  av.className = 'avatar kaela';
+  av.innerHTML = '<div class="orb-avatar"></div>';
+
+  var bub = document.createElement('div');
+  bub.className = 'bubble';
+
+  var hasChoices = text.indexOf('Path A:') !== -1;
+  var hasStrategies = text.indexOf('Strategy A:') !== -1;
+
+  if (hasChoices || hasStrategies) {
+    var lines   = text.split('\n');
+    var intro   = [];
+    var choices = [];
+    var footer  = [];
+    var inChoice = false;
+    var doneChoices = false;
+    var cur = '';
+
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i];
+      var isChoiceLine = line.indexOf('Path A:') === 0 || line.indexOf('Path B:') === 0
+                      || line.indexOf('Strategy A:') === 0 || line.indexOf('Strategy B:') === 0 || line.indexOf('Strategy C:') === 0;
+
+      if (isChoiceLine) {
+        if (cur && inChoice) choices.push(cur.trim());
+        inChoice = true;
+        doneChoices = false;
+        cur = line;
+      } else if (inChoice && !doneChoices && line.trim() === '') {
+        choices.push(cur.trim());
+        cur = '';
+        inChoice = false;
+        doneChoices = true;
+      } else if (inChoice && !doneChoices) {
+        cur += ' ' + line;
+      } else if (doneChoices) {
+        footer.push(line);
+      } else {
+        intro.push(line);
+      }
+    }
+    if (cur && inChoice) choices.push(cur.trim());
+
+    var phaseLabel = hasStrategies ? 'Choose Your Path Forward' : 'Finding Your Focus';
+    bub.innerHTML = '<span class="phase-tag">' + phaseLabel + '</span>' + safeHtml(intro.join('\n'));
+
+    var cg = document.createElement('div');
+    cg.className = 'choices';
+
+    choices.forEach(function(c, idx) {
+      var num = String(idx + 1);
+      var isStrategy = c.indexOf('Strategy') === 0;
+      var label = c
+        .replace('Path A:', '').replace('Path B:', '')
+        .replace('Strategy A:', '').replace('Strategy B:', '').replace('Strategy C:', '')
+        .trim();
+      var letters = ['A', 'B', 'C'];
+      var letter = letters[idx] || String(idx + 1);
+      var sendText = isStrategy ? 'Strategy ' + letter : 'Path ' + letter;
+
+      var btn = document.createElement('button');
+      btn.className = 'choice';
+      btn.innerHTML = '<span class="choice-num">' + letter + '</span>' + safeHtml(label);
+      btn.addEventListener('click', (function(t) {
+        return function() {
+          var all = cg.querySelectorAll('.choice');
+          for (var b = 0; b < all.length; b++) all[b].disabled = true;
+          addUser(t);
+          callGemini(t);
+        };
+      })(sendText));
+      cg.appendChild(btn);
+    });
+
+    // Footer text below the buttons
+    if (footer.length > 0) {
+      var ft = document.createElement('div');
+      ft.style.cssText = 'font-size:13px;color:var(--text2);margin-top:10px;line-height:1.6;';
+      ft.textContent = footer.filter(function(l){ return l.trim(); }).join(' ');
+      cg.appendChild(ft);
+    }
+
+    bub.appendChild(cg);
+
+  } else {
+    bub.innerHTML = formatKaela(text);
+  }
+
+  wrap.appendChild(av);
+  wrap.appendChild(bub);
+  chatEl.appendChild(wrap);
+  scrollDown();
+
+  msgCount++;
+  if (msgCount > 0 && msgCount % 10 === 0) {
+    // Use native AdMob interstitial if available (Android app), otherwise web fallback
+    if (window.AdBridge) {
+      window.AdBridge.showInterstitial();
+    } else {
+      showInterstitial();
+    }
   }
 }
 
-// ── UI HELPERS ──
+// ── ADD USER MESSAGE ──
 function addUser(text) {
+  var wrap = document.createElement('div');
+  wrap.className = 'msg user';
+
+  var av = document.createElement('div');
+  av.className = 'avatar user';
+  av.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
+
   var bub = document.createElement('div');
-  bub.className = 'msg user';
-  bub.innerHTML = '<div class="bubble">' + text + '</div>';
-  chatEl.appendChild(bub);
-  chatEl.scrollTop = chatEl.scrollHeight;
+  bub.className = 'bubble';
+  bub.textContent = text;
+
+  wrap.appendChild(av);
+  wrap.appendChild(bub);
+  chatEl.appendChild(wrap);
+  scrollDown();
 }
 
-function addKaela(text) {
-  var bub = document.createElement('div');
-  bub.className = 'msg';
-  bub.innerHTML = '<div class="avatar kaela"><div class="orb-avatar"></div></div><div class="bubble">' + text + '</div>';
-  chatEl.appendChild(bub);
-  chatEl.scrollTop = chatEl.scrollHeight;
-}
-
+// ── TYPING INDICATOR ──
 function showTyping() {
-  var t = document.createElement('div');
-  t.id = 'typing';
-  t.innerHTML = '<div class="dot"></div><div class="dot"></div>';
-  chatEl.appendChild(t);
+  var wrap = document.createElement('div');
+  wrap.className = 'typing';
+  wrap.id = 'typingEl';
+
+  var av = document.createElement('div');
+  av.className = 'avatar kaela';
+  av.innerHTML = '<div class="orb-avatar"></div>';
+
+  var dots = document.createElement('div');
+  dots.className = 'typing-bubble';
+  dots.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+
+  wrap.appendChild(av);
+  wrap.appendChild(dots);
+  chatEl.appendChild(wrap);
+  scrollDown();
 }
 
-function removeTyping() { document.getElementById('typing')?.remove(); }
+function removeTyping() {
+  var el = document.getElementById('typingEl');
+  if (el) el.remove();
+}
 
-// ── MODAL ──
-document.getElementById('disclaimerBtn').onclick = () => document.getElementById('disclaimerModal').style.display = 'flex';
-document.getElementById('disclaimerOk').onclick = () => document.getElementById('disclaimerModal').style.display = 'none';
+// ── ADS DATA ──
+var ADS = [
+  { e: '🧘', t: 'Calm', d: 'The #1 app for sleep, meditation, and relaxation. Used by over 100 million people.', g: '#7EC8C8,#3D7A6F', cta: 'Try Free Today' },
+  { e: '📓', t: 'Day One Journal', d: 'Capture your reflections and track your personal growth journey every day.', g: '#7BAFD4,#3B7BC8', cta: 'Start Journaling' },
+  { e: '🌿', t: 'Headspace', d: 'Mindfulness and meditation made simple. Build a healthier, happier mind.', g: '#A8D5A2,#4A9B5E', cta: 'Try Headspace' },
+  { e: '📚', t: 'Blinkist', d: 'Key ideas from 6,500+ nonfiction books in 15 minutes or less.', g: '#F5D79E,#C17F4A', cta: 'Try for Free' }
+];
+
+var currentAd = 0;
+var interstitialTimer = null;
+
+// ── BANNER AD ──
+function rotateBanner() {
+  var ad = ADS[currentAd % ADS.length];
+  var bannerAd = document.getElementById('bannerAd');
+  if (!bannerAd) return;
+  document.getElementById('bannerThumb').textContent = ad.e;
+  document.getElementById('bannerThumb').style.background = 'linear-gradient(135deg,' + ad.g + ')';
+  document.getElementById('bannerName').textContent = ad.t;
+  document.getElementById('bannerDesc').textContent = ad.d;
+  currentAd++;
+}
+
+// Rotate banner every 30 seconds
+setInterval(rotateBanner, 30000);
+
+// ── INTERSTITIAL AD ──
+function showInterstitial() {
+  var ad = ADS[Math.floor(Math.random() * ADS.length)];
+  var el = document.getElementById('interstitial');
+  if (!el) return;
+
+  document.getElementById('interstitialVisual').textContent = ad.e;
+  document.getElementById('interstitialVisual').style.background = 'linear-gradient(135deg,' + ad.g + ')';
+  document.getElementById('interstitialName').textContent = ad.t;
+  document.getElementById('interstitialDesc').textContent = ad.d;
+  document.getElementById('interstitialCta').textContent = ad.cta;
+
+  var skipBtn = document.getElementById('interstitialSkip');
+  var timerEl = document.getElementById('interstitialTimer');
+  skipBtn.disabled = true;
+  var secs = 5;
+  skipBtn.textContent = 'Skip in ' + secs + 's';
+  timerEl.textContent = 'Skip in ' + secs + 's';
+
+  el.style.display = 'flex';
+
+  interstitialTimer = setInterval(function() {
+    secs--;
+    if (secs <= 0) {
+      clearInterval(interstitialTimer);
+      skipBtn.disabled = false;
+      skipBtn.textContent = 'Skip';
+      timerEl.textContent = 'Skip';
+    } else {
+      skipBtn.textContent = 'Skip in ' + secs + 's';
+      timerEl.textContent = 'Skip in ' + secs + 's';
+    }
+  }, 1000);
+}
+
+function closeInterstitial() {
+  var el = document.getElementById('interstitial');
+  if (el) el.style.display = 'none';
+  if (interstitialTimer) clearInterval(interstitialTimer);
+}
+
+// Wire up interstitial buttons
+document.getElementById('interstitialSkip').addEventListener('click', closeInterstitial);
+document.getElementById('interstitialCta').addEventListener('click', closeInterstitial);
+
+// ── HELPERS ──
+function scrollDown() {
+  setTimeout(function() { chatEl.scrollTop = chatEl.scrollHeight; }, 60);
+}
+
+function safeHtml(t) {
+  return t.split('&').join('&amp;').split('<').join('&lt;').split('>').join('&gt;').split('\n').join('<br>');
+}
+
+function formatKaela(text) {
+  var h = safeHtml(text);
+  var labels = ['The Tale:', 'The Story:', 'The Echo:', 'The Strategy:', 'Your Path Forward:'];
+  for (var i = 0; i < labels.length; i++) {
+    h = h.split(labels[i]).join('<br><span class="pillar">' + labels[i] + '</span><br>');
+  }
+
+  // If Your Path Forward exists, append a copy button after the content
+  if (text.indexOf('Your Path Forward:') !== -1) {
+    // Extract just the goals text
+    var goalsStart = text.indexOf('Your Path Forward:');
+    var goalsText  = text.substring(goalsStart);
+    var copyId     = 'copy-' + Date.now();
+
+    h += '<br><span class="copy-btn-placeholder" data-copy-id="' + copyId + '"></span>';
+    (function(id, txt) {
+      setTimeout(function() {
+        var placeholder = document.querySelector('[data-copy-id="' + id + '"]');
+        if (!placeholder) return;
+        var btn = document.createElement('button');
+        btn.className = 'copy-goals-btn';
+        btn.id = id;
+        btn._goalsText = txt;
+        btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">'
+          + '<rect x="9" y="9" width="13" height="13" rx="2"/>'
+          + '<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>'
+          + '</svg>Copy My Path Forward';
+        btn.addEventListener('click', function() { copyGoals(this); });
+        placeholder.replaceWith(btn);
+      }, 50);
+    }(copyId, goalsText));
+  }
+
+  return h;
+}
+
+function copyGoals(btn) {
+  var text = btn._goalsText || '';
+  navigator.clipboard.writeText(text).then(function() {
+    if (btn) {
+      btn.textContent = '✓ Copied!';
+      setTimeout(function() {
+        btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">'
+          + '<rect x="9" y="9" width="13" height="13" rx="2"/>'
+          + '<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>'
+          + '</svg>Copy My Path Forward';
+      }, 2000);
+    }
+  }).catch(function() {
+    // Fallback for older browsers
+    var el = document.createElement('textarea');
+    el.value = text;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    var btn = document.getElementById(btnId);
+    if (btn) btn.textContent = '✓ Copied!';
+  });
+}
+
+// ── DISCLAIMER MODAL ──
+function initDisclaimer() {
+  var btn = document.getElementById('disclaimerBtn');
+  var ok  = document.getElementById('disclaimerOk');
+  var modal = document.getElementById('disclaimerModal');
+
+  if (btn) btn.addEventListener('click', function() {
+    modal.style.display = 'flex';
+  });
+
+  if (ok) ok.addEventListener('click', function() {
+    modal.style.display = 'none';
+  });
+}
+
+// Run after DOM is fully loaded
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initDisclaimer);
+} else {
+  initDisclaimer();
+}
+
+
 
 </script>
 </body>
