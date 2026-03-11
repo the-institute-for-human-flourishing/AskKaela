@@ -386,6 +386,23 @@ body {
   margin-bottom: 2px;
 }
 
+/* ── SECTION TITLE (The Tale:, The Story:, etc.) ── */
+.section-title {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text1);
+  margin-top: 18px;
+  margin-bottom: 4px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border-warm);
+  letter-spacing: 0.01em;
+}
+.section-title:first-child {
+  margin-top: 4px;
+}
+
 /* ── TYPING ── */
 .typing {
   display: flex;
@@ -896,7 +913,7 @@ textarea::placeholder { color: var(--text3); }
   position: fixed;
   top: 0; right: -320px;
   width: 310px; height: 100%;
-  background: var(--surface1);
+  background: var(--bg);
   border-left: 1px solid var(--border);
   z-index: 300;
   display: flex; flex-direction: column;
@@ -976,7 +993,7 @@ textarea::placeholder { color: var(--text3); }
   position: fixed;
   top: 0; right: 0;
   width: 310px; height: 100%;
-  background: var(--surface1);
+  background: var(--bg);
   border-left: 1px solid var(--border);
   z-index: 301;
   display: flex; flex-direction: column;
@@ -1069,12 +1086,14 @@ textarea::placeholder { color: var(--text3); }
   .history-panel {
     width: 100%;
     right: -100%;
+    background: var(--bg);
   }
   .history-panel.open { right: 0; }
 
   /* Session view — full width */
   .session-view {
     width: 100%;
+    background: var(--bg);
   }
 
   /* Modal */
@@ -1131,7 +1150,7 @@ textarea::placeholder { color: var(--text3); }
     </div>
     <div class="header-btns">
       <button class="disclaimer-link" id="disclaimerBtn" title="Disclaimer">Disclaimer</button>
-      <a class="disclaimer-link" href="https://the-institute-for-human-flourishing.github.io/AskKaela/creator.html" target="_blank" title="From the Creator">Creator</a>
+      <button class="disclaimer-link" onclick="window.open('https://the-institute-for-human-flourishing.github.io/AskKaela/creator.html','_blank')" title="From the Creator">Creator</button>
       <button class="icon-btn" id="historyBtn" title="My Conversations">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       </button>
@@ -1653,7 +1672,9 @@ document.getElementById('interstitialCta').addEventListener('click', closeInters
 
 // ── HELPERS ──
 function scrollDown() {
+  chatEl.scrollTop = chatEl.scrollHeight;
   setTimeout(function() { chatEl.scrollTop = chatEl.scrollHeight; }, 60);
+  setTimeout(function() { chatEl.scrollTop = chatEl.scrollHeight; }, 300);
 }
 
 function safeHtml(t) {
@@ -1664,7 +1685,7 @@ function formatKaela(text) {
   var h = safeHtml(text);
   var labels = ['The Tale:', 'The Story:', 'The Echo:', 'The Strategy:', 'Your Path Forward:'];
   for (var i = 0; i < labels.length; i++) {
-    h = h.split(labels[i]).join('<br><span class="pillar">' + labels[i] + '</span><br>');
+    h = h.split(labels[i]).join('<br><div class="section-title">' + labels[i] + '</div>');
   }
 
   // If Your Path Forward exists, append a copy button after the content
