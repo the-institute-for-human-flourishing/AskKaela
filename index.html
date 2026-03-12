@@ -316,6 +316,17 @@
   }
   .footer-links a:hover { color: var(--teal); }
 
+  /* ── GEMINI NOTICE ── */
+  .gemini-notice {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    max-width: 900px; margin: -24px auto 32px;
+    padding: 0 24px;
+    font-size: 13px; font-weight: 400;
+    color: var(--ink3); line-height: 1.5;
+    position: relative; z-index: 1;
+  }
+  .gemini-notice svg { flex-shrink: 0; color: var(--teal); opacity: 0.8; }
+
   /* ── MOBILE ── */
   @media (max-width: 600px) {
     header { padding: 20px 18px 0; }
@@ -350,6 +361,11 @@
 
 <div class="section-divider">
   <span>Choose your Kaela</span>
+</div>
+
+<div class="gemini-notice">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+  Each Kaela opens in Google Gemini — you'll need to be signed in to your Google account to start a conversation. It's free.
 </div>
 
 <div class="grid">
@@ -411,6 +427,142 @@
     <a href="https://dudaeducation.com" target="_blank">DudaEducation.com</a>
   </div>
 </footer>
+
+<!-- GEMINI POPUP -->
+<div class="gem-overlay" id="gemOverlay">
+  <div class="gem-modal">
+    <div class="gem-modal-orb" id="gemModalOrb"></div>
+    <div class="gem-modal-label" id="gemModalLabel">Kaela: Stories</div>
+    <h3 class="gem-modal-title">You're opening Google Gemini</h3>
+    <p class="gem-modal-body">This Kaela lives in Google Gemini — a free AI platform. You'll need to be <strong>signed in to your Google account</strong> to start a conversation.</p>
+    <div class="gem-modal-steps">
+      <div class="gem-modal-step"><span class="gem-step-num">1</span> Opens in a new tab</div>
+      <div class="gem-modal-step"><span class="gem-step-num">2</span> Sign in with Google if prompted</div>
+      <div class="gem-modal-step"><span class="gem-step-num">3</span> Start talking to Kaela — it's free</div>
+    </div>
+    <div class="gem-modal-btns">
+      <button class="gem-btn-cancel" id="gemCancel">Go Back</button>
+      <a class="gem-btn-go" id="gemGo" href="#" target="_blank">Open Gemini →</a>
+    </div>
+  </div>
+</div>
+
+<style>
+.gem-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(26,23,18,0.5);
+  backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.gem-overlay.open { opacity: 1; pointer-events: all; }
+.gem-modal {
+  background: #fff; border-radius: 20px;
+  padding: 36px 32px 28px;
+  max-width: 400px; width: 100%;
+  text-align: center;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.15);
+  transform: translateY(12px) scale(0.97);
+  transition: transform 0.25s ease;
+}
+.gem-overlay.open .gem-modal { transform: translateY(0) scale(1); }
+.gem-modal-orb {
+  width: 52px; height: 52px; border-radius: 50%;
+  margin: 0 auto 14px;
+  animation: orbFloat 4s ease-in-out infinite;
+}
+.gem-modal-label {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--teal);
+  margin-bottom: 10px;
+}
+.gem-modal-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px; font-weight: 600;
+  color: var(--ink); margin-bottom: 12px; line-height: 1.2;
+}
+.gem-modal-body {
+  font-size: 14px; font-weight: 300; color: var(--ink2);
+  line-height: 1.7; margin-bottom: 20px;
+}
+.gem-modal-body strong { font-weight: 500; color: var(--ink); }
+.gem-modal-steps {
+  display: flex; flex-direction: column; gap: 8px;
+  background: #F7F3EC; border-radius: 12px;
+  padding: 16px 18px; margin-bottom: 24px; text-align: left;
+}
+.gem-modal-step {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; font-weight: 400; color: var(--ink2);
+}
+.gem-step-num {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--teal); color: #fff;
+  font-size: 11px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.gem-modal-btns { display: flex; gap: 10px; }
+.gem-btn-cancel {
+  flex: 1; padding: 12px; border-radius: 10px;
+  border: 1px solid var(--border); background: transparent;
+  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+  color: var(--ink3); cursor: pointer; transition: all 0.2s;
+}
+.gem-btn-cancel:hover { border-color: var(--ink3); color: var(--ink); }
+.gem-btn-go {
+  flex: 2; padding: 12px; border-radius: 10px;
+  background: var(--teal); color: #fff;
+  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+  text-decoration: none; display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.gem-btn-go:hover { background: var(--teal2); }
+@media (max-width: 480px) {
+  .gem-modal { padding: 28px 22px 22px; }
+  .gem-modal-title { font-size: 21px; }
+}
+</style>
+
+<script>
+var overlay = document.getElementById('gemOverlay');
+var gemGo   = document.getElementById('gemGo');
+var gemCancel = document.getElementById('gemCancel');
+var gemModalOrb = document.getElementById('gemModalOrb');
+var gemModalLabel = document.getElementById('gemModalLabel');
+
+// Card data for modal personalisation
+var cardData = {
+  'card-stories':    { label: 'Kaela: Stories',    orb: 'radial-gradient(circle at 35% 35%, #A8EFEF, #1FBFBF 45%, #0D7A7A)', accent: '#1FBFBF' },
+  'card-teacher':    { label: 'Kaela: Teacher',    orb: 'radial-gradient(circle at 35% 35%, #FFD98A, #D4820A 45%, #8A5200)', accent: '#D4820A' },
+  'card-parent':     { label: 'Kaela: Parent',     orb: 'radial-gradient(circle at 35% 35%, #A8DFC2, #4A8C6F 45%, #2A5C44)', accent: '#4A8C6F' },
+  'card-philosophy': { label: 'Kaela: Philosophy', orb: 'radial-gradient(circle at 35% 35%, #B8C4FF, #4B5FBF 45%, #1E2B80)', accent: '#4B5FBF' },
+  'card-together':   { label: 'Kaela: Together',   orb: 'radial-gradient(circle at 35% 35%, #FFB89A, #C75B3A 45%, #7A2810)', accent: '#C75B3A' },
+};
+
+document.querySelectorAll('.card').forEach(function(card) {
+  card.addEventListener('click', function(e) {
+    e.preventDefault();
+    var url = card.getAttribute('href');
+    var cardClass = Array.from(card.classList).find(function(c) { return cardData[c]; });
+    var data = cardData[cardClass] || { label: 'Ask Kaela', orb: 'radial-gradient(circle at 35% 35%, #A8EFEF, #1FBFBF 45%, #0D7A7A)', accent: '#1FBFBF' };
+
+    gemModalOrb.style.background = data.orb;
+    gemModalOrb.style.boxShadow = '0 4px 20px ' + data.accent + '55';
+    gemModalLabel.textContent = data.label;
+    gemModalLabel.style.color = data.accent;
+    document.getElementById('gemGo').href = url;
+
+    overlay.classList.add('open');
+  });
+});
+
+gemCancel.addEventListener('click', function() { overlay.classList.remove('open'); });
+overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.classList.remove('open'); });
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') overlay.classList.remove('open'); });
+</script>
 
 </body>
 </html>
