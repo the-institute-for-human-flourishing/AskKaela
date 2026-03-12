@@ -457,123 +457,7 @@ body {
 }
 
 /* ── BOTTOM BANNER AD ── */
-.banner-ad {
-  background: var(--surface);
-  border-top: 1px solid var(--border);
-  padding: 6px 16px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 56px;
-}
-
-.banner-ad-thumb {
-  width: 40px; height: 40px;
-  border-radius: 8px;
-  display: flex; align-items: center;
-  justify-content: center;
-  font-size: 20px; flex-shrink: 0;
-}
-
-.banner-ad-body { flex: 1; min-width: 0; }
-.banner-ad-label { font-size: 9px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.7px; }
-.banner-ad-name  { font-size: 12px; font-weight: 600; color: var(--text1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.banner-ad-desc  { font-size: 11px; color: var(--text2); }
-
-.banner-ad-cta {
-  flex-shrink: 0;
-  font-size: 11px; font-weight: 600;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 1px solid var(--border-warm);
-  border-radius: 20px;
-  padding: 5px 12px;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.2s;
-}
-
 /* ── INTERSTITIAL AD ── */
-.interstitial {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  animation: fadeIn 0.3s ease;
-}
-
-.interstitial-card {
-  width: 90%;
-  max-width: 360px;
-  background: var(--surface);
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-  animation: popIn 0.35s cubic-bezier(0.34,1.4,0.64,1) both;
-}
-
-.interstitial-header {
-  padding: 10px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--border);
-}
-
-.interstitial-label { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.8px; }
-
-.interstitial-timer {
-  font-size: 11px;
-  color: var(--text3);
-  background: var(--surface2);
-  border-radius: 20px;
-  padding: 3px 10px;
-  font-weight: 600;
-}
-
-.interstitial-visual {
-  height: 180px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 64px;
-}
-
-.interstitial-body { padding: 16px 20px 20px; }
-.interstitial-name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: var(--text1); margin-bottom: 6px; }
-.interstitial-desc { font-size: 13.5px; color: var(--text2); line-height: 1.6; margin-bottom: 16px; }
-
-.interstitial-btns { display: flex; gap: 10px; }
-
-.interstitial-cta {
-  flex: 1;
-  padding: 13px;
-  background: linear-gradient(135deg, #60B890, #3A7A5E);
-  color: #FDF5EC;
-  border: none;
-  border-radius: 12px;
-  font-family: 'Nunito', sans-serif;
-  font-size: 14px; font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.interstitial-skip {
-  padding: 13px 16px;
-  background: var(--surface2);
-  color: var(--text2);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  font-family: 'Nunito', sans-serif;
-  font-size: 13px;
-  cursor: pointer;
-  transition: all 0.2s;
-  white-space: nowrap;
-}
-
 .interstitial-skip:disabled { opacity: 0.4; cursor: not-allowed; }
 
 @keyframes fadeIn {
@@ -1075,40 +959,7 @@ textarea::placeholder { color: var(--text3); }
   .send { width: 36px; height: 36px; }
   .save-chat-btn { width: 34px; height: 34px; }
 
-  /* Banner ad — more compact */
-  .banner-ad { padding: 8px 12px; gap: 10px; }
-  .banner-ad-thumb { width: 36px; height: 36px; font-size: 16px; flex-shrink: 0; }
-  .banner-ad-name { font-size: 12px; }
-  .banner-ad-desc { display: none; }
-  .banner-ad-cta { font-size: 11px; padding: 5px 10px; white-space: nowrap; }
 
-  /* History panel — full width slide-in */
-  .history-panel {
-    width: 100%;
-    right: -100%;
-    background: var(--bg);
-  }
-  .history-panel.open { right: 0; }
-
-  /* Session view — full width */
-  .session-view {
-    width: 100%;
-    background: var(--bg);
-  }
-
-  /* Modal */
-  .modal-card { border-radius: 16px; }
-  .modal-body { padding: 16px; }
-  .modal-body p { font-size: 13px; }
-
-  /* Interstitial */
-  .interstitial-card {
-    margin: 12px;
-    border-radius: 16px;
-  }
-  .interstitial-visual { height: 100px; font-size: 36px; }
-  .interstitial-name { font-size: 18px; }
-  .interstitial-desc { font-size: 13px; }
 
   /* Copy goals button */
   .copy-goals-btn { font-size: 12px; padding: 7px 12px; }
@@ -1142,7 +993,6 @@ textarea::placeholder { color: var(--text3); }
 }
 .hub-link:hover { color: var(--accent); border-color: var(--border-warm); }
 </style>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8776178244604751" crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="shell">
@@ -1206,16 +1056,8 @@ textarea::placeholder { color: var(--text3); }
   </div>
 
   <!-- BOTTOM BANNER AD -->
-  <div class="banner-ad" id="bannerAd" style="display:none">
-    <div class="banner-ad-thumb" id="bannerThumb">🧘</div>
-    <div class="banner-ad-body">
-      <div class="banner-ad-label">Sponsored</div>
-      <div class="banner-ad-name" id="bannerName">Calm — Sleep & Meditate</div>
-      <div class="banner-ad-desc" id="bannerDesc">Complement your inner work</div>
-    </div>
-    <button class="banner-ad-cta">Learn More</button>
-  </div>
-
+  <!-- AdSense banner will go here -->
+  <div id="adsense-banner" style="width:100%;min-height:50px;text-align:center;"></div>
   <!-- HISTORY PANEL -->
   <div class="history-panel" id="historyPanel">
     <div class="history-header">
@@ -1258,23 +1100,6 @@ textarea::placeholder { color: var(--text3); }
   </div>
 
   <!-- INTERSTITIAL AD -->
-  <div class="interstitial" id="interstitial" style="display:none">
-    <div class="interstitial-card">
-      <div class="interstitial-header">
-        <span class="interstitial-label">Sponsored</span>
-        <span class="interstitial-timer" id="interstitialTimer">Skip in 5s</span>
-      </div>
-      <div class="interstitial-visual" id="interstitialVisual" style="background:linear-gradient(135deg,#7EC8C8,#3D7A6F)">🧘</div>
-      <div class="interstitial-body">
-        <div class="interstitial-name" id="interstitialName">Calm</div>
-        <div class="interstitial-desc" id="interstitialDesc">The #1 app for sleep, meditation, and relaxation. Used by over 100 million people worldwide.</div>
-        <div class="interstitial-btns">
-          <button class="interstitial-cta" id="interstitialCta">Try Free Today</button>
-          <button class="interstitial-skip" id="interstitialSkip" disabled>Skip in 5s</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
 </div>
 <script>
@@ -1304,14 +1129,7 @@ var chatLog   = [];
 var msgCount  = 0;
 var isDark    = true;
 
-// ── ADS ──
-var ADS = [
-  { e: '🧘', t: 'Calm', d: 'The #1 app for sleep, meditation, and relaxation. Used by over 100 million people.', g: '#7EC8C8,#3D7A6F', cta: 'Try Free Today' },
-  { e: '📓', t: 'Day One Journal', d: 'Capture your reflections and track your personal growth journey every day.', g: '#7BAFD4,#3B7BC8', cta: 'Start Journaling' },
-  { e: '🌿', t: 'Headspace', d: 'Mindfulness and meditation made simple. Build a healthier, happier mind.', g: '#A8D5A2,#4A9B5E', cta: 'Try Headspace' },
-  { e: '📚', t: 'Blinkist', d: 'Key ideas from 6,500+ nonfiction books in 15 minutes or less.', g: '#F5D79E,#C17F4A', cta: 'Try for Free' }
-];
-var currentAd = 0;
+// ── ADS ── (AdSense/AdMob will handle ads)
 var interstitialTimer = null;
 
 // ── ELEMENTS ──
@@ -1385,8 +1203,6 @@ sendBtn.addEventListener('click', doSend);
 function beginChat() {
   setupCard.style.display = 'none';
   inputWrap.style.display = 'block';
-  var bannerAd = document.getElementById('bannerAd');
-  if (bannerAd) { bannerAd.style.display = 'flex'; rotateBanner(); }
   chatLog = [];
   msgCount = 0;
   setTimeout(function() {
@@ -1563,14 +1379,6 @@ function addKaela(text) {
   scrollDown();
 
   msgCount++;
-  if (msgCount > 0 && msgCount % 10 === 0) {
-    // Use native AdMob interstitial if available (Android app), otherwise web fallback
-    if (window.AdBridge) {
-      window.AdBridge.showInterstitial();
-    } else {
-      showInterstitial();
-    }
-  }
 }
 
 // ── ADD USER MESSAGE ──
@@ -1616,69 +1424,6 @@ function removeTyping() {
   var el = document.getElementById('typingEl');
   if (el) el.remove();
 }
-
-// ── ADS DATA ──
-
-
-// ── BANNER AD ──
-function rotateBanner() {
-  var ad = ADS[currentAd % ADS.length];
-  var bannerAd = document.getElementById('bannerAd');
-  if (!bannerAd) return;
-  document.getElementById('bannerThumb').textContent = ad.e;
-  document.getElementById('bannerThumb').style.background = 'linear-gradient(135deg,' + ad.g + ')';
-  document.getElementById('bannerName').textContent = ad.t;
-  document.getElementById('bannerDesc').textContent = ad.d;
-  currentAd++;
-}
-
-// Rotate banner every 30 seconds
-setInterval(rotateBanner, 30000);
-
-// ── INTERSTITIAL AD ──
-function showInterstitial() {
-  var ad = ADS[Math.floor(Math.random() * ADS.length)];
-  var el = document.getElementById('interstitial');
-  if (!el) return;
-
-  document.getElementById('interstitialVisual').textContent = ad.e;
-  document.getElementById('interstitialVisual').style.background = 'linear-gradient(135deg,' + ad.g + ')';
-  document.getElementById('interstitialName').textContent = ad.t;
-  document.getElementById('interstitialDesc').textContent = ad.d;
-  document.getElementById('interstitialCta').textContent = ad.cta;
-
-  var skipBtn = document.getElementById('interstitialSkip');
-  var timerEl = document.getElementById('interstitialTimer');
-  skipBtn.disabled = true;
-  var secs = 5;
-  skipBtn.textContent = 'Skip in ' + secs + 's';
-  timerEl.textContent = 'Skip in ' + secs + 's';
-
-  el.style.display = 'flex';
-
-  interstitialTimer = setInterval(function() {
-    secs--;
-    if (secs <= 0) {
-      clearInterval(interstitialTimer);
-      skipBtn.disabled = false;
-      skipBtn.textContent = 'Skip';
-      timerEl.textContent = 'Skip';
-    } else {
-      skipBtn.textContent = 'Skip in ' + secs + 's';
-      timerEl.textContent = 'Skip in ' + secs + 's';
-    }
-  }, 1000);
-}
-
-function closeInterstitial() {
-  var el = document.getElementById('interstitial');
-  if (el) el.style.display = 'none';
-  if (interstitialTimer) clearInterval(interstitialTimer);
-}
-
-// Wire up interstitial buttons
-document.getElementById('interstitialSkip').addEventListener('click', closeInterstitial);
-document.getElementById('interstitialCta').addEventListener('click', closeInterstitial);
 
 // ── HELPERS ──
 function scrollDown() {
