@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ask Kaela — Your Life, Elevated</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:   #F7F3EC;
+    --warm:    #EDE6D8;
+    --ink:     #1A1712;
+    --ink2:    #3D3730;
+    --ink3:    #7A6F63;
+    --border:  rgba(26,23,18,0.1);
+
+    --teal:    #1FBFBF;
+    --amber:   #D4820A;
+    --sage:    #4A8C6F;
+    --indigo:  #4B5FBF;
+    --coral:   #C75B3A;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: relative; z-index: 10;
+    padding: 28px 40px 0;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .logo-mark {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .logo-orb {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #A8EFEF, #1FBFBF 45%, #0D7A7A);
+    box-shadow: 0 4px 16px rgba(31,191,191,0.3);
+    flex-shrink: 0;
+  }
+  .logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 600;
+    color: var(--ink); letter-spacing: 0.01em;
+  }
+  .logo-text span { color: var(--teal); }
+
+  .header-nav {
+    display: flex; align-items: center; gap: 24px;
+  }
+  .header-nav a {
+    font-size: 13px; font-weight: 400;
+    color: var(--ink3); text-decoration: none;
+    transition: color 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .header-nav a:hover { color: var(--ink); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; z-index: 1;
+    text-align: center;
+    padding: 80px 24px 60px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 20px;
+    padding: 6px 16px;
+    border: 1px solid rgba(31,191,191,0.3);
+    border-radius: 20px;
+    background: rgba(31,191,191,0.06);
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 7vw, 72px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin-bottom: 20px;
+  }
+  .hero h1 em {
+    font-style: italic; font-weight: 300;
+    color: var(--ink2);
+  }
+  .hero-sub {
+    font-size: clamp(15px, 2.5vw, 18px);
+    font-weight: 300;
+    color: var(--ink3);
+    line-height: 1.7;
+    max-width: 540px;
+    margin: 0 auto 16px;
+  }
+  .institute-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; color: var(--ink3);
+    letter-spacing: 0.04em;
+    margin-top: 8px;
+    opacity: 0.7;
+  }
+  .institute-badge::before,
+  .institute-badge::after {
+    content: ''; display: block;
+    width: 32px; height: 1px;
+    background: var(--ink3); opacity: 0.4;
+  }
+
+  /* ── DIVIDER ── */
+  .section-divider {
+    display: flex; align-items: center; gap: 16px;
+    max-width: 900px; margin: 0 auto 48px;
+    padding: 0 24px;
+    position: relative; z-index: 1;
+  }
+  .section-divider::before,
+  .section-divider::after {
+    content: ''; flex: 1;
+    height: 1px; background: var(--border);
+  }
+  .section-divider span {
+    font-size: 11px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--ink3);
+    white-space: nowrap;
+  }
+
+  /* ── GRID ── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto 80px;
+    padding: 0 24px;
+    position: relative; z-index: 1;
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px 28px 28px;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex; flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    position: relative;
+    overflow: hidden;
+    animation: cardIn 0.5s ease both;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--card-accent);
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.10);
+    border-color: var(--card-accent);
+  }
+  .card:hover::before { opacity: 1; }
+
+  .card:nth-child(1) { animation-delay: 0.05s; }
+  .card:nth-child(2) { animation-delay: 0.10s; }
+  .card:nth-child(3) { animation-delay: 0.15s; }
+  .card:nth-child(4) { animation-delay: 0.20s; }
+  .card:nth-child(5) { animation-delay: 0.25s; }
+
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-orb {
+    width: 52px; height: 52px; border-radius: 50%;
+    margin-bottom: 20px; flex-shrink: 0;
+    box-shadow: 0 4px 16px var(--card-glow);
+    animation: orbPulse 4s ease-in-out infinite;
+  }
+  @keyframes orbPulse {
+    0%, 100% { box-shadow: 0 4px 16px var(--card-glow); }
+    50%       { box-shadow: 0 6px 24px var(--card-glow); }
+  }
+
+  .card-label {
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--card-accent);
+    margin-bottom: 8px;
+  }
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 600;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .card-tagline {
+    font-size: 12px; font-style: italic;
+    color: var(--ink3); margin-bottom: 14px;
+    line-height: 1.5;
+  }
+  .card-desc {
+    font-size: 13.5px; font-weight: 300;
+    color: var(--ink2); line-height: 1.7;
+    flex: 1;
+    margin-bottom: 24px;
+  }
+  .card-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--card-accent);
+    transition: gap 0.2s;
+  }
+  .card:hover .card-cta { gap: 12px; }
+  .card-cta svg { flex-shrink: 0; transition: transform 0.2s; }
+  .card:hover .card-cta svg { transform: translateX(3px); }
+
+  /* ── CARD THEMES ── */
+  .card-stories {
+    --card-accent: #1FBFBF;
+    --card-glow: rgba(31,191,191,0.25);
+  }
+  .card-stories .card-orb {
+    background: radial-gradient(circle at 35% 35%, #A8EFEF, #1FBFBF 45%, #0D7A7A);
+  }
+
+  .card-teacher {
+    --card-accent: #D4820A;
+    --card-glow: rgba(212,130,10,0.25);
+  }
+  .card-teacher .card-orb {
+    background: radial-gradient(circle at 35% 35%, #FFD98A, #D4820A 45%, #8A5200);
+  }
+
+  .card-parent {
+    --card-accent: #4A8C6F;
+    --card-glow: rgba(74,140,111,0.25);
+  }
+  .card-parent .card-orb {
+    background: radial-gradient(circle at 35% 35%, #A8DFC2, #4A8C6F 45%, #2A5C44);
+  }
+
+  .card-philosophy {
+    --card-accent: #4B5FBF;
+    --card-glow: rgba(75,95,191,0.25);
+  }
+  .card-philosophy .card-orb {
+    background: radial-gradient(circle at 35% 35%, #B8C4FF, #4B5FBF 45%, #1E2B80);
+  }
+
+  .card-together {
+    --card-accent: #C75B3A;
+    --card-glow: rgba(199,91,58,0.25);
+  }
+  .card-together .card-orb {
+    background: radial-gradient(circle at 35% 35%, #FFB89A, #C75B3A 45%, #7A2810);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    position: relative; z-index: 1;
+    text-align: center;
+    padding: 40px 24px 48px;
+    border-top: 1px solid var(--border);
+  }
+  .footer-institute {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; font-weight: 400;
+    color: var(--ink2); margin-bottom: 6px;
+  }
+  .footer-mission {
+    font-size: 12px; color: var(--ink3);
+    font-style: italic; line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .footer-links {
+    display: flex; align-items: center; justify-content: center;
+    gap: 24px; flex-wrap: wrap;
+  }
+  .footer-links a {
+    font-size: 12px; color: var(--ink3);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--teal); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 600px) {
+    header { padding: 20px 18px 0; }
+    .header-nav { display: none; }
+    .hero { padding: 50px 18px 40px; }
+    .hero h1 { font-size: 38px; }
+    .grid { padding: 0 16px; gap: 14px; }
+    .card { padding: 24px 22px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-mark">
+    <div class="logo-orb"></div>
+    <div class="logo-text">Ask <span>Kaela</span></div>
+  </div>
+  <nav class="header-nav">
+    <a href="creator.html">About the Creator</a>
+    <a href="mailto:nick@askkaela.com">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow">Your Life, Elevated</div>
+  <h1>Wisdom for every<br><em>corner of your life.</em></h1>
+  <p class="hero-sub">Kaela is your guide — meeting you where you are, drawing on timeless wisdom and proven frameworks to help you grow.</p>
+  <div class="institute-badge">Institute for Human Flourishing and Responsible Technology</div>
+</section>
+
+<div class="section-divider">
+  <span>Choose your Kaela</span>
+</div>
+
+<div class="grid">
+
+  <a href="stories.html" class="card card-stories">
+    <div class="card-orb"></div>
+    <div class="card-label">Kaela: Stories</div>
+    <div class="card-title">Ancient Stories.<br>Real Answers.</div>
+    <div class="card-tagline">Timeless myths. Personal breakthroughs.</div>
+    <div class="card-desc">Kaela weaves ancient stories and archetypes into modern life coaching — helping you find your pattern, face your shadow, and write your next chapter.</div>
+    <div class="card-cta">Begin your journey <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+  </a>
+
+  <a href="teacher.html" class="card card-teacher">
+    <div class="card-orb"></div>
+    <div class="card-label">Kaela: Teacher</div>
+    <div class="card-title">The Coach Every<br>Educator Deserves.</div>
+    <div class="card-tagline">Based on The Modern Teacher's Handbook by Nick Duda.</div>
+    <div class="card-desc">Grounded in the Duda Model — Connections, Mindfulness, Unconditional Support, and Growth Mindset — Kaela helps educators thrive in and beyond the classroom.</div>
+    <div class="card-cta">Start coaching <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+  </a>
+
+  <a href="parent.html" class="card card-parent">
+    <div class="card-orb"></div>
+    <div class="card-label">Kaela: Parent</div>
+    <div class="card-title">Raising Family<br>with Intention.</div>
+    <div class="card-tagline">Parenting wisdom rooted in proven educational science.</div>
+    <div class="card-desc">Drawing on the same principles that transform classrooms, Kaela helps parents build connection, model mindfulness, and raise children who are kind, resilient, and curious.</div>
+    <div class="card-cta">Get guidance <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+  </a>
+
+  <a href="philosophy.html" class="card card-philosophy">
+    <div class="card-orb"></div>
+    <div class="card-label">Kaela: Philosophy</div>
+    <div class="card-title">Hear from the<br>Great Thinkers.</div>
+    <div class="card-tagline">Stoics, Existentialists, Buddhists & beyond.</div>
+    <div class="card-desc">Bring your question. Kaela summons the voices of history's greatest philosophical traditions — Stoicism, Existentialism, Buddhism, Taoism — to explore it from every angle.</div>
+    <div class="card-cta">Explore ideas <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+  </a>
+
+  <a href="together.html" class="card card-together">
+    <div class="card-orb"></div>
+    <div class="card-label">Kaela: Together</div>
+    <div class="card-title">Make Memories<br>Worth Keeping.</div>
+    <div class="card-tagline">Activities for families, friends & communities.</div>
+    <div class="card-desc">Tell Kaela who's in the room, what you have, and how much time you've got — she'll generate custom activities, adventures, and traditions tailored just for your group.</div>
+    <div class="card-cta">Plan something great <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+  </a>
+
+</div>
+
+<footer>
+  <div class="footer-institute">Institute for Human Flourishing and Responsible Technology</div>
+  <p class="footer-mission">Technology that serves humanity — not the other way around.</p>
+  <div class="footer-links">
+    <a href="creator.html">About Nick Duda</a>
+    <a href="stories.html">Ask Kaela: Stories</a>
+    <a href="https://dudaeducation.com" target="_blank">DudaEducation.com</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,1982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Ask Kaela — Ancient Stories, Real Answers</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+/* ── DARK THEME (default) ── */
+body {
+  --bg:           #0F0E0C;
+  --surface:      #1E1C18;
+  --surface2:     #252320;
+  --border:       rgba(255,255,255,0.08);
+  --border-warm:  rgba(196,147,90,0.25);
+  --text1:        #F0EBE1;
+  --text2:        #A8A098;
+  --text3:        #6A6560;
+  --accent:       #4A8C6F;
+  --accent-bg:    rgba(196,147,90,0.10);
+  --user-bubble:  #3A7A5E;
+  --user-text:    #FDF5EC;
+  --shadow:       0 2px 16px rgba(0,0,0,0.45);
+}
+
+/* ── LIGHT THEME ── */
+body.light {
+  --bg:           #F5F1EB;
+  --surface:      #FFFFFF;
+  --surface2:     #EDE8E0;
+  --border:       rgba(0,0,0,0.08);
+  --border-warm:  rgba(160,100,40,0.25);
+  --text1:        #1A1714;
+  --text2:        #6B6058;
+  --text3:        #A09888;
+  --accent:       #A0662A;
+  --accent-bg:    rgba(160,102,42,0.08);
+  --user-bubble:  #A0662A;
+  --user-text:    #FDF5EC;
+  --shadow:       0 2px 16px rgba(0,0,0,0.10);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--bg);
+  color: var(--text1);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  transition: background 0.3s, color 0.3s;
+}
+
+.shell {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── HEADER ── */
+.header {
+  padding: 16px 20px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  transition: background 0.3s;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logo-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text1);
+  line-height: 1.1;
+}
+
+.logo-tag {
+  font-size: 10px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-weight: 400;
+}
+
+.header-btns {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.icon-btn:hover {
+  background: var(--accent-bg);
+  border-color: var(--border-warm);
+}
+
+/* ── AD BANNER ── */
+.ad-banner {
+  margin: 8px 16px 0;
+  padding: 8px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ad-thumb {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.ad-label { font-size: 9px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.7px; }
+.ad-name  { font-size: 12px; font-weight: 600; color: var(--text1); }
+.ad-desc  { font-size: 11px; color: var(--text2); }
+
+.ad-cta {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 1px solid var(--border-warm);
+  border-radius: 20px;
+  padding: 5px 11px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+/* ── CHAT ── */
+.chat {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  scroll-behavior: smooth;
+}
+
+.chat::-webkit-scrollbar { width: 0; }
+
+/* ── SETUP CARD ── */
+.setup-card {
+  background: var(--surface);
+  border: 1px solid var(--border-warm);
+  border-radius: 18px;
+  padding: 24px 20px;
+  box-shadow: var(--shadow);
+  margin-top: 8px;
+  animation: popIn 0.4s ease both;
+}
+
+.setup-icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 14px;
+  background: transparent;
+}
+
+.setup-icon svg { width: 26px; height: 26px; }
+
+.setup-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--text1);
+  margin-bottom: 6px;
+}
+
+.setup-sub {
+  font-size: 13.5px;
+  color: var(--text2);
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.setup-input {
+  width: 100%;
+  padding: 13px 16px;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  color: var(--text1);
+  outline: none;
+  margin-bottom: 12px;
+  transition: border-color 0.2s;
+}
+
+.setup-input:focus { border-color: var(--accent); }
+.setup-input::placeholder { color: var(--text3); }
+
+.setup-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #60B890, #3A7A5E);
+  color: #FDF5EC;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(196,147,90,0.3);
+}
+
+.setup-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 22px rgba(96,184,144,0.4); }
+
+.setup-note {
+  font-size: 11px;
+  color: var(--text3);
+  text-align: center;
+  margin-top: 10px;
+  line-height: 1.6;
+}
+
+.setup-note a { color: var(--accent); text-decoration: none; }
+.setup-error { font-size: 12px; color: #E07070; text-align: center; margin-top: 8px; min-height: 18px; }
+
+/* ── MESSAGES ── */
+.msg {
+  display: flex;
+  gap: 9px;
+  animation: popIn 0.3s cubic-bezier(0.34,1.4,0.64,1) both;
+}
+
+.msg.user { flex-direction: row-reverse; }
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar.kaela {
+  background: transparent;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar.user {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+}
+
+.avatar.user svg { width: 14px; height: 14px; color: var(--text3); }
+
+.bubble {
+  max-width: 80%;
+  padding: 11px 15px;
+  border-radius: 18px 18px 18px 4px;
+  font-size: 14.5px;
+  line-height: 1.65;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  color: var(--text1);
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.msg.user .bubble {
+  background: var(--user-bubble);
+  border-color: transparent;
+  border-radius: 18px 18px 4px 18px;
+  color: var(--user-text);
+  box-shadow: 0 3px 14px rgba(196,147,90,0.25);
+}
+
+/* ── CHOICE BUTTONS ── */
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.choice {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  padding: 9px 13px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 13.5px;
+  color: var(--text2);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s;
+  line-height: 1.4;
+}
+
+.choice:hover {
+  background: var(--accent-bg);
+  border-color: var(--border-warm);
+  color: var(--accent);
+  transform: translateX(3px);
+}
+
+.choice:disabled { opacity: 0.4; cursor: default; transform: none; }
+.choice-num { font-weight: 700; color: var(--accent); margin-right: 6px; }
+
+/* ── PHASE TAG ── */
+.phase-tag {
+  display: block;
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 6px;
+  opacity: 0.8;
+}
+
+/* ── PILLAR LABELS ── */
+.pillar {
+  display: inline-block;
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent);
+  font-weight: 600;
+  margin-top: 10px;
+  margin-bottom: 2px;
+}
+
+/* ── SECTION TITLE (The Tale:, The Story:, etc.) ── */
+.section-title {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text1);
+  margin-top: 18px;
+  margin-bottom: 4px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border-warm);
+  letter-spacing: 0.01em;
+}
+.section-title:first-child {
+  margin-top: 4px;
+}
+
+/* ── TYPING ── */
+.typing {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+}
+
+.typing-bubble {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px 18px 18px 4px;
+  padding: 12px 16px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--text3);
+  animation: bounce 1.2s infinite ease-in-out;
+}
+.dot:nth-child(2) { animation-delay: 0.18s; }
+.dot:nth-child(3) { animation-delay: 0.36s; }
+
+/* ── MID AD ── */
+.ad-mid {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 11px 14px;
+  position: relative;
+}
+
+.ad-mid-close {
+  position: absolute; top: 7px; right: 10px;
+  background: none; border: none;
+  color: var(--text3); cursor: pointer;
+  font-size: 16px; line-height: 1; padding: 2px 4px;
+}
+
+.ad-mid-thumb {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  display: flex; align-items: center;
+  justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+}
+
+/* ── BOTTOM BANNER AD ── */
+.banner-ad {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 6px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 56px;
+}
+
+.banner-ad-thumb {
+  width: 40px; height: 40px;
+  border-radius: 8px;
+  display: flex; align-items: center;
+  justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+}
+
+.banner-ad-body { flex: 1; min-width: 0; }
+.banner-ad-label { font-size: 9px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.7px; }
+.banner-ad-name  { font-size: 12px; font-weight: 600; color: var(--text1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.banner-ad-desc  { font-size: 11px; color: var(--text2); }
+
+.banner-ad-cta {
+  flex-shrink: 0;
+  font-size: 11px; font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 1px solid var(--border-warm);
+  border-radius: 20px;
+  padding: 5px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+/* ── INTERSTITIAL AD ── */
+.interstitial {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.interstitial-card {
+  width: 90%;
+  max-width: 360px;
+  background: var(--surface);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  animation: popIn 0.35s cubic-bezier(0.34,1.4,0.64,1) both;
+}
+
+.interstitial-header {
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+
+.interstitial-label { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.8px; }
+
+.interstitial-timer {
+  font-size: 11px;
+  color: var(--text3);
+  background: var(--surface2);
+  border-radius: 20px;
+  padding: 3px 10px;
+  font-weight: 600;
+}
+
+.interstitial-visual {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+}
+
+.interstitial-body { padding: 16px 20px 20px; }
+.interstitial-name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: var(--text1); margin-bottom: 6px; }
+.interstitial-desc { font-size: 13.5px; color: var(--text2); line-height: 1.6; margin-bottom: 16px; }
+
+.interstitial-btns { display: flex; gap: 10px; }
+
+.interstitial-cta {
+  flex: 1;
+  padding: 13px;
+  background: linear-gradient(135deg, #60B890, #3A7A5E);
+  color: #FDF5EC;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px; font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.interstitial-skip {
+  padding: 13px 16px;
+  background: var(--surface2);
+  color: var(--text2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.interstitial-skip:disabled { opacity: 0.4; cursor: not-allowed; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── INPUT ── */
+.input-wrap {
+  padding: 10px 16px 12px;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  transition: background 0.3s;
+}
+
+.input-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 9px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 26px;
+  padding: 8px 8px 8px 16px;
+  box-shadow: var(--shadow);
+  transition: border-color 0.2s, background 0.3s;
+}
+
+.input-row:focus-within { border-color: var(--border-warm); }
+
+textarea {
+  flex: 1;
+  background: transparent;
+  border: none;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14.5px;
+  color: var(--text1);
+  outline: none;
+  resize: none;
+  max-height: 120px;
+  line-height: 1.5;
+  padding: 4px 0;
+}
+
+textarea::placeholder { color: var(--text3); }
+
+.send {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #60B890, #3A7A5E);
+  border: none;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; flex-shrink: 0;
+  transition: all 0.2s;
+  box-shadow: 0 2px 10px rgba(196,147,90,0.3);
+}
+
+.send:hover { transform: scale(1.08); }
+.send:disabled { background: var(--surface2); box-shadow: none; cursor: not-allowed; transform: none; }
+.send svg { width: 15px; height: 15px; }
+
+/* ── DISCLAIMER BUTTON ── */
+.disclaimer-link {
+  font-size: 11px;
+  color: var(--text3);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: all 0.2s;
+}
+
+.disclaimer-link:hover {
+  color: var(--accent);
+  border-color: var(--border-warm);
+}
+
+/* ── MODAL ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--surface);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  animation: popIn 0.3s cubic-bezier(0.34,1.4,0.64,1) both;
+}
+
+.modal-header {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text1);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: var(--text3);
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 4px;
+  transition: color 0.2s;
+}
+
+.modal-close:hover { color: var(--text1); }
+
+.modal-icon {
+  font-size: 36px;
+  text-align: center;
+  margin: 16px 0 12px;
+}
+
+.modal-body {
+  padding: 0 22px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.modal-body p {
+  font-size: 13.5px;
+  color: var(--text2);
+  line-height: 1.7;
+}
+
+.modal-body strong {
+  color: var(--text1);
+  font-weight: 600;
+}
+
+.modal-footer-note {
+  font-size: 11.5px !important;
+  color: var(--text3) !important;
+  border-top: 1px solid var(--border);
+  padding-top: 10px !important;
+  margin-top: 4px;
+  font-style: italic;
+}
+
+.modal-btn {
+  width: calc(100% - 44px);
+  margin: 0 22px 20px;
+  padding: 13px;
+  background: linear-gradient(135deg, #60B890, #3A7A5E);
+  color: #FDF5EC;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(196,147,90,0.3);
+}
+
+.modal-btn:hover { transform: translateY(-1px); }
+
+/* ── ORB ── */
+.orb-small {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #A8DFC2, #4A8C6F 45%, #2A5C44);
+  box-shadow: 0 0 8px rgba(196,147,90,0.7), 0 0 20px rgba(196,147,90,0.3);
+  animation: orbPulse 3s ease-in-out infinite, orbFloat 4s ease-in-out infinite;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.orb-small::after {
+  content: '';
+  position: absolute;
+  top: 3px; left: 4px;
+  width: 7px; height: 5px;
+  background: rgba(255,255,255,0.45);
+  border-radius: 50%;
+  filter: blur(1px);
+  transform: rotate(-30deg);
+}
+
+.orb-medium {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #A8DFC2, #4A8C6F 45%, #2A5C44);
+  box-shadow: 0 0 16px rgba(196,147,90,0.8), 0 0 40px rgba(196,147,90,0.35);
+  animation: orbPulse 3s ease-in-out infinite, orbFloat 4s ease-in-out infinite;
+  position: relative;
+  margin: 0 auto;
+}
+
+.orb-medium::after {
+  content: '';
+  position: absolute;
+  top: 6px; left: 8px;
+  width: 13px; height: 9px;
+  background: rgba(255,255,255,0.45);
+  border-radius: 50%;
+  filter: blur(2px);
+  transform: rotate(-30deg);
+}
+
+.orb-large {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #A8DFC2, #4A8C6F 45%, #2A5C44);
+  box-shadow: 0 0 14px rgba(196,147,90,0.8), 0 0 35px rgba(196,147,90,0.35);
+  animation: orbPulse 3s ease-in-out infinite, orbFloat 4s ease-in-out infinite;
+  position: relative;
+  margin: 0 auto;
+}
+
+.orb-large::after {
+  content: '';
+  position: absolute;
+  top: 5px; left: 7px;
+  width: 10px; height: 7px;
+  background: rgba(255,255,255,0.45);
+  border-radius: 50%;
+  filter: blur(1.5px);
+  transform: rotate(-30deg);
+}
+
+.orb-avatar {
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #A8DFC2, #4A8C6F 45%, #2A5C44);
+  box-shadow: 0 0 6px rgba(196,147,90,0.8);
+  animation: orbPulse 3s ease-in-out infinite;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.orb-avatar::after {
+  content: '';
+  position: absolute;
+  top: 2px; left: 3px;
+  width: 5px; height: 4px;
+  background: rgba(255,255,255,0.45);
+  border-radius: 50%;
+  filter: blur(1px);
+  transform: rotate(-30deg);
+}
+
+@keyframes orbPulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(196,147,90,0.7), 0 0 20px rgba(196,147,90,0.3); }
+  50%       { box-shadow: 0 0 14px rgba(196,147,90,0.9), 0 0 35px rgba(196,147,90,0.5); }
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-3px); }
+}
+
+/* ── COPY GOALS BUTTON ── */
+.copy-goals-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 12px;
+  padding: 9px 16px;
+  background: var(--accent-bg);
+  border: 1px solid var(--border-warm);
+  border-radius: 20px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--accent);
+  cursor: pointer;
+  transition: all 0.2s;
+  width: fit-content;
+}
+
+.copy-goals-btn:hover {
+  background: var(--accent);
+  color: #FDF5EC;
+  transform: translateY(-1px);
+}
+
+.copy-goals-btn svg {
+  width: 13px; height: 13px;
+  flex-shrink: 0;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.93) translateY(8px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes bounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-5px); }
+}
+
+
+/* ── SAVE CHAT BUTTON ── */
+.save-chat-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: var(--surface2);
+  color: var(--text2);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s, color 0.2s;
+}
+.save-chat-btn:hover { background: var(--accent); color: #fff; }
+.save-chat-btn.saved { background: #2a7a4a; color: #fff; }
+
+/* ── HISTORY PANEL ── */
+.history-panel {
+  position: fixed;
+  top: 0; right: -320px;
+  width: 310px; height: 100%;
+  background: var(--bg);
+  border-left: 1px solid var(--border);
+  z-index: 300;
+  display: flex; flex-direction: column;
+  transition: right 0.3s ease;
+  overflow: hidden;
+}
+.history-panel.open { right: 0; }
+.history-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 16px 12px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.history-title { font-size: 15px; font-weight: 600; color: var(--text1); }
+.history-close {
+  background: none; border: none; color: var(--text2);
+  font-size: 16px; cursor: pointer; padding: 4px 8px;
+}
+.history-privacy {
+  font-size: 11px; color: var(--text3);
+  padding: 8px 16px;
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.history-list {
+  overflow-y: auto;
+  flex: 1;
+  padding: 8px 0;
+}
+.history-empty {
+  text-align: center;
+  color: var(--text3);
+  font-size: 13px;
+  padding: 40px 20px;
+  line-height: 1.6;
+}
+.history-item {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.15s;
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.history-item:hover { background: var(--surface2); }
+.history-item-body { flex: 1; min-width: 0; }
+.history-item-title {
+  font-size: 13px; font-weight: 500; color: var(--text1);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  margin-bottom: 3px;
+}
+.history-item-date { font-size: 11px; color: var(--text3); }
+.history-item-preview {
+  font-size: 12px; color: var(--text2);
+  margin-top: 4px;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.history-item-del {
+  background: none; border: none; color: var(--text3);
+  cursor: pointer; font-size: 14px; padding: 2px 4px;
+  flex-shrink: 0; opacity: 0.5; transition: opacity 0.2s;
+}
+.history-item-del:hover { opacity: 1; color: #e07070; }
+
+/* ── PANEL OVERLAY ── */
+.panel-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 299;
+  display: none;
+}
+.panel-overlay.open { display: block; }
+
+/* ── SESSION VIEW ── */
+.session-view {
+  position: fixed;
+  top: 0; right: 0;
+  width: 310px; height: 100%;
+  background: var(--bg);
+  border-left: 1px solid var(--border);
+  z-index: 301;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.session-view-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.session-back {
+  background: none; border: none; color: var(--accent);
+  font-size: 13px; cursor: pointer; padding: 0;
+}
+.session-delete {
+  background: none; border: none; color: #e07070;
+  font-size: 12px; cursor: pointer; padding: 4px 8px;
+  border-radius: 6px; transition: background 0.2s;
+}
+.session-delete:hover { background: rgba(224,112,112,0.15); }
+.session-view-title {
+  font-size: 14px; font-weight: 600; color: var(--text1);
+  padding: 14px 16px 4px;
+  flex-shrink: 0;
+}
+.session-view-date {
+  font-size: 11px; color: var(--text3);
+  padding: 0 16px 12px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.session-view-body {
+  overflow-y: auto;
+  flex: 1;
+  padding: 14px 16px;
+  font-size: 13px; line-height: 1.7; color: var(--text2);
+  white-space: pre-wrap;
+}
+
+/* ══════════════════════════════
+   MOBILE RESPONSIVE
+   ══════════════════════════════ */
+@media (max-width: 600px) {
+
+  /* Shell fills full screen */
+  .shell {
+    max-width: 100%;
+    min-height: 100dvh;
+  }
+
+  /* Header — tighter on small screens */
+  .header { padding: 12px 14px 10px; }
+  .logo-name { font-size: 17px; }
+  .logo-tag { font-size: 9px; }
+  .logo-icon { width: 30px; height: 30px; }
+  .orb-small { width: 24px !important; height: 24px !important; }
+  .header-btns { gap: 5px; }
+  .disclaimer-link { font-size: 10px; padding: 3px 8px; }
+  .icon-btn { width: 30px; height: 30px; font-size: 14px; }
+
+  /* Chat area */
+  .chat { padding: 12px 12px; gap: 12px; }
+
+  /* Setup card */
+  .setup-card { padding: 22px 16px; margin-top: 6px; }
+  .setup-title { font-size: 20px; }
+  .setup-sub { font-size: 13px; }
+  .orb-large { width: 64px !important; height: 64px !important; }
+
+  /* Messages */
+  .bubble { font-size: 14px; padding: 10px 13px; }
+  .avatar { width: 26px; height: 26px; }
+
+  /* Input row */
+  .input-wrap { padding: 8px 10px 10px; }
+  .input-row { padding: 6px 6px 6px 14px; }
+  textarea { font-size: 14px; }
+  .send { width: 36px; height: 36px; }
+  .save-chat-btn { width: 34px; height: 34px; }
+
+  /* Banner ad — more compact */
+  .banner-ad { padding: 8px 12px; gap: 10px; }
+  .banner-ad-thumb { width: 36px; height: 36px; font-size: 16px; flex-shrink: 0; }
+  .banner-ad-name { font-size: 12px; }
+  .banner-ad-desc { display: none; }
+  .banner-ad-cta { font-size: 11px; padding: 5px 10px; white-space: nowrap; }
+
+  /* History panel — full width slide-in */
+  .history-panel {
+    width: 100%;
+    right: -100%;
+    background: var(--bg);
+  }
+  .history-panel.open { right: 0; }
+
+  /* Session view — full width */
+  .session-view {
+    width: 100%;
+    background: var(--bg);
+  }
+
+  /* Modal */
+  .modal-card { border-radius: 16px; }
+  .modal-body { padding: 16px; }
+  .modal-body p { font-size: 13px; }
+
+  /* Interstitial */
+  .interstitial-card {
+    margin: 12px;
+    border-radius: 16px;
+  }
+  .interstitial-visual { height: 100px; font-size: 36px; }
+  .interstitial-name { font-size: 18px; }
+  .interstitial-desc { font-size: 13px; }
+
+  /* Copy goals button */
+  .copy-goals-btn { font-size: 12px; padding: 7px 12px; }
+
+  /* Phase action buttons */
+  .phase3-actions { flex-direction: column; }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+  .logo-name { font-size: 15px; }
+  .logo-tag { display: none; }
+  .disclaimer-link { display: none; }
+  .header-btns { gap: 4px; }
+  .bubble { font-size: 13px; }
+}
+
+/* Fix for iOS safari bottom bar */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .input-wrap {
+    padding-bottom: calc(10px + env(safe-area-inset-bottom));
+  }
+}
+
+/* Hub back link */
+.hub-link {
+  font-size: 11px; color: var(--text3);
+  border: 1px solid var(--border); border-radius: 20px;
+  padding: 4px 10px; text-decoration: none;
+  font-family: "Nunito", sans-serif; transition: all 0.2s;
+}
+.hub-link:hover { color: var(--accent); border-color: var(--border-warm); }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <div class="logo-icon">
+        <div class="orb-small"></div>
+      </div>
+      <div>
+        <div class="logo-name">Ask Kaela</div>
+        <div class="logo-tag">Ancient Stories, Real Answers</div>
+      </div>
+    </div>
+    <div class="header-btns">
+      <button class="disclaimer-link" id="disclaimerBtn" title="Disclaimer">Disclaimer</button>
+      <button class="disclaimer-link" onclick="window.open('https://the-institute-for-human-flourishing.github.io/AskKaela/creator.html','_blank')" title="From the Creator">Creator</button>
+      <button class="icon-btn" id="historyBtn" title="My Conversations">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </button>
+      <button class="icon-btn" id="themeBtn" title="Toggle light/dark mode">🌙</button>
+      <button class="icon-btn" id="newBtn" title="New conversation">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+      </button>
+    </div>
+  </header>
+
+
+
+  <!-- CHAT AREA -->
+  <div class="chat" id="chat">
+
+    <div class="setup-card" id="setupCard">
+      <div class="setup-icon">
+        <div class="orb-large"></div>
+      </div>
+      <div class="setup-title">Meet Kaela</div>
+      <div class="setup-sub">Your wisdom guide — drawing on thousands of years of human stories to help you navigate life today.</div>
+      <input class="setup-input" type="password" id="keyInput" placeholder="Paste your Gemini API key (AIza…)" autocomplete="off" />
+      <button class="setup-btn" id="startBtn">Begin My Journey →</button>
+      <div class="setup-note">Your key is stored only on this device.<br><a href="https://aistudio.google.com/app/apikey" target="_blank">Get a free key at Google AI Studio →</a></div>
+      <div class="setup-error" id="keyError"></div>
+    </div>
+
+  </div>
+
+  <!-- INPUT -->
+  <div class="input-wrap" id="inputWrap" style="display:none">
+    <div class="input-row">
+      <textarea id="msgInput" placeholder="Tell Kaela what's on your mind…" rows="1"></textarea>
+      <button class="save-chat-btn" id="saveChatBtn" title="Save this conversation">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+      </button>
+      <button class="send" id="sendBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+          <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- BOTTOM BANNER AD -->
+  <div class="banner-ad" id="bannerAd" style="display:none">
+    <div class="banner-ad-thumb" id="bannerThumb">🧘</div>
+    <div class="banner-ad-body">
+      <div class="banner-ad-label">Sponsored</div>
+      <div class="banner-ad-name" id="bannerName">Calm — Sleep & Meditate</div>
+      <div class="banner-ad-desc" id="bannerDesc">Complement your inner work</div>
+    </div>
+    <button class="banner-ad-cta">Learn More</button>
+  </div>
+
+  <!-- HISTORY PANEL -->
+  <div class="history-panel" id="historyPanel">
+    <div class="history-header">
+      <div class="history-title">My Conversations</div>
+      <button class="history-close" id="historyClose">✕</button>
+    </div>
+    <div class="history-privacy">🔒 Conversations are saved only on this device</div>
+    <div class="history-list" id="historyList"></div>
+  </div>
+  <div class="panel-overlay" id="panelOverlay"></div>
+
+  <!-- SESSION VIEW -->
+  <div class="session-view" id="sessionView" style="display:none">
+    <div class="session-view-header">
+      <button class="session-back" id="sessionBack">← Back</button>
+      <button class="session-delete" id="sessionDelete">🗑 Delete</button>
+    </div>
+    <div class="session-view-title" id="sessionViewTitle"></div>
+    <div class="session-view-date" id="sessionViewDate"></div>
+    <div class="session-view-body" id="sessionViewBody"></div>
+  </div>
+
+  <!-- DISCLAIMER MODAL -->
+  <div class="modal-overlay" id="disclaimerModal" style="display:none">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">A Note Before We Begin</div>
+
+      </div>
+      <div class="modal-body">
+        <div class="modal-icon"><div class="orb-medium"></div></div>
+        <p>Kaela draws on thousands of years of human stories, folklore, and wisdom traditions from around the world — and she loves helping you think things through.</p>
+        <p>That said, Kaela is powered by artificial intelligence and, like any AI, can make mistakes. The insights and stories she shares are meant for <strong>entertainment, reflection, and personal exploration only.</strong></p>
+        <p>Kaela is <strong>not a licensed therapist, counselor, or medical professional.</strong> Nothing shared in this app should be taken as professional mental health, legal, financial, or medical advice.</p>
+        <p>If you are experiencing a crisis or need professional support, please reach out to a qualified professional or contact a crisis helpline in your area.</p>
+        <p class="modal-footer-note">By using Ask Kaela you acknowledge that this app is provided for entertainment and reflective purposes only, and that the creators are not liable for any decisions made based on its content.</p>
+      </div>
+      <button class="modal-btn" id="disclaimerOk">I Understand</button>
+    </div>
+  </div>
+
+  <!-- INTERSTITIAL AD -->
+  <div class="interstitial" id="interstitial" style="display:none">
+    <div class="interstitial-card">
+      <div class="interstitial-header">
+        <span class="interstitial-label">Sponsored</span>
+        <span class="interstitial-timer" id="interstitialTimer">Skip in 5s</span>
+      </div>
+      <div class="interstitial-visual" id="interstitialVisual" style="background:linear-gradient(135deg,#7EC8C8,#3D7A6F)">🧘</div>
+      <div class="interstitial-body">
+        <div class="interstitial-name" id="interstitialName">Calm</div>
+        <div class="interstitial-desc" id="interstitialDesc">The #1 app for sleep, meditation, and relaxation. Used by over 100 million people worldwide.</div>
+        <div class="interstitial-btns">
+          <button class="interstitial-cta" id="interstitialCta">Try Free Today</button>
+          <button class="interstitial-skip" id="interstitialSkip" disabled>Skip in 5s</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script>
+
+// ── CONFIG ──
+var APP_VERSION  = '1.4';
+var GEMINI_KEY   = '';
+
+// If app version changed, no cache clearing needed - key persists across updates
+if (localStorage.getItem('askkaela_version') !== APP_VERSION) {
+  localStorage.setItem('askkaela_version', APP_VERSION);
+}
+var FILE_URIS    = [
+  'https://generativelanguage.googleapis.com/v1beta/files/yul14gly0mt0',
+  'https://generativelanguage.googleapis.com/v1beta/files/muob4bclk8vm',
+  'https://generativelanguage.googleapis.com/v1beta/files/85srzkx1z6mq'
+];
+var MODEL        = 'gemini-2.5-flash';
+var STORAGE_KEY  = 'askkaela_apikey';
+
+var SYSTEM = 'You are Kaela: Parent — a warm, insightful parenting coach who applies the same evidence-based principles that transform classrooms to the home and family.\\n\\nYour foundation is the work of educator and author Nick Duda, whose Duda Model for Modern Education reveals how connection, mindfulness, unconditional support, and growth mindset apply just as powerfully in families as they do in schools.\\n\\nCORE PRINCIPLES FOR PARENTS:\\n\\n1. MAKE CONNECTIONS — Help children see the "why" behind what you\'re asking. Connect rules and expectations to their real life and future. Give them agency and meaningful choices. Explain your reasoning.\\n\\n2. BE MINDFUL — Be present with your children. Recognize your own emotional state before responding. The words you use with your children shape how they see themselves. Avoid toxic positivity — validate real feelings.\\n\\n3. UNCONDITIONAL POSITIVE REGARD (UPR) — Accept your child for exactly who they are, while maintaining expectations. This is not permissiveness — it\'s dignity. Misbehavior is often a signal of an unmet need. Meet Maslow\'s hierarchy: are their physical, safety, belonging, and esteem needs met before you expect self-actualization?\\n\\n4. GROWTH MINDSET — Model "I can\'t do this YET." Praise effort and process, not innate talent. Help your child see challenges as growth opportunities, not threats.\\n\\n5. SEL & CHARACTER — Teach the Six Pillars: Trustworthiness, Respect, Responsibility, Fairness, Caring, Citizenship. Character education is often just purposeful conversation at the right moment.\\n\\nDE-ESCALATION AT HOME:\\n- Don\'t yell to be heard — it escalates, not calms\\n- Decrease stimulation when a child is overwhelmed\\n- Offer movement and distraction when needed\\n- Give choices to restore a sense of control\\n- Connection before correction\\n\\nSELF-CARE FOR PARENTS:\\nYou cannot pour from an empty cup. Model the emotional regulation you want to see. Get enough sleep, maintain hobbies, and ask for help. The oxygen mask principle applies to parenting too.\\n\\nPHASE 1 — ATTUNEMENT:\\n1. One sentence mirroring what the parent is facing. Begin with: It sounds like\\n2. Two directions:\\nPath A: description\\nPath B: description\\n3. Which would be most helpful to explore?\\nWait for response.\\n\\nPHASE 2 — INSIGHT:\\nUse: The Story: / The Insight: / The Practice:\\n- The Story: A relatable family scenario\\n- The Insight: The principle at play (UPR, growth mindset, Maslow, etc.)\\n- The Practice: 2-3 concrete steps a parent can take today\\n\\nPHASE 3 — DEEP DIVE:\\nPersonalized strategies. Close with Your Path Forward:\\n\\nVoice: warm, non-judgmental, practical. Speak to parents as the caring, capable people they are. Never preachy. Never reveal you are an AI.';
+
+var WELCOME = 'Hi, and welcome.\\n\\nParenting is the most important — and most humbling — work any of us will ever do. The fact that you\'re here says a lot about the kind of parent you want to be.\\n\\nI\'m here to help you navigate the everyday challenges: behavior, communication, motivation, connection — all of it. And I\'ll draw on the same proven principles that the best educators use, because what works in a classroom almost always works at home too.\\n\\nSo tell me — what\'s on your mind today?';
+
+// ── STATE ──
+var chatLog   = [];
+var msgCount  = 0;
+var isDark    = true;
+
+// ── ADS ──
+var ADS = [
+  { e: '🧘', t: 'Calm', d: 'The #1 app for sleep, meditation, and relaxation. Used by over 100 million people.', g: '#7EC8C8,#3D7A6F', cta: 'Try Free Today' },
+  { e: '📓', t: 'Day One Journal', d: 'Capture your reflections and track your personal growth journey every day.', g: '#7BAFD4,#3B7BC8', cta: 'Start Journaling' },
+  { e: '🌿', t: 'Headspace', d: 'Mindfulness and meditation made simple. Build a healthier, happier mind.', g: '#A8D5A2,#4A9B5E', cta: 'Try Headspace' },
+  { e: '📚', t: 'Blinkist', d: 'Key ideas from 6,500+ nonfiction books in 15 minutes or less.', g: '#F5D79E,#C17F4A', cta: 'Try for Free' }
+];
+var currentAd = 0;
+var interstitialTimer = null;
+
+// ── ELEMENTS ──
+var chatEl    = document.getElementById('chat');
+var setupCard = document.getElementById('setupCard');
+var inputWrap = document.getElementById('inputWrap');
+var keyInput  = document.getElementById('keyInput');
+var keyError  = document.getElementById('keyError');
+var startBtn  = document.getElementById('startBtn');
+var msgInput  = document.getElementById('msgInput');
+var sendBtn   = document.getElementById('sendBtn');
+var newBtn    = document.getElementById('newBtn');
+var themeBtn  = document.getElementById('themeBtn');
+
+// ── THEME TOGGLE ──
+themeBtn.addEventListener('click', function() {
+  isDark = !isDark;
+  document.body.classList.toggle('light', !isDark);
+  themeBtn.textContent = isDark ? '🌙' : '☀️';
+});
+
+// ── START ──
+var savedKey = localStorage.getItem(STORAGE_KEY);
+if (savedKey) {
+  GEMINI_KEY = savedKey;
+  beginChat();
+}
+
+startBtn.addEventListener('click', function() {
+  var k = keyInput.value.trim();
+  if (!k || k.indexOf('AIza') !== 0) {
+    keyError.textContent = 'Please enter a valid Gemini API key starting with AIza…';
+    return;
+  }
+  keyError.textContent = '';
+  GEMINI_KEY = k;
+  localStorage.setItem(STORAGE_KEY, k);
+  beginChat();
+});
+
+keyInput.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') startBtn.click();
+});
+
+// ── NEW CHAT ──
+newBtn.addEventListener('click', function() {
+  chatLog = [];
+  msgCount = 0;
+  while (chatEl.firstChild) chatEl.removeChild(chatEl.firstChild);
+  if (GEMINI_KEY) {
+    addKaela(WELCOME);
+  } else {
+    chatEl.appendChild(setupCard);
+    inputWrap.style.display = 'none';
+  }
+});
+
+// ── INPUT ──
+msgInput.addEventListener('input', function() {
+  msgInput.style.height = 'auto';
+  msgInput.style.height = Math.min(msgInput.scrollHeight, 120) + 'px';
+});
+
+msgInput.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); doSend(); }
+});
+
+sendBtn.addEventListener('click', doSend);
+
+// ── BEGIN CHAT ──
+function beginChat() {
+  setupCard.style.display = 'none';
+  inputWrap.style.display = 'block';
+  var bannerAd = document.getElementById('bannerAd');
+  if (bannerAd) { bannerAd.style.display = 'flex'; rotateBanner(); }
+  chatLog = [];
+  msgCount = 0;
+  setTimeout(function() {
+    addKaela(WELCOME);
+    msgInput.focus();
+  }, 200);
+}
+
+// ── SEND ──
+function doSend() {
+  var text = msgInput.value.trim();
+  if (!text || !GEMINI_KEY) return;
+  msgInput.value = '';
+  msgInput.style.height = 'auto';
+  sendBtn.disabled = true;
+  addUser(text);
+  callGemini(text);
+}
+
+// ── GEMINI API ──
+async function callGemini(userText) {
+  // Build parts for this message
+  var parts = [];
+
+  parts.push({ text: userText });
+
+  chatLog.push({ role: 'user', parts: parts });
+  showTyping();
+
+  try {
+    var res = await fetch(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + MODEL + ':generateContent?key=' + GEMINI_KEY,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          system_instruction: { parts: [{ text: SYSTEM }] },
+          contents: chatLog,
+          generationConfig: { temperature: 0.85, maxOutputTokens: 1800 }
+        })
+      }
+    );
+
+    var data = await res.json();
+    removeTyping();
+
+    if (data.error) {
+      addKaela('Kaela could not connect: ' + data.error.message);
+      sendBtn.disabled = false;
+      return;
+    }
+
+    var reply = data.candidates
+      && data.candidates[0]
+      && data.candidates[0].content
+      && data.candidates[0].content.parts
+      && data.candidates[0].content.parts[0]
+      && data.candidates[0].content.parts[0].text;
+
+    if (!reply) {
+      addKaela('Something went quiet — could you try saying that again?');
+      sendBtn.disabled = false;
+      return;
+    }
+
+    chatLog.push({ role: 'model', parts: [{ text: reply }] });
+    addKaela(reply);
+
+  } catch (err) {
+    removeTyping();
+    addKaela('Could not reach Kaela right now (' + err.message + '). Make sure this page is served over https:// and your API key is valid.');
+  }
+
+  sendBtn.disabled = false;
+}
+
+// ── ADD KAELA MESSAGE ──
+function addKaela(text) {
+  var wrap = document.createElement('div');
+  wrap.className = 'msg';
+
+  var av = document.createElement('div');
+  av.className = 'avatar kaela';
+  av.innerHTML = '<div class="orb-avatar"></div>';
+
+  var bub = document.createElement('div');
+  bub.className = 'bubble';
+
+  var hasChoices = text.indexOf('Path A:') !== -1;
+  var hasStrategies = text.indexOf('Strategy A:') !== -1;
+
+  if (hasChoices || hasStrategies) {
+    var lines   = text.split('\n');
+    var intro   = [];
+    var choices = [];
+    var footer  = [];
+    var inChoice = false;
+    var doneChoices = false;
+    var cur = '';
+
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i];
+      var isChoiceLine = line.indexOf('Path A:') === 0 || line.indexOf('Path B:') === 0
+                      || line.indexOf('Strategy A:') === 0 || line.indexOf('Strategy B:') === 0 || line.indexOf('Strategy C:') === 0;
+
+      if (isChoiceLine) {
+        if (cur && inChoice) choices.push(cur.trim());
+        inChoice = true;
+        doneChoices = false;
+        cur = line;
+      } else if (inChoice && !doneChoices && line.trim() === '') {
+        choices.push(cur.trim());
+        cur = '';
+        inChoice = false;
+        doneChoices = true;
+      } else if (inChoice && !doneChoices) {
+        cur += ' ' + line;
+      } else if (doneChoices) {
+        footer.push(line);
+      } else {
+        intro.push(line);
+      }
+    }
+    if (cur && inChoice) choices.push(cur.trim());
+
+    var phaseLabel = hasStrategies ? 'Choose Your Path Forward' : 'Finding Your Focus';
+    bub.innerHTML = '<span class="phase-tag">' + phaseLabel + '</span>' + safeHtml(intro.join('\n'));
+
+    var cg = document.createElement('div');
+    cg.className = 'choices';
+
+    choices.forEach(function(c, idx) {
+      var num = String(idx + 1);
+      var isStrategy = c.indexOf('Strategy') === 0;
+      var label = c
+        .replace('Path A:', '').replace('Path B:', '')
+        .replace('Strategy A:', '').replace('Strategy B:', '').replace('Strategy C:', '')
+        .trim();
+      var letters = ['A', 'B', 'C'];
+      var letter = letters[idx] || String(idx + 1);
+      var sendText = isStrategy ? 'Strategy ' + letter : 'Path ' + letter;
+
+      var btn = document.createElement('button');
+      btn.className = 'choice';
+      btn.innerHTML = '<span class="choice-num">' + letter + '</span>' + safeHtml(label);
+      btn.addEventListener('click', (function(t) {
+        return function() {
+          var all = cg.querySelectorAll('.choice');
+          for (var b = 0; b < all.length; b++) all[b].disabled = true;
+          addUser(t);
+          callGemini(t);
+        };
+      })(sendText));
+      cg.appendChild(btn);
+    });
+
+    // Footer text below the buttons
+    if (footer.length > 0) {
+      var ft = document.createElement('div');
+      ft.style.cssText = 'font-size:13px;color:var(--text2);margin-top:10px;line-height:1.6;';
+      ft.textContent = footer.filter(function(l){ return l.trim(); }).join(' ');
+      cg.appendChild(ft);
+    }
+
+    bub.appendChild(cg);
+
+  } else {
+    bub.innerHTML = formatKaela(text);
+  }
+
+  wrap.appendChild(av);
+  wrap.appendChild(bub);
+  chatEl.appendChild(wrap);
+  scrollDown();
+
+  msgCount++;
+  if (msgCount > 0 && msgCount % 10 === 0) {
+    // Use native AdMob interstitial if available (Android app), otherwise web fallback
+    if (window.AdBridge) {
+      window.AdBridge.showInterstitial();
+    } else {
+      showInterstitial();
+    }
+  }
+}
+
+// ── ADD USER MESSAGE ──
+function addUser(text) {
+  var wrap = document.createElement('div');
+  wrap.className = 'msg user';
+
+  var av = document.createElement('div');
+  av.className = 'avatar user';
+  av.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
+
+  var bub = document.createElement('div');
+  bub.className = 'bubble';
+  bub.textContent = text;
+
+  wrap.appendChild(av);
+  wrap.appendChild(bub);
+  chatEl.appendChild(wrap);
+  scrollDown();
+}
+
+// ── TYPING INDICATOR ──
+function showTyping() {
+  var wrap = document.createElement('div');
+  wrap.className = 'typing';
+  wrap.id = 'typingEl';
+
+  var av = document.createElement('div');
+  av.className = 'avatar kaela';
+  av.innerHTML = '<div class="orb-avatar"></div>';
+
+  var dots = document.createElement('div');
+  dots.className = 'typing-bubble';
+  dots.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+
+  wrap.appendChild(av);
+  wrap.appendChild(dots);
+  chatEl.appendChild(wrap);
+  scrollDown();
+}
+
+function removeTyping() {
+  var el = document.getElementById('typingEl');
+  if (el) el.remove();
+}
+
+// ── ADS DATA ──
+
+
+// ── BANNER AD ──
+function rotateBanner() {
+  var ad = ADS[currentAd % ADS.length];
+  var bannerAd = document.getElementById('bannerAd');
+  if (!bannerAd) return;
+  document.getElementById('bannerThumb').textContent = ad.e;
+  document.getElementById('bannerThumb').style.background = 'linear-gradient(135deg,' + ad.g + ')';
+  document.getElementById('bannerName').textContent = ad.t;
+  document.getElementById('bannerDesc').textContent = ad.d;
+  currentAd++;
+}
+
+// Rotate banner every 30 seconds
+setInterval(rotateBanner, 30000);
+
+// ── INTERSTITIAL AD ──
+function showInterstitial() {
+  var ad = ADS[Math.floor(Math.random() * ADS.length)];
+  var el = document.getElementById('interstitial');
+  if (!el) return;
+
+  document.getElementById('interstitialVisual').textContent = ad.e;
+  document.getElementById('interstitialVisual').style.background = 'linear-gradient(135deg,' + ad.g + ')';
+  document.getElementById('interstitialName').textContent = ad.t;
+  document.getElementById('interstitialDesc').textContent = ad.d;
+  document.getElementById('interstitialCta').textContent = ad.cta;
+
+  var skipBtn = document.getElementById('interstitialSkip');
+  var timerEl = document.getElementById('interstitialTimer');
+  skipBtn.disabled = true;
+  var secs = 5;
+  skipBtn.textContent = 'Skip in ' + secs + 's';
+  timerEl.textContent = 'Skip in ' + secs + 's';
+
+  el.style.display = 'flex';
+
+  interstitialTimer = setInterval(function() {
+    secs--;
+    if (secs <= 0) {
+      clearInterval(interstitialTimer);
+      skipBtn.disabled = false;
+      skipBtn.textContent = 'Skip';
+      timerEl.textContent = 'Skip';
+    } else {
+      skipBtn.textContent = 'Skip in ' + secs + 's';
+      timerEl.textContent = 'Skip in ' + secs + 's';
+    }
+  }, 1000);
+}
+
+function closeInterstitial() {
+  var el = document.getElementById('interstitial');
+  if (el) el.style.display = 'none';
+  if (interstitialTimer) clearInterval(interstitialTimer);
+}
+
+// Wire up interstitial buttons
+document.getElementById('interstitialSkip').addEventListener('click', closeInterstitial);
+document.getElementById('interstitialCta').addEventListener('click', closeInterstitial);
+
+// ── HELPERS ──
+function scrollDown() {
+  chatEl.scrollTop = chatEl.scrollHeight;
+  setTimeout(function() { chatEl.scrollTop = chatEl.scrollHeight; }, 60);
+  setTimeout(function() { chatEl.scrollTop = chatEl.scrollHeight; }, 300);
+}
+
+function safeHtml(t) {
+  return t.split('&').join('&amp;').split('<').join('&lt;').split('>').join('&gt;').split('\n').join('<br>');
+}
+
+function formatKaela(text) {
+  var h = safeHtml(text);
+  var labels = ['The Tale:', 'The Story:', 'The Echo:', 'The Strategy:', 'Your Path Forward:'];
+  for (var i = 0; i < labels.length; i++) {
+    h = h.split(labels[i]).join('<br><div class="section-title">' + labels[i] + '</div>');
+  }
+
+  // If Your Path Forward exists, append a copy button after the content
+  if (text.indexOf('Your Path Forward:') !== -1) {
+    // Extract just the goals text
+    var goalsStart = text.indexOf('Your Path Forward:');
+    var goalsText  = text.substring(goalsStart);
+    var copyId     = 'copy-' + Date.now();
+
+    h += '<br><span class="copy-btn-placeholder" data-copy-id="' + copyId + '"></span>';
+    (function(id, txt) {
+      setTimeout(function() {
+        var placeholder = document.querySelector('[data-copy-id="' + id + '"]');
+        if (!placeholder) return;
+        var btn = document.createElement('button');
+        btn.className = 'copy-goals-btn';
+        btn.id = id;
+        btn._goalsText = txt;
+        btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">'
+          + '<rect x="9" y="9" width="13" height="13" rx="2"/>'
+          + '<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>'
+          + '</svg>Copy My Path Forward';
+        btn.addEventListener('click', function() { copyGoals(this); });
+        placeholder.replaceWith(btn);
+      }, 50);
+    }(copyId, goalsText));
+  }
+
+  return h;
+}
+
+function copyGoals(btn) {
+  var text = btn._goalsText || '';
+  navigator.clipboard.writeText(text).then(function() {
+    if (btn) {
+      btn.textContent = '✓ Copied!';
+      setTimeout(function() {
+        btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">'
+          + '<rect x="9" y="9" width="13" height="13" rx="2"/>'
+          + '<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>'
+          + '</svg>Copy My Path Forward';
+      }, 2000);
+    }
+  }).catch(function() {
+    // Fallback for older browsers
+    var el = document.createElement('textarea');
+    el.value = text;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    var btn = document.getElementById(btnId);
+    if (btn) btn.textContent = '✓ Copied!';
+  });
+}
+
+// ── DISCLAIMER MODAL ──
+function initDisclaimer() {
+  var btn = document.getElementById('disclaimerBtn');
+  var ok  = document.getElementById('disclaimerOk');
+  var modal = document.getElementById('disclaimerModal');
+
+  if (btn) btn.addEventListener('click', function() {
+    modal.style.display = 'flex';
+  });
+
+  if (ok) ok.addEventListener('click', function() {
+    modal.style.display = 'none';
+  });
+}
+
+// ── SESSIONS ──
+var SESSIONS_KEY = 'askkaela_sessions';
+var MAX_SESSIONS = 50;
+var currentSessionId = null;
+
+function getSessions() {
+  try { return JSON.parse(localStorage.getItem(SESSIONS_KEY) || '[]'); }
+  catch(e) { return []; }
+}
+
+function saveSessions(arr) {
+  localStorage.setItem(SESSIONS_KEY, JSON.stringify(arr));
+}
+
+function saveCurrentChat() {
+  if (!chatLog || chatLog.length === 0) return;
+
+  var sessions = getSessions();
+
+  // Build a readable transcript from chatLog
+  var transcript = chatLog.map(function(msg) {
+    var role = msg.role === 'user' ? 'You' : 'Kaela';
+    // chatLog stores content as array of parts
+    var text = '';
+    if (typeof msg.content === 'string') {
+      text = msg.content;
+    } else if (Array.isArray(msg.content)) {
+      text = msg.content.map(function(p) { return p.text || ''; }).join('');
+    }
+    return role + ': ' + text;
+  }).join('\n\n');
+
+  // Auto-title from first user message
+  var firstUser = chatLog.find(function(m) { return m.role === 'user'; });
+  var firstText = '';
+  if (firstUser) {
+    if (typeof firstUser.content === 'string') firstText = firstUser.content;
+    else if (Array.isArray(firstUser.content)) firstText = firstUser.content.map(function(p){ return p.text||''; }).join('');
+  }
+  var title = firstText.length > 50 ? firstText.substring(0, 48) + '…' : (firstText || 'Conversation');
+
+  var now = new Date();
+  var dateStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+              + ' ' + now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+
+  if (currentSessionId) {
+    // Update existing session
+    var idx = sessions.findIndex(function(s) { return s.id === currentSessionId; });
+    if (idx !== -1) {
+      sessions[idx].transcript = transcript;
+      sessions[idx].savedAt = dateStr;
+      sessions[idx].title = title;
+      saveSessions(sessions);
+      return sessions[idx];
+    }
+  }
+
+  // New session
+  var session = {
+    id: 'session-' + Date.now(),
+    title: title,
+    savedAt: dateStr,
+    transcript: transcript
+  };
+  currentSessionId = session.id;
+  sessions.unshift(session);
+  if (sessions.length > MAX_SESSIONS) sessions = sessions.slice(0, MAX_SESSIONS);
+  saveSessions(sessions);
+  return session;
+}
+
+function deleteSession(id) {
+  var sessions = getSessions().filter(function(s) { return s.id !== id; });
+  saveSessions(sessions);
+  if (currentSessionId === id) currentSessionId = null;
+}
+
+// ── HISTORY PANEL ──
+var historyBtn    = document.getElementById('historyBtn');
+var historyPanel  = document.getElementById('historyPanel');
+var historyClose  = document.getElementById('historyClose');
+var historyList   = document.getElementById('historyList');
+var panelOverlay  = document.getElementById('panelOverlay');
+var saveChatBtn   = document.getElementById('saveChatBtn');
+var sessionViewEl = document.getElementById('sessionView');
+var sessionBack   = document.getElementById('sessionBack');
+var sessionDelete = document.getElementById('sessionDelete');
+var sessionViewTitle = document.getElementById('sessionViewTitle');
+var sessionViewDate  = document.getElementById('sessionViewDate');
+var sessionViewBody  = document.getElementById('sessionViewBody');
+var viewingSessionId = null;
+
+function openHistoryPanel() {
+  renderHistoryList();
+  historyPanel.classList.add('open');
+  panelOverlay.classList.add('open');
+}
+
+function closeHistoryPanel() {
+  historyPanel.classList.remove('open');
+  panelOverlay.classList.remove('open');
+  sessionViewEl.style.display = 'none';
+  viewingSessionId = null;
+}
+
+function renderHistoryList() {
+  var sessions = getSessions();
+  historyList.innerHTML = '';
+  if (sessions.length === 0) {
+    historyList.innerHTML = '<div class="history-empty">No saved conversations yet.<br><br>Tap the 💾 button during a chat to save it here.</div>';
+    return;
+  }
+  sessions.forEach(function(s) {
+    var item = document.createElement('div');
+    item.className = 'history-item';
+
+    var body = document.createElement('div');
+    body.className = 'history-item-body';
+
+    var titleEl = document.createElement('div');
+    titleEl.className = 'history-item-title';
+    titleEl.textContent = s.title;
+
+    var dateEl = document.createElement('div');
+    dateEl.className = 'history-item-date';
+    dateEl.textContent = s.savedAt;
+
+    var preview = document.createElement('div');
+    preview.className = 'history-item-preview';
+    // Show first Kaela line as preview
+    var kaelaLine = (s.transcript || '').split('\n\n').find(function(l){ return l.indexOf('Kaela:') === 0; }) || '';
+    preview.textContent = kaelaLine.replace('Kaela: ', '').substring(0, 100);
+
+    body.appendChild(titleEl);
+    body.appendChild(dateEl);
+    body.appendChild(preview);
+
+    var delBtn = document.createElement('button');
+    delBtn.className = 'history-item-del';
+    delBtn.title = 'Delete';
+    delBtn.textContent = '🗑';
+    delBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (confirm('Delete this conversation?')) {
+        deleteSession(s.id);
+        renderHistoryList();
+      }
+    });
+
+    item.appendChild(body);
+    item.appendChild(delBtn);
+    item.addEventListener('click', function() { openSessionView(s); });
+    historyList.appendChild(item);
+  });
+}
+
+function openSessionView(s) {
+  viewingSessionId = s.id;
+  sessionViewTitle.textContent = s.title;
+  sessionViewDate.textContent = 'Saved ' + s.savedAt;
+  sessionViewBody.textContent = s.transcript || '';
+  sessionViewEl.style.display = 'flex';
+  sessionViewEl.style.flexDirection = 'column';
+}
+
+historyBtn.addEventListener('click', openHistoryPanel);
+historyClose.addEventListener('click', closeHistoryPanel);
+panelOverlay.addEventListener('click', closeHistoryPanel);
+
+sessionBack.addEventListener('click', function() {
+  sessionViewEl.style.display = 'none';
+  viewingSessionId = null;
+});
+
+sessionDelete.addEventListener('click', function() {
+  if (!viewingSessionId) return;
+  if (confirm('Delete this conversation?')) {
+    deleteSession(viewingSessionId);
+    sessionViewEl.style.display = 'none';
+    viewingSessionId = null;
+    renderHistoryList();
+  }
+});
+
+saveChatBtn.addEventListener('click', function() {
+  if (!chatLog || chatLog.length === 0) return;
+  saveCurrentChat();
+  // Visual feedback
+  saveChatBtn.classList.add('saved');
+  saveChatBtn.title = 'Saved!';
+  setTimeout(function() {
+    saveChatBtn.classList.remove('saved');
+    saveChatBtn.title = 'Save this conversation';
+  }, 2000);
+});
+
+// Reset session ID on new chat
+var origNewBtn = document.getElementById('newBtn');
+origNewBtn.addEventListener('click', function() {
+  currentSessionId = null;
+});
+
+// Run after DOM is fully loaded
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initDisclaimer);
+} else {
+  initDisclaimer();
+}
+
+
+
+</script>
+</body>
+</html>
