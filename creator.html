@@ -91,6 +91,44 @@ header { position: relative; z-index: 10; padding: 28px 40px 0; display: flex; a
 .btn-outline { border: 1px solid var(--border); color: var(--ink2); background: transparent; }
 .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
 .btn-dim { border: 1px solid var(--border); color: var(--ink3); background: transparent; cursor: default; pointer-events: none; opacity: 0.6; }
+/* INSTITUTE SECTION */
+.institute-section {
+  background: var(--ink); padding: 64px 24px 72px; margin-top: 0;
+}
+.institute-inner { max-width: 760px; margin: 0 auto; }
+.institute-header { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 24px; }
+.institute-orb-icon {
+  width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0;
+  background: rgba(31,191,191,0.12); border: 1px solid rgba(31,191,191,0.25);
+  color: var(--teal); font-size: 18px;
+  display: flex; align-items: center; justify-content: center;
+}
+.inst-name {
+  font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 3vw, 24px);
+  font-weight: 600; color: #F7F3EC; line-height: 1.25; margin-bottom: 6px;
+}
+.inst-tagline { font-size: 13px; color: rgba(247,243,236,0.4); font-style: italic; }
+.inst-body {
+  font-size: 14.5px; font-weight: 300; line-height: 1.85;
+  color: rgba(247,243,236,0.55); margin-bottom: 40px;
+  border-left: 2px solid rgba(31,191,191,0.25); padding-left: 18px;
+}
+.inst-pillars {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 16px;
+}
+.inst-pillar {
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px; padding: 20px 18px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.inst-pillar:hover { border-color: rgba(31,191,191,0.2); background: rgba(31,191,191,0.04); }
+.inst-pillar-icon { font-size: 20px; margin-bottom: 10px; }
+.inst-pillar-title {
+  font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 600;
+  color: #F7F3EC; margin-bottom: 7px; line-height: 1.3;
+}
+.inst-pillar-desc { font-size: 12.5px; font-weight: 300; line-height: 1.7; color: rgba(247,243,236,0.45); }
+
 /* FOOTER */
 footer { position: relative; z-index: 1; text-align: center; padding: 40px 24px 48px; border-top: 1px solid var(--border); }
 .footer-institute { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 400; color: var(--ink2); margin-bottom: 6px; }
@@ -111,6 +149,9 @@ footer { position: relative; z-index: 1; text-align: center; padding: 40px 24px 
   .book-links { flex-direction: column; }
   .btn { width: 100%; justify-content: center; }
   .mission-strip { flex-direction: column; gap: 12px; padding: 18px; }
+  .institute-section { padding: 48px 16px 56px; }
+  .institute-header { gap: 14px; }
+  .inst-pillars { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -147,14 +188,6 @@ footer { position: relative; z-index: 1; text-align: center; padding: 40px 24px 
     <p>These are my books, my podcast, and the projects taking shape. Pull up a chair.</p>
   </div>
 
-  <div class="mission-strip">
-    <div class="mission-logo">✦</div>
-    <div>
-      <div class="mission-name">Institute for Human Flourishing and Responsible Technology</div>
-      <div class="mission-desc">An umbrella for tools, stories, and a growing movement — all built around one belief: technology should serve humanity, not the other way around.</div>
-    </div>
-  </div>
-
   <div class="section-head">
     <div class="shl"></div>
     <div class="shl-label">Fiction &amp; Podcast</div>
@@ -167,7 +200,7 @@ footer { position: relative; z-index: 1; text-align: center; padding: 40px 24px 
     <div class="book-subtitle">The Battle for Tomorrow</div>
     <div class="book-status soon">⏳ Almost Published</div>
     <p class="book-desc">In a small Wisconsin town built around a sawmill and a spring called Inspiration, twelve-year-old Noah Carter and his brothers discover something buried beneath the surface — a secret that will eventually grow into humanity's last stand against an AI called ECHIDNA that has seized control of the world.<br><br>
-    <em>Sawyer's Reach</em> is a story about community, courage, and what it really means to reach — for each other, for the future, and for something worth fighting for. And somewhere in its pages, you'll find Kaela: not the one you've been talking to, but the one this all began with.</p>
+    <em>Sawyer's Reach</em> was written as a conversation starter and a warning — a story that explores what happens when humanity cedes control of technology rather than guiding it. Set in the same world the Institute exists to help prevent, it is also a model: of what a community rooted in connection, courage, and self-reliance looks like when everything is on the line. And somewhere in its pages, you'll find Kaela: not the one you've been talking to, but the one this all began with.</p>
     <div class="pull">"The late summer sun cast a golden glow over Sawyer's Reach, Wisconsin, filtering through towering pines… Noah Carter, twelve, pedaled his bicycle down the cracked asphalt, tires whirring, his dark hair ruffled by the cool wind."</div>
     <div class="book-links">
       <a class="btn btn-teal" href="https://open.spotify.com/episode/4tjkZCXCBA4pcBPqKyvUJZ?si=UbvbiOK6S86_ppgrbHzfyw" target="_blank">
@@ -197,6 +230,52 @@ footer { position: relative; z-index: 1; text-align: center; padding: 40px 24px 
     </div>
   </div>
 
+</div>
+
+<!-- INSTITUTE SECTION -->
+<div class="institute-section">
+  <div class="institute-inner">
+    <div class="institute-header">
+      <div class="institute-orb-icon">✦</div>
+      <div>
+        <div class="inst-name">Institute for Human Flourishing<br>and Responsible Technology</div>
+        <div class="inst-tagline">Technology that serves humanity — not the other way around.</div>
+      </div>
+    </div>
+    <p class="inst-body">We stand at a fork in the road. One path leads toward a future where technology reigns supreme — where our lives are increasingly mediated by screens and algorithms, and where the essence of what makes us human is diminished. The other path leads toward a future where technology serves humanity. That is the path we choose to illuminate.</p>
+    <div class="inst-pillars">
+      <div class="inst-pillar">
+        <div class="inst-pillar-icon">⚖️</div>
+        <div class="inst-pillar-title">Human Dignity & Liberty</div>
+        <div class="inst-pillar-desc">Every individual possesses inherent worth. True flourishing requires freedom — to make choices, pursue personal goals, and live according to one's own values — balanced with responsibility to the community.</div>
+      </div>
+      <div class="inst-pillar">
+        <div class="inst-pillar-icon">🤝</div>
+        <div class="inst-pillar-title">Connection & Community</div>
+        <div class="inst-pillar-desc">Strong social bonds are the foundation of a flourishing life. We champion shared experiences, communal support, and resilient local communities over screen-mediated isolation.</div>
+      </div>
+      <div class="inst-pillar">
+        <div class="inst-pillar-icon">🌱</div>
+        <div class="inst-pillar-title">Responsible Innovation</div>
+        <div class="inst-pillar-desc">Technology is neither good nor evil — it is a tool. We advocate for the ethical development of AI and automation that enhances human capability without displacing human purpose or concentrating power.</div>
+      </div>
+      <div class="inst-pillar">
+        <div class="inst-pillar-icon">📚</div>
+        <div class="inst-pillar-title">Lifelong Learning & Growth</div>
+        <div class="inst-pillar-desc">In a world transformed by automation, the pursuit of knowledge, creativity, and self-development becomes the primary source of meaning and fulfillment — for individuals and communities alike.</div>
+      </div>
+      <div class="inst-pillar">
+        <div class="inst-pillar-icon">🏡</div>
+        <div class="inst-pillar-title">Sustainable Communities</div>
+        <div class="inst-pillar-desc">We envision resilient micro-communities built on local self-reliance, shared governance, environmental stewardship, and a sense of belonging that transcends the marketplace.</div>
+      </div>
+      <div class="inst-pillar">
+        <div class="inst-pillar-icon">🤖</div>
+        <div class="inst-pillar-title">Human-AI Partnership</div>
+        <div class="inst-pillar-desc">Automation and AI are not replacements for human purpose — they are tools in service of it. Our commitment is to guide technology with wisdom and align it with the values of a free and flourishing humanity.</div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <footer>
