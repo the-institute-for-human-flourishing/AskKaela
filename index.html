@@ -711,10 +711,21 @@ var cardData = {
   'card-flourishing': { label: 'Kaela: Flourishing', orb: 'radial-gradient(circle at 35% 35%, #D4B8FF, #7B5EA7 45%, #3D1F6B)', accent: '#7B5EA7' },
 };
 
+// Detect if loaded inside the Ask Kaela Android app
+var isInApp = new URLSearchParams(window.location.search).get('source') === 'app';
+
 document.querySelectorAll('.card').forEach(function(card) {
   card.addEventListener('click', function(e) {
     e.preventDefault();
     var url = card.getAttribute('href');
+
+    if (isInApp) {
+      // In-app: skip the popup and open directly in a new tab/window
+      window.open(url, '_blank');
+      return;
+    }
+
+    // On web: show the friendly Gemini notice popup
     var cardClass = Array.from(card.classList).find(function(c) { return cardData[c]; });
     var data = cardData[cardClass] || { label: 'Ask Kaela', orb: 'radial-gradient(circle at 35% 35%, #A8EFEF, #1FBFBF 45%, #0D7A7A)', accent: '#1FBFBF' };
 
