@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+(function(){if(localStorage.getItem('akTheme')==='dark')document.documentElement.classList.add('dark-early');})();
+</script>
+<style>.dark-early body,.dark-early{background:#111008!important;}</style>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Ask Kaela — Your Life, Elevated</title>
@@ -408,6 +412,65 @@
   .gemini-notice svg { flex-shrink: 0; color: var(--teal); opacity: 0.8; }
 
   /* ── MOBILE ── */
+
+  /* ── GOOGLE SIGN-IN ── */
+  .signin-area {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .user-pill {
+    display: none;
+    align-items: center; gap: 8px;
+    background: rgba(31,191,191,0.08);
+    border: 1px solid rgba(31,191,191,0.2);
+    border-radius: 20px;
+    padding: 5px 12px 5px 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .user-pill:hover { background: rgba(31,191,191,0.14); }
+  .user-avatar {
+    width: 26px; height: 26px; border-radius: 50%;
+    object-fit: cover;
+  }
+  .user-avatar-fallback {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--teal); color: #fff;
+    font-size: 12px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .user-name {
+    font-size: 13px; color: var(--ink); font-weight: 400;
+  }
+  .signout-hint {
+    font-size: 11px; color: var(--ink3); margin-left: 2px;
+  }
+  #g_id_onload { display: none; }
+
+  /* ── DARK MODE ── */
+  body.dark {
+    --cream:  #111008;
+    --warm:   #1A1712;
+    --ink:    #F0EBE1;
+    --ink2:   #C8BFB3;
+    --ink3:   #7A6F63;
+    --border: rgba(240,235,225,0.1);
+  }
+  body.dark .institute-section { background: #0A0906; }
+  body.dark footer { background: #0A0906; border-color: rgba(240,235,225,0.06); }
+  body.dark .gem-modal { background: #1A1712; }
+  body.dark .card { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.07); }
+  body.dark .card:hover { background: rgba(255,255,255,0.06); }
+  body.dark .gemini-notice { background: rgba(31,191,191,0.06); border-color: rgba(31,191,191,0.15); }
+
+  /* ── TOGGLE BUTTON ── */
+  .theme-toggle {
+    background: none; border: none; cursor: pointer;
+    font-size: 18px; line-height: 1;
+    padding: 4px 6px; border-radius: 6px;
+    transition: opacity 0.2s, transform 0.3s;
+    opacity: 0.6;
+  }
+  .theme-toggle:hover { opacity: 1; transform: rotate(15deg); }
   @media (max-width: 600px) {
     header { padding: 20px 18px 0; }
     .header-nav { display: none; }
@@ -421,8 +484,19 @@
   }
 </style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8776178244604751" crossorigin="anonymous"></script>
+  <!-- Google Identity Services (Sign-In) -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
+
+<!-- Google One Tap config — replace YOUR_GOOGLE_CLIENT_ID with your OAuth Web Client ID -->
+<div id="g_id_onload"
+     data-client_id="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
+     data-context="signin"
+     data-ux_mode="popup"
+     data-callback="handleGoogleSignIn"
+     data-auto_prompt="false">
+</div>
 
 <header>
   <div class="logo-mark">
@@ -431,6 +505,25 @@
   </div>
   <nav class="header-nav">
     <a href="creator.html">About the Creator</a>
+    <div class="signin-area">
+      <!-- Sign in button — shown when signed out -->
+      <div class="g_id_signin"
+           id="googleSignInBtn"
+           data-type="standard"
+           data-shape="pill"
+           data-theme="outline"
+           data-text="signin_with"
+           data-size="medium"
+           data-logo_alignment="left">
+      </div>
+      <!-- User pill — shown when signed in -->
+      <div class="user-pill" id="userPill" onclick="signOut()">
+        <div class="user-avatar-fallback" id="userAvatarFallback">?</div>
+        <img class="user-avatar" id="userAvatar" src="" alt="" style="display:none">
+        <span class="user-name" id="userName"></span>
+        <span class="signout-hint">✕</span>
+      </div>
+    </div>
   </nav>
 </header>
 
@@ -701,5 +794,79 @@ overlay.addEventListener('click', function(e) { if (e.target === overlay) overla
 document.addEventListener('keydown', function(e) { if (e.key === 'Escape') overlay.classList.remove('open'); });
 </script>
 
+
+<script>
+// ── GOOGLE SIGN-IN HANDLER ──
+function handleGoogleSignIn(response) {
+  // Decode the JWT to get user info (no backend needed for display purposes)
+  const payload = parseJwt(response.credential);
+  const name = payload.given_name || payload.name || payload.email.split('@')[0];
+  const picture = payload.picture || '';
+
+  // Store in sessionStorage so it persists across page navigations
+  sessionStorage.setItem('gsi_name', name);
+  sessionStorage.setItem('gsi_picture', picture);
+  sessionStorage.setItem('gsi_token', response.credential);
+
+  showUserPill(name, picture);
+}
+
+function showUserPill(name, picture) {
+  document.getElementById('googleSignInBtn').style.display = 'none';
+  const pill = document.getElementById('userPill');
+  pill.style.display = 'flex';
+  document.getElementById('userName').textContent = name;
+
+  if (picture) {
+    const img = document.getElementById('userAvatar');
+    img.src = picture;
+    img.style.display = 'block';
+    document.getElementById('userAvatarFallback').style.display = 'none';
+  } else {
+    document.getElementById('userAvatarFallback').textContent = name[0].toUpperCase();
+  }
+}
+
+function signOut() {
+  sessionStorage.removeItem('gsi_name');
+  sessionStorage.removeItem('gsi_picture');
+  sessionStorage.removeItem('gsi_token');
+  document.getElementById('userPill').style.display = 'none';
+  document.getElementById('googleSignInBtn').style.display = 'block';
+  if (typeof google !== 'undefined') {
+    google.accounts.id.disableAutoSelect();
+  }
+}
+
+function parseJwt(token) {
+  const base64 = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
+  return JSON.parse(decodeURIComponent(atob(base64).split('').map(c =>
+    '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+  ).join('')));
+}
+
+// Restore session on page load
+window.addEventListener('load', () => {
+  const name = sessionStorage.getItem('gsi_name');
+  const picture = sessionStorage.getItem('gsi_picture');
+  if (name) showUserPill(name, picture);
+});
+</script>
+
+<script>
+(function() {
+  var btn = document.getElementById('themeToggle');
+  var saved = localStorage.getItem('akTheme');
+  if (saved === 'dark') {
+    document.body.classList.add('dark');
+    btn.textContent = '☀️';
+  }
+  btn.addEventListener('click', function() {
+    var isDark = document.body.classList.toggle('dark');
+    btn.textContent = isDark ? '☀️' : '🌙';
+    localStorage.setItem('akTheme', isDark ? 'dark' : 'light');
+  });
+})();
+</script>
 </body>
 </html>
