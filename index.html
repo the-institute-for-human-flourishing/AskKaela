@@ -413,38 +413,6 @@
 
   /* ── MOBILE ── */
 
-  /* ── GOOGLE SIGN-IN ── */
-  .signin-area {
-    display: flex; align-items: center; gap: 10px;
-  }
-  .user-pill {
-    display: none;
-    align-items: center; gap: 8px;
-    background: rgba(31,191,191,0.08);
-    border: 1px solid rgba(31,191,191,0.2);
-    border-radius: 20px;
-    padding: 5px 12px 5px 6px;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-  .user-pill:hover { background: rgba(31,191,191,0.14); }
-  .user-avatar {
-    width: 26px; height: 26px; border-radius: 50%;
-    object-fit: cover;
-  }
-  .user-avatar-fallback {
-    width: 26px; height: 26px; border-radius: 50%;
-    background: var(--teal); color: #fff;
-    font-size: 12px; font-weight: 600;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .user-name {
-    font-size: 13px; color: var(--ink); font-weight: 400;
-  }
-  .signout-hint {
-    font-size: 11px; color: var(--ink3); margin-left: 2px;
-  }
-  #g_id_onload { display: none; }
 
   /* ── DARK MODE ── */
   body.dark {
@@ -484,19 +452,8 @@
   }
 </style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8776178244604751" crossorigin="anonymous"></script>
-  <!-- Google Identity Services (Sign-In) -->
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
-
-<!-- Google One Tap config — replace YOUR_GOOGLE_CLIENT_ID with your OAuth Web Client ID -->
-<div id="g_id_onload"
-     data-client_id="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
-     data-context="signin"
-     data-ux_mode="popup"
-     data-callback="handleGoogleSignIn"
-     data-auto_prompt="false">
-</div>
 
 <header>
   <div class="logo-mark">
@@ -505,33 +462,15 @@
   </div>
   <nav class="header-nav">
     <a href="creator.html">About the Creator</a>
-    <div class="signin-area">
-      <!-- Sign in button — shown when signed out -->
-      <div class="g_id_signin"
-           id="googleSignInBtn"
-           data-type="standard"
-           data-shape="pill"
-           data-theme="outline"
-           data-text="signin_with"
-           data-size="medium"
-           data-logo_alignment="left">
-      </div>
-      <!-- User pill — shown when signed in -->
-      <div class="user-pill" id="userPill" onclick="signOut()">
-        <div class="user-avatar-fallback" id="userAvatarFallback">?</div>
-        <img class="user-avatar" id="userAvatar" src="" alt="" style="display:none">
-        <span class="user-name" id="userName"></span>
-        <span class="signout-hint">✕</span>
-      </div>
-    </div>
+    <button class="theme-toggle" id="themeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
   </nav>
 </header>
 
 <section class="hero">
   <div class="hero-eyebrow">Your Life, Elevated</div>
   <h1>Wisdom for every<br><em>corner of your life.</em></h1>
-  <p class="hero-sub">Kaela is your guide — meeting you where you are, drawing on timeless wisdom and proven frameworks to help you grow.</p>
-  <div class="institute-badge">Institute for Human Flourishing and Responsible Technology</div>
+  <p class="hero-sub">Below you'll find custom AI models carefully crafted to help you achieve the best version of yourself. By incorporating meaningful and specific resources, we have cultivated rich experiences that leverage technology to genuinely improve your life.</p>
+  <div class="institute-badge">The Institute for Human Flourishing and Responsible Technology</div>
 </section>
 
 <div class="section-divider">
@@ -545,16 +484,16 @@
 
 <div class="grid">
 
-  <a href="https://gemini.google.com/gem/1_JMjXXShSBF7EbJ9vttcPH-gz4gDSX8m?usp=sharing" target="_blank" class="card card-stories">
+  <a href="https://bit.ly/40uyY8D" target="_blank" class="card card-stories">
     <div class="card-orb"></div>
     <div class="card-label">Kaela: Stories</div>
     <div class="card-title">Ancient Stories.<br>Real Answers.</div>
-    <div class="card-tagline">Timeless myths. Personal breakthroughs.</div>
-    <div class="card-desc">Kaela weaves ancient stories and archetypes into modern life coaching — helping you find your pattern, face your shadow, and write your next chapter.</div>
+    <div class="card-tagline">Thousands of years of human wisdom. Your story, right now.</div>
+    <div class="card-desc">Across thousands of years, humanity has encoded its deepest struggles, triumphs, and hard-won wisdom into story. Kaela draws on this vast inheritance — myths, archetypes, and the great narrative traditions of every culture — to hold a mirror to what you're going through right now. Whatever you're facing, someone has faced it before. Kaela helps you see that, learn from it, and find your way through.</div>
     <div class="card-cta">Begin your journey <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
   </a>
 
-  <a href="https://gemini.google.com/gem/1eomktS5YOyBAPd32pxjnIe9f90-FrROQ?usp=sharing" target="_blank" class="card card-teacher">
+  <a href="https://bit.ly/3PyQmqs" target="_blank" class="card card-teacher">
     <div class="card-orb"></div>
     <div class="card-label">Kaela: Teacher</div>
     <div class="card-title">The Modern<br>Teacher Coach.</div>
@@ -563,7 +502,7 @@
     <div class="card-cta">Start coaching <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
   </a>
 
-  <a href="https://gemini.google.com/gem/1OL9cfVArPAQfa5t1h5mAdtgqChoKgHLE?usp=sharing" target="_blank" class="card card-parent">
+  <a href="https://bit.ly/4sagfvm" target="_blank" class="card card-parent">
     <div class="card-orb"></div>
     <div class="card-label">Kaela: Parent</div>
     <div class="card-title">The Modern<br>Parent Mentor.</div>
@@ -572,7 +511,7 @@
     <div class="card-cta">Get guidance <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
   </a>
 
-  <a href="https://gemini.google.com/gem/1aUcQv4Gl18aNXfdCnu7PXwQMjV9zgFRV?usp=sharing" target="_blank" class="card card-philosophy">
+  <a href="https://bit.ly/4sNR3e5" target="_blank" class="card card-philosophy">
     <div class="card-orb"></div>
     <div class="card-label">Kaela: Philosophy</div>
     <div class="card-title">Philosophical<br>Debate Council.</div>
@@ -581,7 +520,7 @@
     <div class="card-cta">Convene the council <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
   </a>
 
-  <a href="https://gemini.google.com/gem/1EktXM8xPYubotrD4adnCHKBwA2_9AJNX?usp=sharing" target="_blank" class="card card-together">
+  <a href="https://bit.ly/3ND3SsB" target="_blank" class="card card-together">
     <div class="card-orb"></div>
     <div class="card-label">Kaela: Together</div>
     <div class="card-title">The Quality Time<br>Architect.</div>
@@ -607,7 +546,7 @@
     <div class="institute-header">
       <div class="institute-orb">✦</div>
       <div>
-        <div class="institute-name">Institute for Human Flourishing<br>and Responsible Technology</div>
+        <div class="institute-name">The Institute for Human Flourishing<br>and Responsible Technology</div>
         <div class="institute-tagline">Technology that serves humanity — not the other way around.</div>
       </div>
     </div>
@@ -651,7 +590,7 @@
 </div>
 
 <footer>
-  <div class="footer-institute">Institute for Human Flourishing and Responsible Technology</div>
+  <div class="footer-institute">The Institute for Human Flourishing and Responsible Technology</div>
   <p class="footer-mission">Technology that serves humanity — not the other way around.</p>
   <div class="footer-links">
   </div>
@@ -794,64 +733,6 @@ overlay.addEventListener('click', function(e) { if (e.target === overlay) overla
 document.addEventListener('keydown', function(e) { if (e.key === 'Escape') overlay.classList.remove('open'); });
 </script>
 
-
-<script>
-// ── GOOGLE SIGN-IN HANDLER ──
-function handleGoogleSignIn(response) {
-  // Decode the JWT to get user info (no backend needed for display purposes)
-  const payload = parseJwt(response.credential);
-  const name = payload.given_name || payload.name || payload.email.split('@')[0];
-  const picture = payload.picture || '';
-
-  // Store in sessionStorage so it persists across page navigations
-  sessionStorage.setItem('gsi_name', name);
-  sessionStorage.setItem('gsi_picture', picture);
-  sessionStorage.setItem('gsi_token', response.credential);
-
-  showUserPill(name, picture);
-}
-
-function showUserPill(name, picture) {
-  document.getElementById('googleSignInBtn').style.display = 'none';
-  const pill = document.getElementById('userPill');
-  pill.style.display = 'flex';
-  document.getElementById('userName').textContent = name;
-
-  if (picture) {
-    const img = document.getElementById('userAvatar');
-    img.src = picture;
-    img.style.display = 'block';
-    document.getElementById('userAvatarFallback').style.display = 'none';
-  } else {
-    document.getElementById('userAvatarFallback').textContent = name[0].toUpperCase();
-  }
-}
-
-function signOut() {
-  sessionStorage.removeItem('gsi_name');
-  sessionStorage.removeItem('gsi_picture');
-  sessionStorage.removeItem('gsi_token');
-  document.getElementById('userPill').style.display = 'none';
-  document.getElementById('googleSignInBtn').style.display = 'block';
-  if (typeof google !== 'undefined') {
-    google.accounts.id.disableAutoSelect();
-  }
-}
-
-function parseJwt(token) {
-  const base64 = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
-  return JSON.parse(decodeURIComponent(atob(base64).split('').map(c =>
-    '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-  ).join('')));
-}
-
-// Restore session on page load
-window.addEventListener('load', () => {
-  const name = sessionStorage.getItem('gsi_name');
-  const picture = sessionStorage.getItem('gsi_picture');
-  if (name) showUserPill(name, picture);
-});
-</script>
 
 <script>
 (function() {
