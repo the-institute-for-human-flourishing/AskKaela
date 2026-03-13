@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
 <script>
-(function(){if(localStorage.getItem('akTheme')==='dark')document.documentElement.classList.add('dark-early');})();
+(function(){
+  if(localStorage.getItem('akTheme')==='dark'){
+    document.documentElement.setAttribute('data-theme','dark');
+  }
+})();
 </script>
-<style>.dark-early body,.dark-early{background:#111008!important;}</style>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>About the Creator — Ask Kaela</title>
@@ -135,7 +138,7 @@ header { position: relative; z-index: 10; padding: 28px 40px 0; display: flex; a
 
 
   /* ── DARK MODE ── */
-  body.dark {
+  [data-theme="dark"] {
     --cream:  #111008;
     --warm:   #1A1712;
     --ink:    #F0EBE1;
@@ -143,15 +146,15 @@ header { position: relative; z-index: 10; padding: 28px 40px 0; display: flex; a
     --ink3:   #7A6F63;
     --border: rgba(240,235,225,0.1);
   }
-  body.dark .book-card { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.08); }
-  body.dark .book-card.fiction { border-left-color: #1FBFBF; }
-  body.dark .book-card.nonfiction { border-left-color: #D4820A; }
-  body.dark .pull { background: rgba(31,191,191,0.06); border-color: rgba(31,191,191,0.15); }
-  body.dark .pull.gold { background: rgba(212,130,10,0.06); border-color: rgba(212,130,10,0.15); }
-  body.dark .section-head .shl { background: rgba(240,235,225,0.1); }
-  body.dark .institute-section { background: #0A0906; }
-  body.dark footer { background: #0A0906; border-color: rgba(240,235,225,0.06); }
-  body.dark .spotify-embed { filter: invert(1) hue-rotate(180deg); }
+  [data-theme="dark"] .book-card { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.08); }
+  [data-theme="dark"] .book-card.fiction { border-left-color: #1FBFBF; }
+  [data-theme="dark"] .book-card.nonfiction { border-left-color: #D4820A; }
+  [data-theme="dark"] .pull { background: rgba(31,191,191,0.06); border-color: rgba(31,191,191,0.15); }
+  [data-theme="dark"] .pull.gold { background: rgba(212,130,10,0.06); border-color: rgba(212,130,10,0.15); }
+  [data-theme="dark"] .section-head .shl { background: rgba(240,235,225,0.1); }
+  [data-theme="dark"] .institute-section { background: #0A0906; }
+  [data-theme="dark"] footer { background: #0A0906; border-color: rgba(240,235,225,0.06); }
+  [data-theme="dark"] .spotify-embed { filter: invert(1) hue-rotate(180deg); }
 
   /* ── TOGGLE ── */
   .theme-toggle {
@@ -231,7 +234,7 @@ header { position: relative; z-index: 10; padding: 28px 40px 0; display: flex; a
     border-color: rgba(31,191,191,0.3);
     color: #F0EBE1;
   }
-  body.dark .podcast-hook { background: linear-gradient(135deg, #060F0F 0%, #0A0D14 100%); }
+  [data-theme="dark"] .podcast-hook { background: linear-gradient(135deg, #060F0F 0%, #0A0D14 100%); }
   /* FOOTER */
 footer { position: relative; z-index: 1; text-align: center; padding: 40px 24px 48px; border-top: 1px solid var(--border); }
 .footer-institute { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 400; color: var(--ink2); margin-bottom: 6px; }
@@ -422,18 +425,21 @@ footer { position: relative; z-index: 1; text-align: center; padding: 40px 24px 
 </footer>
 
 
+
 <script>
-(function() {
+(function(){
   var btn = document.getElementById('themeToggle');
-  var saved = localStorage.getItem('akTheme');
-  if (saved === 'dark') {
-    document.body.classList.add('dark');
-    btn.textContent = '☀️';
-  }
-  btn.addEventListener('click', function() {
-    var isDark = document.body.classList.toggle('dark');
-    btn.textContent = isDark ? '☀️' : '🌙';
-    localStorage.setItem('akTheme', isDark ? 'dark' : 'light');
+  // Apply saved theme on load
+  var saved = localStorage.getItem('akTheme') || 'light';
+  document.documentElement.setAttribute('data-theme', saved);
+  btn.textContent = saved === 'dark' ? '☀️' : '🌙';
+
+  btn.addEventListener('click', function(){
+    var current = document.documentElement.getAttribute('data-theme');
+    var next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('akTheme', next);
+    btn.textContent = next === 'dark' ? '☀️' : '🌙';
   });
 })();
 </script>
