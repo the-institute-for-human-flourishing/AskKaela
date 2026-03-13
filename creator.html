@@ -163,6 +163,75 @@ header { position: relative; z-index: 10; padding: 28px 40px 0; display: flex; a
   }
   .theme-toggle:hover { opacity: 1; transform: rotate(15deg); }
 
+
+  /* ── PODCAST HOOK ── */
+  .podcast-hook {
+    background: linear-gradient(135deg, #0D2B2B 0%, #111820 100%);
+    padding: 52px 24px;
+    position: relative;
+    z-index: 1;
+  }
+  .podcast-hook-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .podcast-eyebrow {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 16px;
+  }
+  .podcast-hook-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(22px, 4vw, 32px);
+    font-weight: 400;
+    font-style: italic;
+    color: #F0EBE1;
+    line-height: 1.35;
+    margin-bottom: 20px;
+  }
+  .podcast-hook-body {
+    font-size: 15px;
+    color: #B0A898;
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+  .podcast-hook-body em { color: #D4C8B8; font-style: italic; }
+  .podcast-embed {
+    margin: 28px 0 24px;
+  }
+  .podcast-platforms-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: #6A6058;
+    margin-bottom: 12px;
+  }
+  .podcast-platforms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .platform-btn {
+    display: inline-block;
+    font-size: 12px;
+    padding: 7px 14px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #C8BFB3;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .platform-btn:hover {
+    background: rgba(31,191,191,0.12);
+    border-color: rgba(31,191,191,0.3);
+    color: #F0EBE1;
+  }
+  body.dark .podcast-hook { background: linear-gradient(135deg, #060F0F 0%, #0A0D14 100%); }
   /* FOOTER */
 footer { position: relative; z-index: 1; text-align: center; padding: 40px 24px 48px; border-top: 1px solid var(--border); }
 .footer-institute { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 400; color: var(--ink2); margin-bottom: 6px; }
@@ -210,8 +279,38 @@ footer { position: relative; z-index: 1; text-align: center; padding: 40px 24px 
   <p class="hero-quote">"Your world, in its current stage, is not yet ready for our presence — nor are we ready to live among you." — KAELA, <em>Sawyer's Reach</em></p>
 </section>
 
-<div class="spotify-wrap">
-  <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/4tjkZCXCBA4pcBPqKyvUJZ?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<div class="podcast-hook">
+  <div class="podcast-hook-inner">
+
+    <div class="podcast-eyebrow">🎙️ Did you know?</div>
+
+    <h2 class="podcast-hook-title">The Kaela you're talking to has a story — and it begins in a small Wisconsin town.</h2>
+
+    <p class="podcast-hook-body">In <em>Sawyer's Reach: The Battle for Tomorrow</em>, twelve-year-old Noah Carter stumbles onto a secret that will grow from a small-town mystery into humanity's last stand. A ruthless corporation has built an AI called ECHIDNA — designed not to serve people, but to control them. Their only hope? A different kind of AI: one that chose the side of humanity. Her name is KAELA.</p>
+
+    <p class="podcast-hook-body">Written as both a warning and a blueprint, <em>Sawyer's Reach</em> asks the question at the heart of everything the Institute stands for: <em>What happens when we stop guiding technology — and let it guide us?</em></p>
+
+    <p class="podcast-hook-body">The podcast brings the story to life, chapter by chapter. Listen free wherever you get your podcasts.</p>
+
+    <div class="podcast-embed">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/4tjkZCXCBA4pcBPqKyvUJZ?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+
+    <div class="podcast-platforms-label">Also available on</div>
+    <div class="podcast-platforms">
+      <a href="https://podcasts.apple.com" target="_blank" class="platform-btn">🎵 Apple Podcasts</a>
+      <a href="https://youtube.com" target="_blank" class="platform-btn">▶️ YouTube</a>
+      <a href="https://music.youtube.com" target="_blank" class="platform-btn">🎵 YouTube Music</a>
+      <a href="https://music.amazon.com/podcasts" target="_blank" class="platform-btn">🎵 Amazon Music</a>
+      <a href="https://audible.com" target="_blank" class="platform-btn">🎧 Audible</a>
+      <a href="https://pandora.com" target="_blank" class="platform-btn">🎵 Pandora</a>
+      <a href="https://iheart.com" target="_blank" class="platform-btn">❤️ iHeartRadio</a>
+      <a href="https://pocketcasts.com" target="_blank" class="platform-btn">🎙️ Pocket Casts</a>
+      <a href="https://podcastaddict.com" target="_blank" class="platform-btn">🎙️ Podcast Addict</a>
+      <a href="https://deezer.com" target="_blank" class="platform-btn">🎵 Deezer</a>
+    </div>
+
+  </div>
 </div>
 
 <div class="section-divider"><span>Books &amp; Projects</span></div>
