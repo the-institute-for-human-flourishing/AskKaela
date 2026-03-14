@@ -451,8 +451,10 @@
   }
   .theme-toggle:hover { opacity: 1; transform: rotate(15deg); }
   @media (max-width: 600px) {
-    header { padding: 20px 18px 0; }
-    .header-nav { display: none; }
+    header { padding: 16px 18px 0; flex-wrap: wrap; gap: 10px; }
+    .header-nav { display: flex; gap: 16px; width: 100%; justify-content: center; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+    .header-nav a { font-size: 12px; }
+    .theme-toggle { font-size: 16px; }
     .hero { padding: 50px 18px 40px; }
     .hero h1 { font-size: 38px; }
     .grid { padding: 0 16px; gap: 14px; }
@@ -507,24 +509,6 @@
     <div class="card-cta">Begin your journey <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
   </a>
 
-  <a href="https://bit.ly/3PyQmqs" target="_blank" class="card card-teacher">
-    <div class="card-orb"></div>
-    <div class="card-label">Kaela: Teacher</div>
-    <div class="card-title">The Modern<br>Teacher Coach.</div>
-    <div class="card-tagline">Find success in your classroom with personalized wisdom from a happy veteran teacher.</div>
-    <div class="card-desc">Teaching should feel meaningful — not just exhausting. Kaela: Teacher is built on the Duda Model for Modern Education: genuine connection, mindfulness, unconditional support, growth mindset, and social-emotional learning woven into everything. Whether you're navigating a hard classroom dynamic, fighting burnout, or searching for the joy that brought you to this career in the first place — Kaela shows up as the mentor and friend every teacher deserves. Happy teachers change lives. Let's get you there.</div>
-    <div class="card-cta">Start coaching <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-  </a>
-
-  <a href="https://bit.ly/4sagfvm" target="_blank" class="card card-parent">
-    <div class="card-orb"></div>
-    <div class="card-label">Kaela: Parent</div>
-    <div class="card-title">The Modern<br>Parent Mentor.</div>
-    <div class="card-tagline">From a parent who has spent a lifetime in children's corners.</div>
-    <div class="card-desc">Nick Duda is a parent first. Everything else — 22+ years in classrooms, summer camps, before and after school programs, mentoring new teachers — was shaped by one belief: every child deserves the best possible adults in their corner. Kaela: Parent distills that lifetime of experience into warm, honest guidance for families. Whether you're navigating a tough moment or simply trying to build a home where kids feel seen and loved — Kaela is the grounded, knowledgeable friend every parent deserves.</div>
-    <div class="card-cta">Get guidance <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-  </a>
-
   <a href="https://bit.ly/4sNR3e5" target="_blank" class="card card-philosophy">
     <div class="card-orb"></div>
     <div class="card-label">Kaela: Philosophy</div>
@@ -534,23 +518,53 @@
     <div class="card-cta">Convene the council <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
   </a>
 
-  <a href="https://bit.ly/3ND3SsB" target="_blank" class="card card-together">
+</div>
+
+<div class="section-divider coming-soon-divider">
+  <span>Coming Soon</span>
+</div>
+
+<div class="grid grid-coming-soon">
+
+  <div class="card card-teacher card-disabled">
+    <div class="card-coming-badge">Coming Soon</div>
+    <div class="card-orb"></div>
+    <div class="card-label">Kaela: Teacher</div>
+    <div class="card-title">The Modern<br>Teacher Coach.</div>
+    <div class="card-tagline">Find success in your classroom with personalized wisdom from a happy veteran teacher.</div>
+    <div class="card-desc">Teaching should feel meaningful — not just exhausting. Kaela: Teacher is built on the Duda Model for Modern Education: genuine connection, mindfulness, unconditional support, growth mindset, and social-emotional learning woven into everything. Whether you're navigating a hard classroom dynamic, fighting burnout, or searching for the joy that brought you to this career in the first place — Kaela shows up as the mentor and friend every teacher deserves. Happy teachers change lives. Let's get you there.</div>
+    <div class="card-cta">Start coaching <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+  </div>
+
+  <div class="card card-parent card-disabled">
+    <div class="card-coming-badge">Coming Soon</div>
+    <div class="card-orb"></div>
+    <div class="card-label">Kaela: Parent</div>
+    <div class="card-title">The Modern<br>Parent Mentor.</div>
+    <div class="card-tagline">From a parent who has spent a lifetime in children's corners.</div>
+    <div class="card-desc">Nick Duda is a parent first. Everything else — 22+ years in classrooms, summer camps, before and after school programs, mentoring new teachers — was shaped by one belief: every child deserves the best possible adults in their corner. Kaela: Parent distills that lifetime of experience into warm, honest guidance for families. Whether you're navigating a tough moment or simply trying to build a home where kids feel seen and loved — Kaela is the grounded, knowledgeable friend every parent deserves.</div>
+    <div class="card-cta">Get guidance <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+  </div>
+
+  <div class="card card-together card-disabled">
+    <div class="card-coming-badge">Coming Soon</div>
     <div class="card-orb"></div>
     <div class="card-label">Kaela: Together</div>
     <div class="card-title">The Quality Time<br>Architect.</div>
     <div class="card-tagline">Unplug from technology. Plug into each other.</div>
     <div class="card-desc">The best things in life aren't things — they're the moments you share with the people who matter. Tell Kaela who you're with, what kind of day you're having, and what you're in the mood for. She'll suggest simple, free, screen-free activities across five categories — Adventure, Creation, Play, Service, and Cozy Indoors — each one designed to turn an ordinary afternoon into something you'll actually remember.</div>
     <div class="card-cta">Plan something great <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-  </a>
+  </div>
 
-  <a href="https://gemini.google.com/gem/1aiCfFmM-3uXWI4Et1dUcQINHwF3My7Tz?usp=sharing" target="_blank" class="card card-flourishing">
+  <div class="card card-flourishing card-disabled">
+    <div class="card-coming-badge">Coming Soon</div>
     <div class="card-orb"></div>
     <div class="card-label">Kaela: Flourishing</div>
     <div class="card-title">The Human<br>Flourishing Guide.</div>
     <div class="card-tagline">Become the architect of your own future.</div>
     <div class="card-desc">We are living through The Great Decidings — the pivotal choices that will define what kind of future we build, and what kind of people we become in the process. Kaela: Flourishing draws on The Institute's six pillars to help you navigate questions about personal agency, resilient communities, and meaningful living. Whether you're rethinking how you spend your time, trying to build something real with the people around you, or wrestling with what it means to live well in a world being reshaped by technology — this is the conversation worth having.</div>
     <div class="card-cta">Explore the blueprint <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-  </a>
+  </div>
 
 </div>
 
@@ -707,6 +721,39 @@
   .gem-modal { padding: 28px 22px 22px; }
   .gem-modal-title { font-size: 21px; }
 }
+
+/* ── COMING SOON CARDS ── */
+.coming-soon-divider { margin-top: 48px; }
+.card-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  position: relative;
+  background: rgba(160,155,148,0.06) !important;
+  border-color: rgba(160,155,148,0.15) !important;
+  --card-accent: #9A9590 !important;
+  --card-glow: rgba(150,145,140,0.08) !important;
+}
+.card-disabled .card-orb {
+  background: radial-gradient(circle at 35% 35%, #C8C4BE, #9A9590 45%, #6A6560) !important;
+  box-shadow: none !important;
+  animation: none !important;
+}
+.card-disabled .card-label,
+.card-disabled .card-cta { color: #9A9590 !important; }
+.card-disabled .card-title { color: #B8B4AE !important; }
+.card-disabled .card-tagline,
+.card-disabled .card-desc { color: #8A8580 !important; }
+.card-coming-badge {
+  position: absolute;
+  top: 16px; right: 16px;
+  background: rgba(154,149,144,0.12);
+  border: 1px solid rgba(154,149,144,0.25);
+  color: #9A9590;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 20px;
+}
 </style>
 
 <script>
@@ -732,6 +779,7 @@ var isInApp = new URLSearchParams(window.location.search).get('source') === 'app
 document.querySelectorAll('.card').forEach(function(card) {
   card.addEventListener('click', function(e) {
     e.preventDefault();
+    if (card.classList.contains('card-disabled')) return;
     var url = card.getAttribute('href');
 
     if (isInApp) {
