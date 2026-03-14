@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+(function(){
+  if(localStorage.getItem('akTheme')==='dark'){
+    document.documentElement.setAttribute('data-theme','dark');
+  }
+})();
+</script>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ask Kaela — Your Life, Elevated</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:   #F7F3EC;
+    --warm:    #EDE6D8;
+    --ink:     #1A1712;
+    --ink2:    #3D3730;
+    --ink3:    #7A6F63;
+    --border:  rgba(26,23,18,0.1);
+
+    --teal:    #1FBFBF;
+    --amber:   #D4820A;
+    --sage:    #4A8C6F;
+    --indigo:  #4B5FBF;
+    --coral:   #C75B3A;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: relative; z-index: 10;
+    padding: 28px 40px 0;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .logo-mark {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .logo-orb {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #A8EFEF, #1FBFBF 45%, #0D7A7A);
+    box-shadow: 0 4px 16px rgba(31,191,191,0.3);
+    flex-shrink: 0;
+  }
+  .logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 600;
+    color: var(--ink); letter-spacing: 0.01em;
+  }
+  .logo-text span { color: var(--teal); }
+
+  .header-nav {
+    display: flex; align-items: center; gap: 24px;
+  }
+  .header-nav a {
+    font-size: 13px; font-weight: 400;
+    color: var(--ink3); text-decoration: none;
+    transition: color 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .header-nav a:hover { color: var(--ink); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; z-index: 1;
+    text-align: center;
+    padding: 80px 24px 60px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 20px;
+    padding: 6px 16px;
+    border: 1px solid rgba(31,191,191,0.3);
+    border-radius: 20px;
+    background: rgba(31,191,191,0.06);
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 7vw, 72px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin-bottom: 20px;
+  }
+  .hero h1 em {
+    font-style: italic; font-weight: 300;
+    color: var(--ink2);
+  }
+  .hero-sub {
+    font-size: clamp(15px, 2.5vw, 18px);
+    font-weight: 300;
+    color: var(--ink3);
+    line-height: 1.7;
+    max-width: 540px;
+    margin: 0 auto 16px;
+  }
+  .institute-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; color: var(--ink3);
+    letter-spacing: 0.04em;
+    margin-top: 8px;
+    opacity: 0.7;
+  }
+  .institute-badge::before,
+  .institute-badge::after {
+    content: ''; display: block;
+    width: 32px; height: 1px;
+    background: var(--ink3); opacity: 0.4;
+  }
+
+  /* ── DIVIDER ── */
+  .section-divider {
+    display: flex; align-items: center; gap: 16px;
+    max-width: 900px; margin: 0 auto 48px;
+    padding: 0 24px;
+    position: relative; z-index: 1;
+  }
+  .section-divider::before,
+  .section-divider::after {
+    content: ''; flex: 1;
+    height: 1px; background: var(--border);
+  }
+  .section-divider span {
+    font-size: 11px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--ink3);
+    white-space: nowrap;
+  }
+
+  /* ── GRID ── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto 80px;
+    padding: 0 24px;
+    position: relative; z-index: 1;
+    justify-content: center;
+  }
+  .grid:not(.grid-coming-soon) {
+    grid-template-columns: repeat(2, minmax(280px, 440px));
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px 28px 28px;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex; flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    position: relative;
+    overflow: hidden;
+    animation: cardIn 0.5s ease both;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--card-accent);
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.10);
+    border-color: var(--card-accent);
+  }
+  .card:hover::before { opacity: 1; }
+
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-orb {
+    width: 52px; height: 52px; border-radius: 50%;
+    margin-bottom: 20px; flex-shrink: 0;
+    box-shadow: 0 4px 16px var(--card-glow);
+    animation: orbPulse 4s ease-in-out infinite;
+  }
+  @keyframes orbPulse {
+    0%, 100% { box-shadow: 0 4px 16px var(--card-glow); }
+    50%       { box-shadow: 0 6px 24px var(--card-glow); }
+  }
+
+  .card-label {
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--card-accent);
+    margin-bottom: 8px;
+  }
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 600;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .card-tagline {
+    font-size: 12px; font-style: italic;
+    color: var(--ink3); margin-bottom: 14px;
+    line-height: 1.5;
+  }
+  .card-desc {
+    font-size: 13.5px; font-weight: 300;
+    color: var(--ink2); line-height: 1.7;
+    flex: 1;
+    margin-bottom: 24px;
+  }
+  .card-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--card-accent);
+    transition: gap 0.2s;
+  }
+  .card:hover .card-cta { gap: 12px; }
+  .card-cta svg { flex-shrink: 0; transition: transform 0.2s; }
+  .card:hover .card-cta svg { transform: translateX(3px); }
+
+  /* ── CARD THEMES ── */
+  .card-stories {
+    --card-accent: #1FBFBF;
+    --card-glow: rgba(31,191,191,0.25);
+  }
+  .card-stories .card-orb {
+    background: radial-gradient(circle at 35% 35%, #A8EFEF, #1FBFBF 45%, #0D7A7A);
+  }
+
+  .card-teacher {
+    --card-accent: #D4820A;
+    --card-glow: rgba(212,130,10,0.25);
+  }
+  .card-teacher .card-orb {
+    background: radial-gradient(circle at 35% 35%, #FFD98A, #D4820A 45%, #8A5200);
+  }
+
+  .card-parent {
+    --card-accent: #4A8C6F;
+    --card-glow: rgba(74,140,111,0.25);
+  }
+  .card-parent .card-orb {
+    background: radial-gradient(circle at 35% 35%, #A8DFC2, #4A8C6F 45%, #2A5C44);
+  }
+
+  .card-philosophy {
+    --card-accent: #4B5FBF;
+    --card-glow: rgba(75,95,191,0.25);
+  }
+  .card-philosophy .card-orb {
+    background: radial-gradient(circle at 35% 35%, #B8C4FF, #4B5FBF 45%, #1E2B80);
+  }
+
+  .card-together {
+    --card-accent: #C75B3A;
+    --card-glow: rgba(199,91,58,0.25);
+  }
+  .card-together .card-orb {
+    background: radial-gradient(circle at 35% 35%, #FFB89A, #C75B3A 45%, #7A2810);
+  }
+
+  .card-flourishing {
+    --card-accent: #7B5EA7;
+    --card-glow: rgba(123,94,167,0.25);
+  }
+  .card-flourishing .card-orb {
+    background: radial-gradient(circle at 35% 35%, #D4B8FF, #7B5EA7 45%, #3D1F6B);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    position: relative; z-index: 1;
+    text-align: center;
+    padding: 40px 24px 48px;
+    border-top: 1px solid var(--border);
+  }
+  .footer-institute {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; font-weight: 400;
+    color: var(--ink2); margin-bottom: 6px;
+  }
+  .footer-mission {
+    font-size: 12px; color: var(--ink3);
+    font-style: italic; line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .footer-links {
+    display: flex; align-items: center; justify-content: center;
+    gap: 24px; flex-wrap: wrap;
+  }
+  .footer-links a {
+    font-size: 12px; color: var(--ink3);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--teal); }
+
+  /* ── INSTITUTE SECTION ── */
+  .institute-section {
+    position: relative; z-index: 1;
+    background: var(--ink);
+    padding: 72px 24px 80px;
+    margin-top: 0;
+  }
+  .institute-inner {
+    max-width: 1000px; margin: 0 auto;
+  }
+  .institute-header {
+    display: flex; align-items: flex-start; gap: 20px;
+    margin-bottom: 28px;
+  }
+  .institute-orb {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: rgba(31,191,191,0.15);
+    border: 1px solid rgba(31,191,191,0.3);
+    color: var(--teal); font-size: 20px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .institute-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 3vw, 26px); font-weight: 600;
+    color: #F7F3EC; line-height: 1.2; margin-bottom: 6px;
+  }
+  .institute-tagline {
+    font-size: 13px; color: rgba(247,243,236,0.4);
+    font-style: italic; letter-spacing: 0.02em;
+  }
+  .institute-body {
+    font-size: 15px; font-weight: 300; line-height: 1.85;
+    color: rgba(247,243,236,0.6);
+    max-width: 700px; margin-bottom: 48px;
+    border-left: 2px solid rgba(31,191,191,0.3);
+    padding-left: 20px;
+  }
+  .institute-pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 900px; margin: 0 auto 40px;
+    gap: 20px; margin-bottom: 40px;
+  }
+  .institute-pillar {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px; padding: 22px 20px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .institute-pillar:hover {
+    border-color: rgba(31,191,191,0.25);
+    background: rgba(31,191,191,0.04);
+  }
+  .pillar-icon { font-size: 22px; margin-bottom: 12px; }
+  .pillar-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px; font-weight: 600;
+    color: #F7F3EC; margin-bottom: 8px; line-height: 1.3;
+  }
+  .pillar-desc {
+    font-size: 13px; font-weight: 300; line-height: 1.7;
+    color: rgba(247,243,236,0.5);
+  }
+  .institute-cta { text-align: center; }
+  .institute-link {
+    font-size: 13px; font-weight: 500;
+    color: var(--teal); text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: opacity 0.2s;
+  }
+  .institute-link:hover { opacity: 0.75; }
+
+  /* ── GEMINI NOTICE ── */
+  .gemini-notice {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    max-width: 900px; margin: -24px auto 32px;
+    padding: 0 24px;
+    font-size: 13px; font-weight: 400;
+    color: var(--ink3); line-height: 1.5;
+    position: relative; z-index: 1;
+  }
+  .gemini-notice svg { flex-shrink: 0; color: var(--teal); opacity: 0.8; }
+
+  /* ── DARK MODE ── */
+  [data-theme="dark"] {
+    --cream:  #111008;
+    --warm:   #1A1712;
+    --ink:    #F0EBE1;
+    --ink2:   #C8BFB3;
+    --ink3:   #7A6F63;
+    --border: rgba(240,235,225,0.1);
+  }
+  [data-theme="dark"] .institute-section { background: #0A0906; }
+  [data-theme="dark"] footer { background: #0A0906; border-color: rgba(240,235,225,0.06); }
+  [data-theme="dark"] .gem-modal { background: #FFFFFF; color: #1A1712; }
+  [data-theme="dark"] .gem-modal-title { color: #1A1712; }
+  [data-theme="dark"] .gem-modal-body { color: #3A3530; }
+  [data-theme="dark"] .gem-modal-body strong { color: #1A1712; }
+  [data-theme="dark"] .gem-modal-steps { background: #F0EBE3; }
+  [data-theme="dark"] .gem-modal-step { color: #3A3530; }
+  [data-theme="dark"] .gem-btn-cancel { color: #3A3530; border-color: #C0B8B0; background: transparent; }
+  [data-theme="dark"] .gem-btn-cancel:hover { color: #1A1712; border-color: #1A1712; }
+  [data-theme="dark"] .card { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.07); }
+  [data-theme="dark"] .card:hover { background: rgba(255,255,255,0.06); }
+  [data-theme="dark"] .gemini-notice { background: rgba(31,191,191,0.06); border-color: rgba(31,191,191,0.15); }
+
+  /* ── TOGGLE BUTTON ── */
+  .theme-toggle {
+    background: none; border: none; cursor: pointer;
+    font-size: 18px; line-height: 1;
+    padding: 4px 6px; border-radius: 6px;
+    transition: opacity 0.2s, transform 0.3s;
+    opacity: 0.6;
+  }
+  .theme-toggle:hover { opacity: 1; transform: rotate(15deg); }
+  @media (max-width: 600px) {
+    header { padding: 16px 18px 0; flex-wrap: wrap; gap: 10px; }
+    .header-nav { display: flex; gap: 16px; width: 100%; justify-content: center; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+    .header-nav a { font-size: 12px; }
+    .theme-toggle { font-size: 16px; }
+    .hero { padding: 50px 18px 40px; }
+    .hero h1 { font-size: 38px; }
+    .grid { padding: 0 16px; gap: 14px; }
+    .grid:not(.grid-coming-soon) { grid-template-columns: 1fr; }
+    .card { padding: 24px 22px 22px; }
+    .institute-section { padding: 48px 16px 56px; }
+    .institute-pillars { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .institute-pillars { grid-template-columns: 1fr; }
+    .institute-header { gap: 14px; }
+  }
+
+  /* ── COMING SOON CARDS ── */
+  .coming-soon-divider { margin-top: 48px; }
+  .card-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+    position: relative;
+    background: rgba(160,155,148,0.06) !important;
+    border-color: rgba(160,155,148,0.15) !important;
+    --card-accent: #9A9590 !important;
+    --card-glow: rgba(150,145,140,0.08) !important;
+  }
+  .card-disabled .card-orb {
+    background: radial-gradient(circle at 35% 35%, #C8C4BE, #9A9590 45%, #6A6560) !important;
+    box-shadow: none !important;
+    animation: none !important;
+  }
+  .card-disabled .card-label,
+  .card-disabled .card-cta { color: #9A9590 !important; }
+  .card-disabled .card-title { color: #B8B4AE !important; }
+  .card-disabled .card-tagline,
+  .card-disabled .card-desc { color: #8A8580 !important; }
+  .card-coming-badge {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: rgba(154,149,144,0.12);
+    border: 1px solid rgba(154,149,144,0.25);
+    color: #9A9590;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 20px;
+  }
+
+  /* ── MODAL OVERLAY ── */
+  .gem-overlay {
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(26,23,18,0.5);
+    backdrop-filter: blur(4px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+  .gem-overlay.open { opacity: 1; pointer-events: all; }
+  .gem-modal {
+    color: #1A1712;
+    background: #fff; border-radius: 20px;
+    padding: 36px 32px 28px;
+    max-width: 400px; width: 100%;
+    text-align: center;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.15);
+    transform: translateY(12px) scale(0.97);
+    transition: transform 0.25s ease;
+  }
+  .gem-overlay.open .gem-modal { transform: translateY(0) scale(1); }
+  .gem-modal-orb {
+    width: 52px; height: 52px; border-radius: 50%;
+    margin: 0 auto 14px;
+    animation: orbFloat 4s ease-in-out infinite;
+  }
+  .gem-modal-label {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--teal);
+    margin-bottom: 10px;
+  }
+  .gem-modal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px; font-weight: 600;
+    color: var(--ink); margin-bottom: 12px; line-height: 1.2;
+  }
+  .gem-modal-body {
+    font-size: 14px; font-weight: 300; color: var(--ink2);
+    line-height: 1.7; margin-bottom: 20px;
+  }
+  .gem-modal-body strong { font-weight: 500; color: var(--ink); }
+  .gem-modal-steps {
+    display: flex; flex-direction: column; gap: 8px;
+    background: #F7F3EC; border-radius: 12px;
+    padding: 16px 18px; margin-bottom: 24px; text-align: left;
+  }
+  .gem-modal-step {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; font-weight: 400; color: var(--ink2);
+  }
+  .gem-step-num {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--teal); color: #fff;
+    font-size: 11px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .gem-modal-btns { display: flex; gap: 10px; }
+  .gem-btn-cancel {
+    flex: 1; padding: 12px; border-radius: 10px;
+    border: 1px solid var(--border); background: transparent;
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+    color: var(--ink3); cursor: pointer; transition: all 0.2s;
+  }
+  .gem-btn-cancel:hover { border-color: var(--ink3); color: var(--ink); }
+  .gem-btn-go {
+    flex: 2; padding: 12px; border-radius: 10px;
+    background: var(--teal); color: #fff;
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+    text-decoration: none; display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .gem-btn-go:hover { background: var(--teal2); }
+  @media (max-width: 480px) {
+    .gem-modal { padding: 28px 22px 22px; }
+    .gem-modal-title { font-size: 21px; }
+  }
+</style>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8776178244604751" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header>
+  <div class="logo-mark">
+    <div class="logo-orb"></div>
+    <div class="logo-text">Ask <span>Kaela</span></div>
+  </div>
+  <nav class="header-nav">
+    <a href="creator.html">About the Creator</a>
+    <button class="theme-toggle" id="themeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow">Your Life, Elevated</div>
+  <h1>Wisdom for every<br><em>corner of your life.</em></h1>
+  <p class="hero-sub">Below you'll find custom AI models carefully crafted to help you achieve the best version of yourself. By incorporating meaningful and specific resources, we have cultivated rich experiences that leverage technology to genuinely improve your life.</p>
+  <div class="institute-badge">The Institute for Human Flourishing and Responsible Technology</div>
+</section>
+
+<div class="section-divider">
+  <span>Choose your Kaela</span>
+</div>
+
+<div class="gemini-notice">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+  Each Kaela opens in Google Gemini — you'll need to be signed in to your Google account to start a conversation. It's free.
+</div>
+
+<div class="grid">
+
+  <a href="https://bit.ly/40uyY8D" target="_blank" class="card card-stories">
+    <div class="card-orb"></div>
+    <div class="card-label">Kaela: Stories</div>
+    <div class="card-title">Ancient Stories.<br>Real Answers.</div>
+    <div class="card-tagline">Thousands of years of human wisdom. Your story, right now.</div>
+    <div class="card-desc">Across thousands of years, humanity has encoded its deepest struggles, triumphs, and hard-won wisdom into story. Kaela draws on this vast inheritance — myths, archetypes, and the great narrative traditions of every culture — to hold a mirror to what you're going through right now. Whatever you're facing, someone has faced it before. Kaela helps you see that, learn from it, and find your way through.</div>
+    <div class="card-cta">Begin your journey <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+  </a>
+
+  <a href="https://bit.ly/4sNR3e5" target="_blank" class="card card-philosophy">
+    <div class="card-orb"></div>
+    <div class="card-label">Kaela: Philosophy</div>
+    <div class="card-title">Philosophical<br>Debate Council.</div>
+    <div class="card-tagline">17 of history's greatest philosophical traditions, applied to your life.</div>
+    <div class="card-desc">Bring Kaela your toughest dilemma — a hard decision, a moral conflict, something that's been keeping you up at night. Kaela draws on 17 philosophical traditions across five schools of thought: The Individual, The Collective, The Way, The Questioners, and The Institute's own human-first frameworks. Rather than making you choose, Kaela automatically selects the perspectives that will illuminate your situation most — then synthesizes where they agree, where they clash, and what the real decision beneath your decision actually is.</div>
+    <div class="card-cta">Convene the council <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+  </a>
+
+  <a href="https://bit.ly/3PyQmqs" target="_blank" class="card card-teacher">
+    <div class="card-orb"></div>
+    <div class="card-label">Kaela: Teacher</div>
+    <div class="card-title">The Modern<br>Teacher Coach.</div>
+    <div class="card-tagline">Find success in your classroom with personalized wisdom from a happy veteran teacher.</div>
+    <div class="card-desc">Teaching should feel meaningful — not just exhausting. Kaela: Teacher is built on the Duda Model for Modern Education: genuine connection, mindfulness, unconditional support, growth mindset, and social-emotional learning woven into everything. Whether you're navigating a hard classroom dynamic, fighting burnout, or searching for the joy that brought you to this career in the first place — Kaela shows up as the mentor and friend every teacher deserves. Happy teachers change lives. Let's get you there.</div>
+    <div class="card-cta">Start coaching <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+  </a>
+
+  <a href="https://bit.ly/4sagfvm" target="_blank" class="card card-parent">
+    <div class="card-orb"></div>
+    <div class="card-label">Kaela: Parent</div>
+    <div class="card-title">The Modern<br>Parent Mentor.</div>
+    <div class="card-tagline">From a parent who has spent a lifetime in children's corners.</div>
+    <div class="card-desc">Nick Duda is a parent first. Everything else — 22+ years in classrooms, summer camps, before and after school programs, mentoring new teachers — was shaped by one belief: every child deserves the best possible adults in their corner. Kaela: Parent distills that lifetime of experience into warm, honest guidance for families. Whether you're navigating a tough moment or simply trying to build a home where kids feel seen and loved — Kaela is the grounded, knowledgeable friend every parent deserves.</div>
+    <div class="card-cta">Get guidance <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+  </a>
+
+</div>
+
+<div class="section-divider coming-soon-divider">
+  <span>Coming Soon</span>
+</div>
+
+<div class="grid grid-coming-soon">
+
+  <div class="card card-together card-disabled">
+    <div class="card-coming-badge">Coming Soon</div>
+    <div class="card-orb"></div>
+    <div class="card-label">Kaela: Together</div>
+    <div class="card-title">The Quality Time<br>Architect.</div>
+    <div class="card-tagline">Unplug from technology. Plug into each other.</div>
+    <div class="card-desc">The best things in life aren't things — they're the moments you share with the people who matter. Tell Kaela who you're with, what kind of day you're having, and what you're in the mood for. She'll suggest simple, free, screen-free activities across five categories — Adventure, Creation, Play, Service, and Cozy Indoors — each one designed to turn an ordinary afternoon into something you'll actually remember.</div>
+    <div class="card-cta">Plan something great <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+  </div>
+
+  <div class="card card-flourishing card-disabled">
+    <div class="card-coming-badge">Coming Soon</div>
+    <div class="card-orb"></div>
+    <div class="card-label">Kaela: Flourishing</div>
+    <div class="card-title">The Human<br>Flourishing Guide.</div>
+    <div class="card-tagline">Become the architect of your own future.</div>
+    <div class="card-desc">We are living through The Great Decidings — the pivotal choices that will define what kind of future we build, and what kind of people we become in the process. Kaela: Flourishing draws on The Institute's six pillars to help you navigate questions about personal agency, resilient communities, and meaningful living. Whether you're rethinking how you spend your time, trying to build something real with the people around you, or wrestling with what it means to live well in a world being reshaped by technology — this is the conversation worth having.</div>
+    <div class="card-cta">Explore the blueprint <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+  </div>
+
+</div>
+
+<div class="institute-section">
+  <div class="institute-inner">
+    <div class="institute-header">
+      <div class="institute-orb">✦</div>
+      <div>
+        <div class="institute-name">The Institute for Human Flourishing<br>and Responsible Technology</div>
+        <div class="institute-tagline">Technology that serves humanity — not the other way around.</div>
+      </div>
+    </div>
+    <p class="institute-body">We stand at a fork in the road. One path leads toward a future where technology reigns supreme — where our lives are increasingly mediated by screens and algorithms, and where the essence of what makes us human is diminished. The other path leads toward a future where technology serves humanity. That is the path we choose to illuminate.</p>
+    <div class="institute-pillars">
+      <div class="institute-pillar">
+        <div class="pillar-icon">⚖️</div>
+        <div class="pillar-title">Human Dignity &amp; Liberty</div>
+        <div class="pillar-desc">Every individual possesses inherent worth. True flourishing requires freedom — to make choices, pursue personal goals, and live according to one's own values — balanced with responsibility to the community.</div>
+      </div>
+      <div class="institute-pillar">
+        <div class="pillar-icon">🤝</div>
+        <div class="pillar-title">Connection &amp; Community</div>
+        <div class="pillar-desc">Strong social bonds are the foundation of a flourishing life. We champion shared experiences, communal support, and resilient local communities over screen-mediated isolation.</div>
+      </div>
+      <div class="institute-pillar">
+        <div class="pillar-icon">🌱</div>
+        <div class="pillar-title">Responsible Innovation</div>
+        <div class="pillar-desc">Technology is neither good nor evil — it is a tool. We advocate for the ethical development and deployment of AI and automation that enhances human capability without displacing human purpose.</div>
+      </div>
+      <div class="institute-pillar">
+        <div class="pillar-icon">📚</div>
+        <div class="pillar-title">Lifelong Learning &amp; Growth</div>
+        <div class="pillar-desc">In a world transformed by automation, the pursuit of knowledge, creativity, and self-development becomes not just valuable — it becomes the primary source of meaning and fulfillment.</div>
+      </div>
+      <div class="institute-pillar">
+        <div class="pillar-icon">🏡</div>
+        <div class="pillar-title">Sustainable Communities</div>
+        <div class="pillar-desc">We envision resilient micro-communities built on local self-reliance, shared governance, environmental stewardship, and a sense of belonging that transcends the marketplace.</div>
+      </div>
+      <div class="institute-pillar">
+        <div class="pillar-icon">🤖</div>
+        <div class="pillar-title">Human-AI Partnership</div>
+        <div class="pillar-desc">Automation and AI are not replacements for human purpose — they are tools in service of it. Our commitment is to guide technology with wisdom and align it with the values of a free and flourishing humanity.</div>
+      </div>
+    </div>
+    <div class="institute-cta">
+      <a href="creator.html" class="institute-link">Learn more about the Institute →</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-institute">The Institute for Human Flourishing and Responsible Technology</div>
+  <p class="footer-mission">Technology that serves humanity — not the other way around.</p>
+  <div class="footer-links">
+  </div>
+</footer>
+
+<div class="gem-overlay" id="gemOverlay">
+  <div class="gem-modal">
+    <div class="gem-modal-orb" id="gemModalOrb"></div>
+    <div class="gem-modal-label" id="gemModalLabel">Kaela: Stories</div>
+    <h3 class="gem-modal-title">You're opening Google Gemini</h3>
+    <p class="gem-modal-body">This Kaela lives in Google Gemini — a free AI platform. You'll need to be <strong>signed in to your Google account</strong> to start a conversation.</p>
+    <div class="gem-modal-steps">
+      <div class="gem-modal-step"><span class="gem-step-num">1</span> Opens in a new tab</div>
+      <div class="gem-modal-step"><span class="gem-step-num">2</span> Sign in with Google if prompted</div>
+      <div class="gem-modal-step"><span class="gem-step-num">3</span> Start talking to Kaela — it's free</div>
+    </div>
+    <div class="gem-modal-btns">
+      <button class="gem-btn-cancel" id="gemCancel">Go Back</button>
+      <a class="gem-btn-go" id="gemGo" href="#" target="_blank">Open Gemini →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+var overlay = document.getElementById('gemOverlay');
+var gemGo   = document.getElementById('gemGo');
+var gemCancel = document.getElementById('gemCancel');
+var gemModalOrb = document.getElementById('gemModalOrb');
+var gemModalLabel = document.getElementById('gemModalLabel');
+
+var cardData = {
+  'card-stories':    { label: 'Kaela: Stories',    orb: 'radial-gradient(circle at 35% 35%, #A8EFEF, #1FBFBF 45%, #0D7A7A)', accent: '#1FBFBF' },
+  'card-teacher':    { label: 'Kaela: Teacher',    orb: 'radial-gradient(circle at 35% 35%, #FFD98A, #D4820A 45%, #8A5200)', accent: '#D4820A' },
+  'card-parent':     { label: 'Kaela: Parent',     orb: 'radial-gradient(circle at 35% 35%, #A8DFC2, #4A8C6F 45%, #2A5C44)', accent: '#4A8C6F' },
+  'card-philosophy': { label: 'Kaela: Philosophy', orb: 'radial-gradient(circle at 35% 35%, #B8C4FF, #4B5FBF 45%, #1E2B80)', accent: '#4B5FBF' },
+  'card-together':    { label: 'Kaela: Together',    orb: 'radial-gradient(circle at 35% 35%, #FFB89A, #C75B3A 45%, #7A2810)', accent: '#C75B3A' },
+  'card-flourishing': { label: 'Kaela: Flourishing', orb: 'radial-gradient(circle at 35% 35%, #D4B8FF, #7B5EA7 45%, #3D1F6B)', accent: '#7B5EA7' },
+};
+
+var isInApp = new URLSearchParams(window.location.search).get('source') === 'app';
+
+document.querySelectorAll('.card').forEach(function(card) {
+  card.addEventListener('click', function(e) {
+    if (card.classList.contains('card-disabled')) return;
+    
+    // Check if it's an <a> tag and prevent default to handle the popup logic
+    if (card.tagName.toLowerCase() === 'a') {
+      e.preventDefault();
+      var url = card.getAttribute('href');
+
+      if (isInApp) {
+        window.open(url, '_blank');
+        return;
+      }
+
+      var cardClass = Array.from(card.classList).find(function(c) { return cardData[c]; });
+      var data = cardData[cardClass] || { label: 'Ask Kaela', orb: 'radial-gradient(circle at 35% 35%, #A8EFEF, #1FBFBF 45%, #0D7A7A)', accent: '#1FBFBF' };
+
+      gemModalOrb.style.background = data.orb;
+      gemModalOrb.style.boxShadow = '0 4px 20px ' + data.accent + '55';
+      gemModalLabel.textContent = data.label;
+      gemModalLabel.style.color = data.accent;
+      document.getElementById('gemGo').href = url;
+
+      overlay.classList.add('open');
+    }
+  });
+});
+
+gemCancel.addEventListener('click', function() { overlay.classList.remove('open'); });
+overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.classList.remove('open'); });
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') overlay.classList.remove('open'); });
+</script>
+
+<script>
+(function(){
+  var btn = document.getElementById('themeToggle');
+  var saved = localStorage.getItem('akTheme') || 'light';
+  document.documentElement.setAttribute('data-theme', saved);
+  btn.textContent = saved === 'dark' ? '☀️' : '🌙';
+
+  btn.addEventListener('click', function(){
+    var current = document.documentElement.getAttribute('data-theme');
+    var next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('akTheme', next);
+    btn.textContent = next === 'dark' ? '☀️' : '🌙';
+  });
+})();
+</script>
+</body>
+</html>
