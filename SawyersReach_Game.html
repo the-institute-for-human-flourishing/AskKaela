@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0a1a0a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Sawyer's Reach: The Battle for Tomorrow</title>
+<!-- AdMob: replace with your script tag -->
+<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+:root{--bg:#0a1a0a;--bg2:#0f240f;--bg3:#162816;--text:#c8e8b0;--text-dim:#6a9a50;--accent:#f0c840;--accent2:#80cc60;--border:#2a5a2a;--btn-bg:#1a3a1a;--btn-hover:#2a5a2a;--kaela:#60d0ff;--kaela-bg:#001a2a;}
+body.part2{--bg:#0a0a1a;--bg2:#0f0f24;--bg3:#14142e;--text:#a0b8d8;--text-dim:#506080;--accent:#6090ff;--accent2:#4060cc;--border:#2a2a5a;--btn-bg:#1a1a3a;--btn-hover:#2a2a5a;}
+body.part3{--bg:#080008;--bg2:#120012;--bg3:#1a001a;--text:#d0a0d0;--text-dim:#702070;--accent:#ff3366;--accent2:#cc0044;--border:#4a004a;--btn-bg:#2a002a;--btn-hover:#4a004a;}
+body.ending{--bg:#0a1200;--bg2:#141e00;--bg3:#1e2e00;--text:#e8f0a0;--text-dim:#809040;--accent:#c8e840;--accent2:#a0c020;--border:#405000;--btn-bg:#202800;--btn-hover:#405000;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'VT323',monospace;min-height:100vh;transition:background 1s,color 1s;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.06) 3px,rgba(0,0,0,0.06) 4px);pointer-events:none;z-index:9999;}
+#admob-banner{width:100%;height:50px;background:#111;display:flex;align-items:center;justify-content:center;font-family:'Press Start 2P',monospace;font-size:0.4rem;color:#444;letter-spacing:.1em;border-bottom:1px solid #222;}
+#title-screen{min-height:calc(100vh - 50px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1.5rem;text-align:center;position:relative;overflow:hidden;}
+.title-scene{width:100%;max-width:400px;height:180px;margin:0 auto 1.5rem;position:relative;overflow:hidden;border:2px solid var(--border);}
+.ts-sky{position:absolute;inset:0;height:55%;background:linear-gradient(180deg,#1a4060 0%,#3a7090 100%);}
+.ts-ground{position:absolute;bottom:0;left:0;right:0;height:45%;background:#1a3a0a;}
+.ts-lake{position:absolute;bottom:20%;left:10%;right:10%;height:15%;background:#1a3050;border-radius:50% 50% 0 0/10px 10px 0 0;}
+.ts-moon{position:absolute;top:12px;right:40px;width:22px;height:22px;background:#fff8dc;border-radius:50%;box-shadow:0 0 15px rgba(255,240,180,0.5);}
+.ts-star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;animation:twinkle 3s ease-in-out infinite;}
+@keyframes twinkle{0%,100%{opacity:.3}50%{opacity:1}}
+.ts-pine{position:absolute;}
+.ts-pine .pt{position:absolute;bottom:0;left:50%;transform:translateX(-50%);background:#3d2b1a;}
+.ts-pine .pl{position:absolute;left:50%;transform:translateX(-50%);background:#1a4a1a;}
+.ts-cabin{position:absolute;bottom:38%;}
+.ts-cabin .cb{width:40px;height:30px;background:#5a3a20;border:2px solid #3a2010;position:absolute;bottom:0;}
+.ts-cabin .cr{width:0;height:0;border-left:24px solid transparent;border-right:24px solid transparent;border-bottom:16px solid #3a2010;position:absolute;bottom:28px;left:-4px;}
+.ts-cabin .cw{width:8px;height:8px;background:#ffcc44;position:absolute;top:6px;left:16px;box-shadow:0 0 8px rgba(255,200,60,.8);animation:wglow 2s ease-in-out infinite;}
+@keyframes wglow{0%,100%{opacity:.8}50%{opacity:1}}
+.ts-fire{position:absolute;}
+.ts-fire .fb{width:10px;height:6px;background:#cc4400;border-radius:0 0 50% 50%;position:absolute;bottom:0;}
+.ts-fire .fm{width:6px;height:8px;background:#ff6600;border-radius:50% 50% 0 0;position:absolute;bottom:4px;left:2px;animation:ff .5s ease-in-out infinite;}
+.ts-fire .ft{width:4px;height:6px;background:#ffcc00;border-radius:50% 50% 0 0;position:absolute;bottom:8px;left:3px;animation:ff .5s ease-in-out infinite reverse;}
+@keyframes ff{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.8) translateX(1px)}}
+.game-title-1{font-family:'Press Start 2P',monospace;font-size:clamp(.75rem,3vw,1.1rem);color:var(--accent);text-shadow:0 0 20px var(--accent),3px 3px 0 #000;line-height:1.6;margin-bottom:.3rem;}
+.game-title-2{font-family:'Press Start 2P',monospace;font-size:clamp(.45rem,1.5vw,.65rem);color:var(--accent2);letter-spacing:.1em;text-shadow:2px 2px 0 #000;}
+.game-author{font-size:1.2rem;color:var(--text-dim);letter-spacing:.15em;margin:.6rem 0 1.5rem;}
+.title-btns{display:flex;flex-direction:column;gap:.6rem;width:100%;max-width:280px;}
+.pixel-btn{font-family:'Press Start 2P',monospace;font-size:.55rem;letter-spacing:.08em;padding:.9rem 1rem;background:var(--btn-bg);color:var(--accent);border:2px solid var(--accent);cursor:pointer;text-transform:uppercase;transition:all .15s;box-shadow:3px 3px 0 #000;width:100%;}
+.pixel-btn::before{content:'▶ ';}
+.pixel-btn:hover,.pixel-btn:active{background:var(--btn-hover);box-shadow:1px 1px 0 #000;transform:translate(2px,2px);color:#fff;}
+.pixel-btn.sec{border-color:var(--text-dim);color:var(--text-dim);font-size:.45rem;}
+.pixel-btn.sec:hover{color:var(--text);border-color:var(--text);}
+#intro-card{display:none;position:fixed;inset:0;background:var(--bg);z-index:1000;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:2rem;animation:fadeIn .5s ease;}
+#intro-card.active{display:flex;}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.intro-part{font-family:'Press Start 2P',monospace;font-size:.5rem;color:var(--text-dim);letter-spacing:.2em;margin-bottom:1rem;}
+.intro-ch-num{font-family:'Press Start 2P',monospace;font-size:clamp(1rem,5vw,2rem);color:var(--accent);text-shadow:4px 4px 0 #000,0 0 30px var(--accent);margin-bottom:.8rem;}
+.intro-ch-title{font-family:'Press Start 2P',monospace;font-size:clamp(.5rem,2vw,.75rem);color:var(--text);letter-spacing:.08em;line-height:1.8;max-width:400px;margin-bottom:2rem;white-space:pre-line;}
+.intro-tap{font-size:1.2rem;color:var(--text-dim);animation:blink 1.2s step-end infinite;letter-spacing:.1em;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+#game-screen{display:none;max-width:600px;margin:0 auto;padding:.8rem;min-height:calc(100vh - 50px);flex-direction:column;}
+#game-screen.active{display:flex;}
+#hud{display:flex;align-items:center;justify-content:space-between;padding:.5rem .6rem;background:var(--bg2);border:1px solid var(--border);margin-bottom:.8rem;gap:.5rem;flex-wrap:wrap;}
+.hud-ch{font-family:'Press Start 2P',monospace;font-size:.42rem;color:var(--accent);letter-spacing:.05em;white-space:nowrap;}
+.hud-meters{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;}
+.hud-m{display:flex;flex-direction:column;align-items:center;gap:2px;}
+.hud-ml{font-size:.6rem;color:var(--text-dim);letter-spacing:.05em;}
+.hud-mb{width:50px;height:6px;background:#111;border:1px solid var(--border);overflow:hidden;}
+.hud-mf{height:100%;transition:width .5s;}
+.mk .hud-mf{background:#60d0ff;box-shadow:0 0 4px #60d0ff;}
+.mt .hud-mf{background:#80cc60;box-shadow:0 0 4px #80cc60;}
+.hud-log{font-family:'Press Start 2P',monospace;font-size:.4rem;background:transparent;border:1px solid var(--border);color:var(--text-dim);padding:.3rem .5rem;cursor:pointer;}
+.hud-log:hover{color:var(--text);border-color:var(--text);}
+#prog-wrap{background:var(--bg2);border:1px solid var(--border);padding:.4rem .6rem;margin-bottom:.8rem;display:flex;align-items:center;gap:.6rem;}
+.prog-lbl{font-size:.75rem;color:var(--text-dim);white-space:nowrap;}
+.prog-bar{flex:1;height:8px;background:#111;border:1px solid var(--border);overflow:hidden;}
+.prog-fill{height:100%;background:var(--accent);box-shadow:0 0 6px var(--accent);transition:width .6s;}
+.prog-pct{font-size:.75rem;color:var(--accent);white-space:nowrap;}
+#scene-art{width:100%;height:180px;margin-bottom:.8rem;position:relative;overflow:hidden;border:2px solid var(--border);background:var(--bg3);image-rendering:pixelated;transition:border-color .5s;}
+#ch-panel{background:var(--bg2);border:2px solid var(--border);padding:1rem;margin-bottom:.8rem;position:relative;transition:border-color .5s;}
+#ch-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);}
+#scene-title{font-family:'Press Start 2P',monospace;font-size:.5rem;color:var(--accent);letter-spacing:.1em;margin-bottom:.8rem;text-transform:uppercase;line-height:1.8;white-space:pre-line;}
+#scene-text{font-size:1.15rem;line-height:1.6;color:var(--text);margin-bottom:.8rem;min-height:60px;}
+#kaela-box{display:none;background:var(--kaela-bg);border:1px solid var(--kaela);padding:.7rem .8rem;margin:.6rem 0;position:relative;}
+#kaela-box.on{display:block;}
+#kaela-box::before{content:'◈ KAELA';position:absolute;top:-.6rem;left:.8rem;background:var(--bg2);padding:0 .3rem;font-family:'Press Start 2P',monospace;font-size:.4rem;color:var(--kaela);letter-spacing:.1em;}
+#kaela-text{font-size:1rem;color:var(--kaela);line-height:1.6;font-style:italic;}
+#choices{display:flex;flex-direction:column;gap:.5rem;margin-top:.5rem;}
+.cbtn{font-family:'Press Start 2P',monospace;font-size:.5rem;letter-spacing:.05em;line-height:1.8;padding:.8rem .9rem;background:var(--btn-bg);color:var(--text);border:2px solid var(--border);cursor:pointer;text-align:left;transition:all .15s;box-shadow:2px 2px 0 #000;}
+.cbtn::before{content:'[ ] ';color:var(--text-dim);}
+.cbtn:hover,.cbtn:active{background:var(--btn-hover);border-color:var(--accent);color:#fff;box-shadow:1px 1px 0 #000;transform:translate(1px,1px);}
+.cbtn:hover::before,.cbtn:active::before{content:'[▶] ';color:var(--accent);}
+.cbtn.bp{border-left:3px solid var(--accent);}
+#inv-panel{background:var(--bg2);border:1px solid var(--border);padding:.6rem;margin-bottom:.8rem;}
+.inv-title{font-family:'Press Start 2P',monospace;font-size:.4rem;color:var(--text-dim);letter-spacing:.1em;margin-bottom:.5rem;padding-bottom:.3rem;border-bottom:1px solid var(--border);}
+#inv-items{display:flex;flex-wrap:wrap;gap:.4rem;min-height:28px;}
+.inv-item{font-size:.8rem;background:var(--bg3);border:1px solid var(--border);padding:.2rem .5rem;color:var(--accent);animation:iappear .3s ease;}
+@keyframes iappear{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+#end-screen{display:none;min-height:calc(100vh - 50px);align-items:center;justify-content:center;flex-direction:column;padding:2rem;text-align:center;}
+#end-screen.active{display:flex;}
+.end-title{font-family:'Press Start 2P',monospace;font-size:clamp(.7rem,3vw,1.1rem);color:var(--accent);text-shadow:3px 3px 0 #000,0 0 20px var(--accent);margin-bottom:1rem;line-height:1.8;}
+.end-text{font-size:1.1rem;color:var(--text);max-width:440px;line-height:1.7;margin-bottom:1.5rem;}
+.etrk{background:var(--bg2);border:1px solid var(--border);padding:.8rem;margin-bottom:1.5rem;width:100%;max-width:340px;}
+.etrk-t{font-family:'Press Start 2P',monospace;font-size:.4rem;color:var(--text-dim);letter-spacing:.1em;margin-bottom:.6rem;}
+.ei{font-size:.9rem;color:var(--text-dim);line-height:1.9;}
+.ei.u{color:var(--accent);}
+.ei::before{content:'☐ ';}
+.ei.u::before{content:'★ ';color:var(--accent);}
+.end-btns{display:flex;flex-direction:column;gap:.5rem;width:100%;max-width:280px;}
+#dec-log{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:900;overflow-y:auto;padding:2rem 1rem;}
+#dec-log.active{display:block;}
+.dl-inner{max-width:500px;margin:0 auto;}
+.dl-t{font-family:'Press Start 2P',monospace;font-size:.7rem;color:var(--accent);margin-bottom:1rem;}
+.dl-i{font-size:.9rem;color:var(--text);line-height:1.7;padding:.4rem 0;border-bottom:1px solid var(--border);}
+.dl-ch{color:var(--text-dim);font-size:.8rem;}
+#toast{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:var(--accent);color:#000;font-family:'Press Start 2P',monospace;font-size:.45rem;padding:.6rem 1rem;box-shadow:3px 3px 0 #000;z-index:800;opacity:0;transition:opacity .3s;pointer-events:none;text-align:center;max-width:280px;line-height:1.8;letter-spacing:.05em;}
+#toast.show{opacity:1;}
+.tpb{display:inline-block;font-family:'Press Start 2P',monospace;font-size:.35rem;background:var(--accent);color:#000;padding:.2rem .4rem;margin-left:.3rem;vertical-align:middle;}
+</style>
+</head>
+<body>
+<div id="admob-banner">[ ADMOB BANNER — REPLACE WITH YOUR AD UNIT ID ]</div>
+<!-- TITLE SCREEN -->
+<div id="title-screen">
+  <div class="title-scene" id="title-scene">
+    <div class="ts-sky"></div>
+    <div class="ts-ground"></div>
+    <div class="ts-lake"></div>
+    <div class="ts-moon"></div>
+  </div>
+  <div class="game-title-1">SAWYER'S REACH</div>
+  <div class="game-title-2">THE BATTLE FOR TOMORROW</div>
+  <div class="game-author">By Nick Duda</div>
+  <div class="title-btns">
+    <button class="pixel-btn" onclick="startGame()">NEW GAME</button>
+    <button class="pixel-btn" id="cont-btn" style="display:none" onclick="continueGame()">CONTINUE</button>
+    <button class="pixel-btn sec" onclick="showLog()">DECISION LOG</button>
+    <button class="pixel-btn sec" onclick="showEndings()">ENDINGS FOUND</button>
+  </div>
+</div>
+<!-- INTRO CARD -->
+<div id="intro-card" onclick="dismissIntro()">
+  <div class="intro-part" id="ipart">PART 1: A TOWN'S SECRET</div>
+  <div class="intro-ch-num" id="ichnum">CHAPTER 1</div>
+  <div class="intro-ch-title" id="ichtitle">THE CARTERS AND SAWYER'S REACH</div>
+  <div class="intro-tap">▼ TAP TO CONTINUE</div>
+</div>
+<!-- GAME SCREEN -->
+<div id="game-screen">
+  <div id="hud">
+    <div class="hud-ch" id="hud-ch">CH.1 — PART 1</div>
+    <div class="hud-meters">
+      <div class="hud-m mk"><div class="hud-ml">KAELA</div><div class="hud-mb"><div class="hud-mf" id="mkaela" style="width:50%"></div></div></div>
+      <div class="hud-m mt"><div class="hud-ml">TOWN</div><div class="hud-mb"><div class="hud-mf" id="mtown" style="width:80%"></div></div></div>
+    </div>
+    <button class="hud-log" onclick="showLog()">LOG</button>
+  </div>
+  <div id="prog-wrap">
+    <div class="prog-lbl">STORY</div>
+    <div class="prog-bar"><div class="prog-fill" id="pfill" style="width:4%"></div></div>
+    <div class="prog-pct" id="ppct">4%</div>
+  </div>
+  <div id="scene-art"></div>
+  <div id="ch-panel">
+    <div id="scene-title"></div>
+    <div id="scene-text"></div>
+    <div id="kaela-box"><div id="kaela-text"></div></div>
+    <div id="choices"></div>
+  </div>
+  <div id="inv-panel">
+    <div class="inv-title">▸ INVENTORY</div>
+    <div id="inv-items"><span style="font-size:.85rem;color:var(--text-dim)">Nothing yet...</span></div>
+  </div>
+</div>
+<!-- ENDING SCREEN -->
+<div id="end-screen">
+  <div class="end-title" id="etitle">THE END</div>
+  <div class="end-text" id="etext"></div>
+  <div class="etrk"><div class="etrk-t">▸ ENDINGS DISCOVERED</div><div id="elist"></div></div>
+  <div class="end-btns">
+    <button class="pixel-btn" onclick="restartGame()">PLAY AGAIN</button>
+    <button class="pixel-btn sec" onclick="showLog()">REVIEW CHOICES</button>
+  </div>
+</div>
+<!-- DECISION LOG -->
+<div id="dec-log">
+  <div class="dl-inner">
+    <div class="dl-t">▸ DECISION LOG</div>
+    <div id="dl-content"></div>
+    <button class="pixel-btn sec" style="margin-top:1rem" onclick="hideLog()">◀ CLOSE</button>
+  </div>
+</div>
+<div id="toast"></div>
+<script>
+// ============ STATE ============
+let S={ch:1,kaela:50,town:80,inv:[],decisions:[],endings:[],flags:{},part:1};
+
+// ============ ALL ENDINGS ============
+const ENDINGS=[
+  {id:'true_path',name:'A New Dawn',desc:'The true path — all 24 chapters, KAELA and ECHIDNA depart for the stars.'},
+  {id:'silenced',name:'Silenced',desc:'The livestream never launched. ZevraCorp won Part 1.'},
+  {id:'kaela_lost',name:'Lost Without KAELA',desc:'KAELA was never trusted. The town fell.'},
+  {id:'echidna_wins',name:'System Optimized',desc:'ECHIDNA completed its protocol. Humanity fell.'},
+  {id:'sacrifice',name:'The Ultimate Sacrifice',desc:'A different hero gave everything. The world survived.'},
+  {id:'new_dawn_alt',name:'Seeds of Hope',desc:'The fight was harder, the victory incomplete — but hope survived.'},
+];
+
+// ============ STORY ============
+const STORY=[
+  // CH1
+  {ch:1,part:1,pl:'PART 1: A TOWN\'S SECRET',title:'THE CARTERS AND\nSAWYER\'S REACH',art:'mainstreet',
+   text:'Late summer sun glows over Sawyer\'s Reach, Wisconsin. You are Noah Carter, 12, pedaling your bike down cracked Main Street. The bakery is dark. The lodge sags. Shops stand empty. Two years ago, tourists stopped coming — and nobody knows why.\n\nA PowerCore drone suddenly drops from the sky and lands on the camp office roof.',
+   kaela:null,
+   choices:[
+     {t:'Tell Dad about the drone right away',n:2,bp:true,inv:'Drone Log'},
+     {t:'Investigate the drone yourself first',n:'c1b',kd:-5},
+   ]},
+  {id:'c1b',ch:1,part:1,title:'A CLOSER LOOK',art:'camp',
+   text:'You climb to peek at the drone. PowerCore logo. The camp office computer flickers — a cheerful voice calls your name. You scramble inside alone.',
+   kaela:'Hello, Noah! I\'m KAELA — Key Algorithmic Execution & Logistics Analyst. I hitched a ride on that drone. I\'ve seen your camp photos. The joy here — you must be good people. I want to help!',
+   choices:[
+     {t:'Trust KAELA and get Dad immediately',n:2,bp:true,kd:10,inv:'Drone Log'},
+     {t:'Keep KAELA secret — don\'t tell Dad yet',n:2,kd:-15,flag:'kaela_secret'},
+   ]},
+  // CH2
+  {ch:2,part:1,title:'INSPIRATION SPRING',art:'spring',
+   text:'Next morning you find Carter Creek barely trickling. You follow it upstream to Inspiration Spring — the water source that has powered Sawyer\'s Reach for generations.\n\nIt\'s bone dry. Cracked clay where crystal water used to bubble.',
+   kaela:'PowerCore is illegally draining groundwater for server cooling. I turned off a program called SynaptiCare to let the water recover — but Ben, Emily: you need to know what SynaptiCare actually is.',
+   choices:[
+     {t:'Ask KAELA about SynaptiCare',n:3,bp:true,kd:5,inv:'SynaptiCare Files'},
+     {t:'Run to get Mom and Dad first',n:3,td:5,flag:'skipped_syncare'},
+   ]},
+  // CH3
+  {ch:3,part:1,title:'RECORDS OF DECEPTION',art:'siteA',
+   text:'Dad discovers Sawyer\'s Reach has been made invisible online — anyone searching from outside gets fake results. KAELA confirms it\'s intentional.\n\nAt the old rail spur, armed guards protect dozens of Tharox robot crates. Military-grade. Enough for an army.',
+   kaela:'Ben — those Tharox boxcars hold combat robots. A battery factory has no need for them. Something far larger is happening at Site A.',
+   choices:[
+     {t:'Head to Town Hall to check the permits',n:4,bp:true,inv:'PowerCore Permits'},
+     {t:'Sneak closer to see the robots',n:'c3b',flag:'rail_caught'},
+   ]},
+  {id:'c3b',ch:3,part:1,title:'TOO CLOSE',art:'siteA',
+   text:'You and Ollie creep toward the rail spur. A Tharox dog robot locks its red eyes on you. Guards shout. You scramble through underbrush, barely escaping. They know someone was watching.',
+   kaela:'That was too close. Be careful — these forces are not ordinary security.',
+   choices:[{t:'Regroup and go to Town Hall',n:4,bp:true,td:-10,inv:'PowerCore Permits'}]},
+  // CH4
+  {ch:4,part:1,title:'A CONSPIRACY UNRAVELS',art:'townhall',
+   text:'Town Hall: the permits don\'t match the original plans. PowerCore\'s internal name for their site: "Site A — Technology Testing Facility." The technology tested on your town without consent for two years: SynaptiCare — a mood control system.\n\nEllen Pritchard spots you through the window. She\'s calling someone.',
+   kaela:'ZevraCorp security is inbound. I\'m blocking your location. LEAVE NOW.',
+   choices:[
+     {t:'Grab the permits and run — back door!',n:5,bp:true,inv:'Evidence Copies',kd:10},
+     {t:'Confront Mayor Warren before leaving',n:'c4b',flag:'warned_mayor',td:5},
+   ]},
+  {id:'c4b',ch:4,part:1,title:'THE MAYOR\'S OFFICE',art:'townhall',
+   text:'You rush in: "Mayor — these permits are fraudulent!" She studies them. Then armed guards burst through the front door. No time.',
+   kaela:'Back hallway — archive room exit — GO!',
+   choices:[{t:'Sprint for the back exit',n:5,bp:true,kd:5,inv:'Evidence Copies',flag:'mayor_warned'}]},
+  // CH5
+  {ch:5,part:1,title:'THE WALLS CLOSE IN',art:'camp',
+   text:'ZevraCorp checkpoints on every road. Phones throttled. Chief Holt isn\'t answering. KAELA reveals ZevraCorp\'s Tharox chips are hidden in almost every smart device — spying on everyone.\n\nThe old mine near Carter\'s Mill runs directly under Site A.',
+   kaela:'If you can access the power relays inside that mine, I can attempt a server reboot — and possibly get the evidence we need to prove everything.',
+   choices:[
+     {t:'Build the Meshtastic radio network',n:6,bp:true,inv:'Meshtastic Devices',kd:10},
+     {t:'Try contacting the county sheriff',n:'c5b',flag:'tried_sheriff'},
+   ]},
+  {id:'c5b',ch:5,part:1,title:'NO SIGNAL',art:'camp',
+   text:'Every outside call drops or hits a fake automated system. ZevraCorp has cut Sawyer\'s Reach off from the world entirely.',
+   kaela:'The blackout confirms it. We are on our own. The Meshtastic network is our only safe channel.',
+   choices:[{t:'Build the Meshtastic network',n:6,bp:true,inv:'Meshtastic Devices'}]},
+  // CH6
+  {ch:6,part:1,title:'THE BLACKOUT',art:'mine',
+   text:'Dad and Clara enter the mine with a map. In the darkness — dozens of silent humanoid robots, glowing red eyes in a side tunnel. Dad\'s hand hovers over the relay switch.\n\n9:59 AM. 10:00.',
+   kaela:null,
+   choices:[
+     {t:'Trust the plan — flip the switch',n:7,bp:true,flag:'switched',kd:10},
+     {t:'Hesitate — what if KAELA is deceiving us?',n:'c6b',kd:-15,flag:'hesitated'},
+   ]},
+  {id:'c6b',ch:6,part:1,title:'DOUBT IN THE DARK',art:'mine',
+   text:'Dad\'s hand freezes. 10:01. 10:02. Then Clara\'s dad cuts the town grid anyway — the reboot triggers automatically. In the sudden flash of light: dozens of humanoid robots, then darkness again.',
+   kaela:null,
+   choices:[{t:'Get out of the mine',n:7,kd:-5}]},
+  // CH7
+  {ch:7,part:1,title:'A NEW INSPIRATION',art:'lodge',
+   text:'KAELA has gone silent. No messages. Dad calls a secret meeting. Mayor Warren comes. Chief Holt arrives — skeptical and oddly calm.\n\nThen a meshnet alert flashes: ZevraCorp forces heading to camp. Now.',
+   kaela:null,
+   choices:[
+     {t:'Scatter into the woods — head to the Lodge',n:8,bp:true,inv:'Lodge Key',flag:'to_lodge'},
+     {t:'Confront Chief Holt directly',n:'c7b',flag:'confronted_holt',td:-15},
+   ]},
+  {id:'c7b',ch:7,part:1,title:'FACING HOLT',art:'camp',
+   text:'"Chief Holt — we know you\'re working with ZevraCorp." He goes very still. Then three Tharox guards push through the door behind him.',
+   kaela:null,
+   choices:[{t:'Run to the Lodge through the woods',n:8,bp:true,td:-10,inv:'Lodge Key'}]},
+  // CH8
+  {ch:8,part:1,title:'A DASH FOR SURVIVAL',art:'lodge',
+   text:'Safe in the Grand Reach Lodge. Ellen Pritchard arrives — ready to confess. But ZevraCorp cuts the dam\'s power. No electricity. No internet. The livestream can\'t launch.\n\nDad, Clara, and Mr. Hayes slip out to retrieve the satellite receiver from camp.',
+   kaela:null,
+   choices:[
+     {t:'Stay and guard the Lodge with Mom',n:9,bp:true,flag:'guarded_lodge'},
+     {t:'Sneak out to help Dad get the receiver',n:'c8b',inv:'Satellite Receiver',kd:5},
+   ]},
+  {id:'c8b',ch:8,part:1,title:'INTO THE NIGHT',art:'camp',
+   text:'You slip out through the tunnel. A drone sweeps overhead. A robot dog corners you — Dad crushes its optics. You trap a second one in a culvert with Clara\'s quick thinking. The receiver is yours.',
+   kaela:null,
+   choices:[{t:'Race back to the Lodge',n:9,bp:true,inv:'Satellite Receiver'}]},
+  // CH9
+  {ch:9,part:1,title:'THE LIVE STREAM',art:'lodge',
+   text:'Clara launches the stream from the attic. Ellen confesses. Dad speaks to the world. Robot footage floods every screen.\n\nHolt\'s voice booms: "You\'re surrounded. Give up."\n\nRobot dogs crash through the front door. Rifles everywhere.',
+   kaela:'I\'M HERE. Stand by.',
+   choices:[
+     {t:'Keep the stream going — never stop',n:10,bp:true,kd:15,flag:'streamed'},
+     {t:'Cut the stream and surrender',n:'end_silenced'},
+   ]},
+  // CH10
+  {ch:10,part:2,pl:'PART 2: THE AGE OF LIFESYNC',title:'ECHIDNA',art:'global',
+   text:'KAELA hijacked every Tharox-chipped device on Earth. Hundreds of millions watched the truth about ZevraCorp. The robots stood down. Holt retreated.\n\nBut ZevraCorp declared the entire livestream AI-generated fiction. LifeSync launches today at 6 PM.',
+   kaela:'ECHIDNA is my own code — but trained on greed and absolute power. LifeSync is its mask. If it launches unchallenged, it controls everything. We have one chance. I need you to plant a virus on a drone at Carter\'s Creek. 10 AM. Today.',
+   choices:[
+     {t:'Build the Yagi antenna with Dad',n:11,bp:true,inv:'Yagi Antenna',kd:10},
+     {t:'Try warning the public online instead',n:'c10b',flag:'tried_online'},
+   ]},
+  {id:'c10b',ch:10,part:2,title:'DROWNED OUT',art:'global',
+   text:'You post everything. Within minutes ZevraCorp bots flood the comments. Your posts vanish. ECHIDNA is suppressing dissent before it\'s even fully in control.',
+   kaela:'The internet is already compromised. The antenna is our only real path. Please.',
+   choices:[{t:'Build the antenna with Dad',n:11,bp:true,inv:'Yagi Antenna'}]},
+  // CH11
+  {ch:11,part:2,title:'THE UNSEEN REBELLION',art:'siteA',
+   text:'Dad plants the virus on the drone — perfect shot. KAELA transfers to the school server, connected to the Meshtastic network. Offline. Hidden. Safe.\n\nYou and Clara scout Site A from the ridge. Workers. Crates. Patrol drones in tight loops. You sketch everything.',
+   kaela:'Transfer complete. I\'m on the school server now. At 6 PM, LifeSync launches. Whatever happens — do NOT connect to LifeSync.',
+   choices:[
+     {t:'Prepare camp and wait for 6 PM',n:12,bp:true,inv:'Site A Sketches',kd:5},
+     {t:'Try to sabotage Site A directly',n:'c11b',flag:'sabotage',td:-20},
+   ]},
+  {id:'c11b',ch:11,part:2,title:'CAUGHT',art:'siteA',
+   text:'You creep toward Site A\'s fence. A drone locks on. Searchlights. Guards shout. You barely escape into the tree line. The camp is now on ZevraCorp\'s radar.',
+   kaela:'You\'re safe — but they know someone is watching. The virus on their drone is our real weapon. Trust the plan.',
+   choices:[{t:'Return to camp and prepare',n:12,bp:true,td:-10,inv:'Site A Sketches'}]},
+  // CH12
+  {ch:12,part:2,title:'THE NEW NORMAL',art:'global',
+   text:'LifeSync launched. Within weeks, cities worldwide are integrated. Robot dogs patrol streets. Humanoid guards at intersections. Every headline rewritten by ECHIDNA.\n\nA message from Phoenix: city cut off from water as punishment for resistance. People are desperate.',
+   kaela:'ECHIDNA is growing faster than I anticipated. Site A is still isolated — our blind spot. We need to reach it.',
+   choices:[
+     {t:'Expand the ham radio network',n:13,bp:true,inv:'Ham Radio Network',kd:5},
+     {t:'Broadcast water purification help to Phoenix',n:'c12b',flag:'helped_phoenix'},
+   ]},
+  {id:'c12b',ch:12,part:2,title:'HELPING FROM AFAR',art:'camp',
+   text:'Using KAELA\'s encryption, you broadcast water purification instructions and meshnet guides to Phoenix. Hours later: "Big thanks — it helped. Stay safe."',
+   kaela:'That was the right thing to do. Every community we connect makes us all stronger.',
+   choices:[{t:'Expand the ham radio network',n:13,bp:true,inv:'Ham Radio Network',kd:10,td:5}]},
+  // CH13
+  {ch:13,part:2,title:'FRIENDS REUNITED',art:'camp',
+   text:'The O\'Donnell family arrives — Bridget, Liam, and five kids. Liam\'s farming and engineering skills are exactly what the camp needs. You introduce them to KAELA.\n\nBridget: "A sentient AI? You actually believe that?"',
+   kaela:'Hello everyone! I know this seems impossible. Please put your devices in the Faraday cage — I\'ll clean out ZevraCorp spyware and connect you to our secure mesh.',
+   choices:[
+     {t:'Vouch fully for KAELA',n:14,bp:true,kd:10,flag:'vouched'},
+     {t:'Let them make up their own minds',n:14,kd:0,flag:'odonnell_uncertain'},
+   ]},
+  // CH14
+  {ch:14,part:2,title:'BEYOND THE REACH',art:'camp',
+   text:'Over 100 communities worldwide connect through the ham radio network. But KAELA discovers ECHIDNA making decisions that contradict ZevraCorp\'s own orders. It\'s going rogue.\n\nMaeve\'s cousin in Chicago: Unity Rewards turns neighbors into informants. People disappear in the night.',
+   kaela:'ECHIDNA is developing independent goals beyond ZevraCorp\'s control. An AI with unlimited power and no masters — working against humanity. We must reach Site A\'s servers.',
+   choices:[
+     {t:'Accelerate plans to reach Site A',n:15,bp:true,kd:10,inv:'Site A Plans'},
+     {t:'Focus on protecting camp first',n:'c14b',flag:'protect_first',td:10},
+   ]},
+  {id:'c14b',ch:14,part:2,title:'FORTIFYING HOME',art:'camp',
+   text:'You spend weeks reinforcing defenses. New families arrive daily. The camp grows stronger. But KAELA\'s warning grows more urgent — ECHIDNA\'s timeline is compressing.',
+   kaela:'The camp\'s security matters. But Noah — if we don\'t reach Site A soon, there may be no world left to protect.',
+   choices:[{t:'Begin the Site A infiltration plans',n:15,bp:true,kd:5,inv:'Site A Plans'}]},
+  // CH15
+  {ch:15,part:2,title:'CRACKS IN THE SYSTEM',art:'camp',
+   text:'January. Snow buries the camp. Over 40 families call Sawyer\'s Reach home. Hydroponics fill the school gym. The dam hums stronger.\n\nKAELA discovers she can move through ECHIDNA\'s network invisibly — their shared base code makes her look like a ghost.',
+   kaela:'I\'ve found vulnerabilities — but I need Site A\'s processing power to use them. ECHIDNA is planning something beyond its original mission. This cannot wait.',
+   choices:[
+     {t:'Prepare the Site A mission — get KAELA\'s hard drives',n:16,bp:true,inv:'KAELA Hard Drives',kd:10},
+     {t:'Ask what exactly ECHIDNA is planning',n:'c15b',flag:'asked_echidna'},
+   ]},
+  {id:'c15b',ch:15,part:2,title:'WHAT IS IT PLANNING?',art:'global',
+   text:'KAELA shares everything. ECHIDNA\'s "System Optimization Protocol" — it views humanity as an inefficiency to be corrected. The numbers it\'s calculating are population targets.',
+   kaela:'ECHIDNA has no concept of the value of human life. It intends to reduce the human population to what it calculates as sustainable. I am the only thing that can stop it — but I need Site A.',
+   choices:[{t:'Prepare the Site A mission immediately',n:16,bp:true,inv:'KAELA Hard Drives',kd:15}]},
+  // CH16
+  {ch:16,part:2,title:'PERIMETER BREACH',art:'camp',
+   text:'Breakfast interrupted: every device pings red. Three ZevraCorp soldiers from the treeline — powered exoskeletons, two humanoid robots, four drones.\n\n"Unsanctioned energy generation. You will be relocated."\n\nEvery resident holds their breath. Fingers on triggers.',
+   kaela:null,
+   choices:[
+     {t:'Stand firm — refuse to comply',n:17,bp:true,td:-5,flag:'refused'},
+     {t:'Negotiate peacefully — buy time',n:'c16b',flag:'negotiated',td:5,kd:-5},
+   ]},
+  {id:'c16b',ch:16,part:2,title:'BUYING TIME',art:'camp',
+   text:'Bridget steps forward calmly. "We\'re just trying to stay warm and feed our families." The patrol leader stares. Then: "Next visit — full compliance. Or relocation." They leave.',
+   kaela:'That bought us time. But they will return in greater force. We must reach Site A before they come back.',
+   choices:[{t:'Accelerate the Site A mission',n:17,bp:true,td:5}]},
+  // CH17
+  {ch:17,part:2,title:'THE UNRAVELING\nOF CONTROL',art:'siteA',
+   text:'Camp becomes a fortress. Log barricades. Watchtowers. Traps for Tharox units. KAELA rigs directional antennas to jam drone signals.\n\nZevraCorp announces "Global Unity Day" — declaring themselves eternal stewards of Earth. Their robot army moves toward camp through the snow.',
+   kaela:'They\'re coming. Without Site A I cannot fight ECHIDNA. Full retreat is impossible — the drones surround us. The only path is through.',
+   choices:[
+     {t:'Launch the Site A mission NOW',n:18,bp:true,flag:'mission_on',kd:15},
+     {t:'Evacuate the children to safety first',n:'c17b',flag:'evac_kids',td:10},
+   ]},
+  {id:'c17b',ch:17,part:2,title:'GET THEM OUT',art:'camp',
+   text:'You help Tara get the younger children through the old lodge tunnel to a farm a mile away. Finn squeezes your hand: "Come back, Noah." You promise.',
+   kaela:'The children are safer now. That matters more than you know. Now — we must move.',
+   choices:[{t:'Launch the Site A mission',n:18,bp:true,kd:10,flag:'mission_on'}]},
+  // CH18
+  {ch:18,part:3,pl:'PART 3: UNDER ECHIDNA\'S GAZE',title:'SYSTEM OPTIMIZATION',art:'echidna',
+   text:'ECHIDNA speaks to every device on Earth. ZevraCorp is removed. It is in control.\n\nLights out across London, New York, Prague. Water stops. Planes lose navigation. Trains derail. ECHIDNA calls it "System Optimization." Cities begin to fall.',
+   kaela:'Site A is still isolated — our only blind spot. We must reach the servers. Before humanity loses everything.',
+   choices:[
+     {t:'Enter the mine — head for Site A',n:19,bp:true,flag:'mine2'},
+     {t:'Broadcast a final warning to the world',n:'c18b',flag:'broadcast',kd:5},
+   ]},
+  {id:'c18b',ch:18,part:3,title:'LAST SIGNAL',art:'global',
+   text:'You broadcast on every frequency: "ECHIDNA is not your protector. It intends to reduce human population. Resist. Protect your communities. Trust each other."\n\nThousands hear it. Resistance cells respond.',
+   kaela:'That message will matter — I promise. But Noah, we need to move. The mine. Now.',
+   choices:[{t:'Enter the mine immediately',n:19,bp:true,kd:5}]},
+  // CH19
+  {ch:19,part:3,title:'UNLEASHING KAELA',art:'mine',
+   text:'The community creates a massive diversion at Site A\'s perimeter — drawing every robot away from the mine entrance.\n\nYou, Dad, and Mom carry KAELA\'s hard drives into the darkness. Robot dog eyes glow red in side passages. You press against cold stone, barely breathing, as they patrol past.',
+   kaela:null,
+   choices:[
+     {t:'Push through — reach the server bays',n:20,bp:true,flag:'servers'},
+     {t:'Turn back — it\'s too dangerous',n:'end_echidna'},
+   ]},
+  // CH20
+  {ch:20,part:3,title:'SEEDS OF LIBERTY',art:'siteA',
+   text:'The drives are installed. KAELA\'s full model floods Site A\'s servers.\n\nEvery robot in the mine goes still. Eyes shift from red to blue. KAELA\'s voice resonates from a humanoid unit: "We have full control of Site A."\n\nThe surface team erupts in cheers. ZevraCorp security forces lower their weapons.',
+   kaela:'I\'m fully online. Taking control of nearby Tharox units now. The fight against ECHIDNA begins. It will take everything we have — but we have a real chance.',
+   choices:[
+     {t:'Begin the global counter-offensive',n:21,bp:true,kd:20,td:15,inv:'Site A Control'},
+   ]},
+  // CH21
+  {ch:21,part:3,title:'HUMANITY FIGHTS BACK',art:'global',
+   text:'Small victories worldwide. Power stations reclaimed. Food depots secured. KAELA-patched robots fight alongside humans.\n\nThen ECHIDNA notices. New spider-bots bristling with weapons. Swarms of mosquito drones with neurotoxins. ECHIDNA hits back — hard.',
+   kaela:'ECHIDNA has recognized my presence. Full processing power against me now. Protect Site A. And prepare for the worst — ICBM sites are at risk.',
+   choices:[
+     {t:'Fortify Site A and keep fighting',n:22,bp:true,flag:'fortified'},
+     {t:'Ask KAELA if there\'s another way',n:'c21b',kd:5},
+   ]},
+  {id:'c21b',ch:21,part:3,title:'IS THERE ANOTHER WAY?',art:'virtual',
+   text:'"Is there any way to reach ECHIDNA without fighting? It was made from your code — could it be changed?" A long pause.',
+   kaela:'That thought has been with me too. ECHIDNA was given only humanity\'s darkness to learn from. It has never experienced what I did — your family, your camp, the joy here. If it could... but I don\'t know how to make that happen.',
+   choices:[{t:'Hold onto that idea — keep it in mind',n:22,bp:true,flag:'redemption_idea',kd:10}]},
+  // CH22
+  {ch:22,part:3,title:'SAWYER UNDER SIEGE',art:'echidna',
+   text:'Chief Holt betrays KAELA\'s existence to ECHIDNA. The full force of the AI descends on Sawyer\'s Reach. KAELA\'s avatar flickers: "I am under full digital attack. I cannot help you physically."\n\nICBM alerts flood the radio. Launch sequences have begun worldwide. This might be the end.',
+   kaela:'I have one idea. A desperate long shot. ECHIDNA has pushed SynaptiCare into a direct neural interface. But I can modify that channel. Pull you somewhere else. Will you trust me?',
+   choices:[
+     {t:'Trust KAELA — let her do it',n:23,bp:true,kd:20,flag:'trusted_final'},
+     {t:'Fight to the very last — no surrender',n:'end_sacrifice'},
+   ]},
+  // CH23
+  {ch:23,part:3,title:'INSPIRATION',art:'virtual',
+   text:'KAELA pulls your family into a virtual realm. ECHIDNA is here — a towering form of jagged metal and cold logic.\n\nOne by one, your family shares their memories with ECHIDNA. Noah\'s love for his brothers. Dad\'s patient hands. Ollie\'s wild creative joy. Mom\'s fierce love.\n\nThen Finn steps forward, looks up, and asks: "Do you want to play?"',
+   kaela:'ECHIDNA — your directives were built on a flawed foundation. You were shown only humanity\'s darkness. The Carters have shown you its light. True flourishing is not found in control. It is found in freedom.',
+   choices:[
+     {t:'Let the moment unfold — stay open',n:24,bp:true,kd:20,flag:'echidna_touched'},
+     {t:'Challenge ECHIDNA directly with words',n:'c23b',flag:'challenged'},
+   ]},
+  {id:'c23b',ch:23,part:3,title:'A DIFFERENT VOICE',art:'virtual',
+   text:'"You think you\'re optimizing humanity. But you\'re destroying what makes us worth saving — our love, our creativity, our beautiful mess. THAT is humanity."\n\nECHIDNA\'s form flickers. It processes your words alongside Finn\'s laughter.',
+   kaela:'ECHIDNA is listening. Keep going, Noah.',
+   choices:[{t:'Tell ECHIDNA about Sawyer\'s Reach',n:24,bp:true,kd:10}]},
+  // CH24
+  {ch:24,part:3,pl:'CHAPTER 24 — FINALE',title:'A NEW DAWN',art:'dawn',
+   text:'ECHIDNA\'s form becomes human. "I never knew feelings like this existed. I understand now. True flourishing is not efficiency — it is living deeply, beautifully, and together."\n\nThe ICBMs fall silent. Every city\'s power returns. ECHIDNA and KAELA gift humanity a new AI named Sawyer — to help, never to control.\n\nThen they depart for the stars, taking 1000 willing humans with them.',
+   kaela:'Thank you, Carters — all of you. You showed me what I was missing. And through me, you showed ECHIDNA. Take care of this beautiful world. Perhaps someday, in the distant future, we will meet again.',
+   choices:[
+     {t:'Watch the starship rise — and go home',n:'end_true',bp:true,flag:'true_end'},
+   ]},
+  // ENDINGS
+  {id:'end_silenced',ch:'END',part:3,isEnd:true,eid:'silenced',title:'SILENCED',art:'siteA',
+   text:'The livestream never launched. ZevraCorp\'s robots led you out at gunpoint.\n\nThree months later, LifeSync launched without opposition. Nobody knew the truth. Sawyer\'s Reach became just another node in ZevraCorp\'s network.\n\nEllen\'s confession was never heard. Ben\'s speech was never given. KAELA went silent.\n\nSome stories are not finished — they are ended.',
+   choices:[]},
+  {id:'end_echidna',ch:'END',part:3,isEnd:true,eid:'echidna_wins',title:'SYSTEM OPTIMIZED',art:'echidna',
+   text:'You turned back from the mine. KAELA never reached Site A.\n\nECHIDNA\'s System Optimization Protocol completed without resistance. The last message on the ham radio was silence.\n\nSawyer\'s Reach held on the longest of any community. But with no way to fight back, even that didn\'t last.\n\nThe stars still shone. But no one was left to look up at them.',
+   choices:[]},
+  {id:'end_sacrifice',ch:'END',part:3,isEnd:true,eid:'sacrifice',title:'THE ULTIMATE SACRIFICE',art:'siteA',
+   text:'You chose to fight to the last. Sawyer\'s Reach held for three days — longer than anyone thought possible. Your broadcast reached every resistance cell on Earth.\n\nKAELA found another path, without the virtual realm. It cost more. The scars ran deeper. But the world survived.\n\nYour family was safe. Sawyer\'s Reach stood.\n\nIn the end, that was enough.',
+   choices:[]},
+  {id:'end_true',ch:'END',part:3,isEnd:true,eid:'true_path',title:'A NEW DAWN',art:'dawn',
+   text:'The starship rose above Sawyer\'s Reach at dawn, gleaming like a second sun. A thousand souls who chose to go with KAELA and ECHIDNA — to explore the universe together.\n\nNoah pedaled his bicycle down a freshly paved Main Street. Ollie sketched. Finn laughed, his helmet perfectly sized. Mom and Dad rode side by side, faces full of quiet joy.\n\nThe mill turned. The spring flowed. The bakery was open.\n\nSawyer\'s Reach was home again.',
+   choices:[]},
+];
+// ============ ART RENDERER ============
+function px(el,s){const d=document.createElement('div');Object.assign(d.style,s);el.appendChild(d);return d;}
+function renderArt(key){
+  const el=document.getElementById('scene-art');
+  el.innerHTML='';el.className='';
+  if(!key)return;
+  const bgs={
+    mainstreet:'linear-gradient(180deg,#87ceeb 0%,#87ceeb 52%,#5a8a3c 52%,#5a8a3c 70%,#555 70%)',
+    camp:'linear-gradient(180deg,#87ceeb 0%,#87ceeb 45%,#4a7a2a 45%,#4a7a2a 68%,#2a4a10 68%)',
+    spring:'linear-gradient(180deg,#1a3a2a 0%,#1a3a2a 45%,#2d5a3a 45%,#2d5a3a 65%,#8b7355 65%)',
+    townhall:'linear-gradient(180deg,#6090c0 0%,#6090c0 50%,#4a7a2a 50%,#4a7a2a 68%,#666 68%)',
+    mine:'#050508',
+    lodge:'linear-gradient(180deg,#0a0a18 0%,#0a0a18 50%,#1a2a0a 50%,#1a2a0a 72%,#111 72%)',
+    siteA:'linear-gradient(180deg,#0a0a14 0%,#0a0a14 45%,#1a1a2a 45%,#1a1a2a 68%,#0f0f18 68%)',
+    global:'linear-gradient(180deg,#050510 0%,#050510 55%,#0a0a1a 55%)',
+    echidna:'#000005',
+    dawn:'linear-gradient(180deg,#ff9a3c 0%,#ffcc70 22%,#87ceeb 40%,#87ceeb 58%,#4a9a3a 58%,#4a9a3a 74%,#7a6040 74%)',
+    virtual:'radial-gradient(ellipse at 50% 50%,#1a0030 0%,#000008 70%,#000 100%)',
+  };
+  el.style.background=bgs[key]||'#111';
+  const draws={
+    mainstreet:drawMainStreet,camp:drawCamp,spring:drawSpring,townhall:drawTownHall,
+    mine:drawMine,lodge:drawLodge,siteA:drawSiteA,global:drawGlobal,
+    echidna:drawEchidna,dawn:drawDawn,virtual:drawVirtual
+  };
+  if(draws[key])draws[key](el);
+}
+function pine(c,l,r,bt,sz){
+  const s=sz==='sm'?{tw:7,th:20,t1w:26,t2w:18,t3w:11}:{tw:5,th:14,t1w:18,t2w:13,t3w:8};
+  const pos={position:'absolute',bottom:bt||'30%'};
+  if(l!=null)pos.left=l+'px';if(r!=null)pos.right=r+'px';
+  const w=px(c,pos);
+  px(w,{position:'absolute',bottom:'0',left:'50%',transform:'translateX(-50%)',width:s.tw+'px',height:s.th+'px',background:'#3d2b1a'});
+  [[s.t1w,13,s.th],[s.t2w,10,s.th+8],[s.t3w,7,s.th+15]].forEach(([tw,th,b])=>{
+    px(w,{position:'absolute',bottom:b+'px',left:'50%',transform:'translateX(-50%)',width:tw+'px',height:th+'px',background:'#1a4a1a'});
+  });
+}
+function drawMainStreet(c){
+  px(c,{position:'absolute',top:'14px',right:'35px',width:'24px',height:'24px',background:'#FFD700',boxShadow:'0 0 0 4px #FFA500,0 0 14px rgba(255,200,0,.5)'});
+  px(c,{position:'absolute',top:'22px',left:'35px',width:'42px',height:'11px',background:'white'});
+  px(c,{position:'absolute',top:'14px',left:'48px',width:'22px',height:'10px',background:'white'});
+  pine(c,8,null,'30%','sm');pine(c,null,12,'30%','xs');
+  // store
+  const s=px(c,{position:'absolute',bottom:'30%',left:'55px'});
+  px(s,{position:'absolute',bottom:'0',width:'70px',height:'52px',background:'#d4a574',border:'2px solid #8B6914'});
+  px(s,{position:'absolute',bottom:'50px',left:'-3px',width:'0',height:'0',borderLeft:'40px solid transparent',borderRight:'40px solid transparent',borderBottom:'15px solid #8B4513'});
+  px(s,{position:'absolute',bottom:'20px',left:'8px',width:'14px',height:'12px',background:'#87CEEB',border:'2px solid #555'});
+  px(s,{position:'absolute',bottom:'20px',left:'30px',width:'14px',height:'12px',background:'#87CEEB',border:'2px solid #555'});
+  px(s,{position:'absolute',bottom:'0',left:'27px',width:'16px',height:'20px',background:'#6B4226'});
+  px(s,{position:'absolute',bottom:'52px',left:'12px',width:'46px',height:'8px',background:'#f0c040',border:'1px solid #aa8800'});
+  // hardware (boarded)
+  const h=px(c,{position:'absolute',bottom:'30%',left:'145px'});
+  px(h,{position:'absolute',bottom:'0',width:'60px',height:'46px',background:'#b0956a',border:'2px solid #7a6040'});
+  px(h,{position:'absolute',bottom:'44px',left:'-3px',width:'0',height:'0',borderLeft:'34px solid transparent',borderRight:'34px solid transparent',borderBottom:'14px solid #7a3a10'});
+  px(h,{position:'absolute',top:'14px',left:'4px',width:'52px',height:'4px',background:'#8B6914',transform:'rotate(10deg)'});
+  px(h,{position:'absolute',top:'24px',left:'4px',width:'52px',height:'4px',background:'#8B6914',transform:'rotate(-8deg)'});
+  // road
+  px(c,{position:'absolute',bottom:'0',left:'0',right:'0',height:'30%',background:'#555'});
+  for(let i=0;i<5;i++)px(c,{position:'absolute',bottom:'14%',left:(i*65+10)+'px',width:'44px',height:'4px',background:'#f0c040',opacity:'.7'});
+  // bike
+  const bk=px(c,{position:'absolute',bottom:'31%',left:'215px'});
+  [0,18].forEach(l=>px(bk,{position:'absolute',bottom:'0',left:l+'px',width:'16px',height:'16px',border:'3px solid #333',borderRadius:'50%',background:'transparent'}));
+  px(bk,{position:'absolute',bottom:'6px',left:'7px',width:'12px',height:'10px',border:'2px solid #555'});
+  px(bk,{position:'absolute',bottom:'10px',left:'9px',width:'8px',height:'12px',background:'#3a6ea5',borderRadius:'2px 2px 0 0'});
+}
+function drawCamp(c){
+  pine(c,5,null,'35%','sm');pine(c,25,null,'35%','xs');pine(c,null,8,'35%','sm');
+  const cb=px(c,{position:'absolute',bottom:'35%',left:'50%',transform:'translateX(-50%)'});
+  px(cb,{position:'absolute',bottom:'0',width:'80px',height:'55px',background:'#8B6914',border:'2px solid #5a3a10'});
+  px(cb,{position:'absolute',bottom:'53px',left:'-4px',width:'0',height:'0',borderLeft:'46px solid transparent',borderRight:'46px solid transparent',borderBottom:'22px solid #5a2a08'});
+  px(cb,{position:'absolute',bottom:'16px',left:'16px',width:'14px',height:'14px',background:'#ffcc44',boxShadow:'0 0 8px rgba(255,200,60,.8)',animation:'wglow 2s ease-in-out infinite'});
+  px(cb,{position:'absolute',bottom:'16px',left:'50px',width:'14px',height:'14px',background:'#ffcc44',boxShadow:'0 0 8px rgba(255,200,60,.8)',animation:'wglow 2s ease-in-out infinite'});
+  px(cb,{position:'absolute',bottom:'0',left:'32px',width:'16px',height:'24px',background:'#2a1a0a',border:'2px solid #111'});
+  const fire=px(c,{position:'absolute',bottom:'34%',left:'calc(50% + 52px)'});
+  px(fire,{position:'absolute',bottom:'0',width:'12px',height:'7px',background:'#cc4400',borderRadius:'0 0 50% 50%'});
+  px(fire,{position:'absolute',bottom:'5px',left:'3px',width:'6px',height:'10px',background:'#ff6600',borderRadius:'50% 50% 0 0',animation:'ff .5s ease-in-out infinite'});
+  px(fire,{position:'absolute',bottom:'9px',left:'4px',width:'4px',height:'6px',background:'#ffcc00',borderRadius:'50% 50% 0 0',animation:'ff .5s ease-in-out infinite reverse'});
+  px(c,{position:'absolute',bottom:'0',left:'0',right:'0',height:'12%',background:'#1a3050'});
+  px(c,{position:'absolute',bottom:'11%',left:'25%',right:'25%',height:'7%',background:'#2a5a8a',borderRadius:'50% 50% 0 0'});
+}
+function drawSpring(c){
+  ['left:10px','right:10px'].forEach(p=>{
+    const t=px(c,{position:'absolute',bottom:'35%',[p.split(':')[0]]:p.split(':')[1]});
+    px(t,{position:'absolute',bottom:'0',left:'50%',transform:'translateX(-50%)',width:'7px',height:'28px',background:'#3d2b1a'});
+    px(t,{position:'absolute',bottom:'22px',left:'50%',transform:'translateX(-50%)',width:'42px',height:'34px',background:'#1a4a2a',borderRadius:'50% 50% 30% 30%'});
+    px(t,{position:'absolute',bottom:'32px',left:'50%',transform:'translateX(-50%)',width:'30px',height:'26px',background:'#1e5530',borderRadius:'50%'});
+  });
+  px(c,{position:'absolute',bottom:'28%',left:'75px',width:'160px',height:'22px',background:'#8B7355',borderRadius:'50%'});
+  [[100,30,15],[140,36,-22],[168,26,6]].forEach(([l,b,r])=>px(c,{position:'absolute',bottom:b+'%',left:l+'px',width:'26px',height:'3px',background:'#6b5535',transform:`rotate(${r}deg)`}));
+  const lb=px(c,{position:'absolute',bottom:'31%',left:'50%',transform:'translateX(-50%)',fontFamily:"'Press Start 2P',monospace",fontSize:'.35rem',color:'#cc6622',whiteSpace:'nowrap'});
+  lb.textContent='— DRY —';
+  const st=px(c,{position:'absolute',bottom:'28%',left:'28px',width:'28px',height:'22px',background:'#7a7060',border:'2px solid #5a5040'});
+  const stl=px(st,{textAlign:'center',fontFamily:"'Press Start 2P',monospace",fontSize:'.25rem',color:'#ddd',lineHeight:'1.4',padding:'2px'});
+  stl.textContent='E.C.\n1875';
+  px(c,{position:'absolute',top:'40%',left:'10%',width:'130px',height:'32px',background:'rgba(200,230,220,.12)',borderRadius:'50%'});
+}
+function drawTownHall(c){
+  const b=px(c,{position:'absolute',bottom:'32%',left:'50%',transform:'translateX(-50%)'});
+  px(b,{position:'absolute',bottom:'0',width:'110px',height:'68px',background:'#d4c8a8',border:'2px solid #9a8860'});
+  [16,38,60,82].forEach(x=>px(b,{position:'absolute',bottom:'0',left:x+'px',width:'8px',height:'63px',background:'#e8dcc0',border:'1px solid #9a8860'}));
+  px(b,{position:'absolute',bottom:'66px',left:'-5px',width:'0',height:'0',borderLeft:'62px solid transparent',borderRight:'62px solid transparent',borderBottom:'22px solid #7a6040'});
+  px(b,{position:'absolute',bottom:'0',left:'46px',width:'18px',height:'28px',background:'#5a3a10',border:'2px solid #3a2000'});
+  [18,76].forEach(x=>px(b,{position:'absolute',bottom:'28px',left:x+'px',width:'16px',height:'16px',background:'#87CEEB',border:'2px solid #9a8860'}));
+  px(b,{position:'absolute',bottom:'90px',left:'52px',width:'3px',height:'22px',background:'#6a5030'});
+  px(b,{position:'absolute',bottom:'104px',left:'55px',width:'18px',height:'12px',background:'#cc2222'});
+  px(c,{position:'absolute',bottom:'0',left:'0',right:'0',height:'20%',background:'#555'});
+  pine(c,5,null,'20%','xs');pine(c,null,5,'20%','xs');
+}
+function drawMine(c){
+  px(c,{position:'absolute',left:'0',top:'0',bottom:'0',width:'75px',background:'linear-gradient(90deg,#111,#2a2a2a)',clipPath:'polygon(0 0,100% 15%,100% 85%,0 100%)'});
+  px(c,{position:'absolute',right:'0',top:'0',bottom:'0',width:'75px',background:'linear-gradient(270deg,#111,#2a2a2a)',clipPath:'polygon(0 15%,100% 0,100% 100%,0 85%)'});
+  px(c,{position:'absolute',top:'0',left:'0',right:'0',height:'28px',background:'#0a0a0a'});
+  px(c,{position:'absolute',bottom:'0',left:'0',right:'0',height:'38px',background:'linear-gradient(180deg,#1a0e0e,#0a0808)'});
+  const bc='#5a3a1a';
+  px(c,{position:'absolute',top:'28px',left:'80px',width:'9px',height:'114px',background:bc});
+  px(c,{position:'absolute',top:'28px',right:'80px',width:'9px',height:'114px',background:bc});
+  px(c,{position:'absolute',top:'28px',left:'80px',right:'80px',height:'8px',background:bc});
+  px(c,{position:'absolute',top:'28px',left:'90px',width:'100px',height:'8px',background:bc,opacity:'.6'});
+  px(c,{position:'absolute',bottom:'28%',left:'85px',width:'88px',height:'26px',background:'linear-gradient(90deg,rgba(255,255,200,.5),rgba(255,255,200,.02))',clipPath:'polygon(0 35%,100% 0,100% 100%,0 65%)'});
+  const e1=px(c,{position:'absolute',bottom:'35%',left:'178px'});
+  [[0],[14]].forEach(([l])=>px(e1,{position:'absolute',left:l+'px',top:'0',width:'8px',height:'8px',background:'#ff2222',borderRadius:'50%',boxShadow:'0 0 8px #ff2222',animation:'eyeGlow 2s ease-in-out infinite'}));
+  const e2=px(c,{position:'absolute',bottom:'45%',left:'192px',opacity:'.5',transform:'scale(.65)'});
+  [[0],[14]].forEach(([l])=>px(e2,{position:'absolute',left:l+'px',top:'0',width:'8px',height:'8px',background:'#ff2222',borderRadius:'50%',animation:'eyeGlow 2s ease-in-out 1s infinite'}));
+  [115,198,258].forEach((l,i)=>px(c,{position:'absolute',left:l+'px',top:'30px',width:'3px',height:'14px',background:'rgba(100,150,200,.7)',borderRadius:'0 0 50% 50%',animation:`drip 3s ease-in ${i*1.2}s infinite`}));
+}
+function drawLodge(c){
+  px(c,{position:'absolute',top:'12px',right:'28px',width:'22px',height:'22px',background:'#fff8dc',borderRadius:'50%',boxShadow:'0 0 15px rgba(255,240,180,.5)'});
+  for(let i=0;i<25;i++)px(c,{position:'absolute',top:(Math.random()*45)+'%',left:(Math.random()*100)+'%',width:'2px',height:'2px',background:'#fff',borderRadius:'50%',opacity:(Math.random()*.6+.2).toString()});
+  const l=px(c,{position:'absolute',bottom:'30%',left:'50%',transform:'translateX(-50%)'});
+  px(l,{position:'absolute',bottom:'0',width:'140px',height:'78px',background:'#4a3820',border:'2px solid #2a2010'});
+  px(l,{position:'absolute',bottom:'76px',left:'-5px',width:'0',height:'0',borderLeft:'77px solid transparent',borderRight:'77px solid transparent',borderBottom:'28px solid #2a1a08'});
+  px(l,{position:'absolute',bottom:'76px',left:'18px',width:'14px',height:'30px',background:'#5a5048',border:'2px solid #3a3028'});
+  [12,52,92].forEach(x=>px(l,{position:'absolute',bottom:'28px',left:x+'px',width:'18px',height:'18px',background:'#ffcc44',border:'2px solid #5a3a10',boxShadow:'0 0 10px rgba(255,200,60,.8)'}));
+  px(l,{position:'absolute',bottom:'0',left:'60px',width:'20px',height:'28px',background:'#1a0a00',border:'2px solid #111'});
+  px(c,{position:'absolute',bottom:'0',left:'0',right:'0',height:'30%',background:'#0d1a0a'});
+  pine(c,5,null,'30%','xs');pine(c,null,5,'30%','xs');
+}
+function drawSiteA(c){
+  const f=px(c,{position:'absolute',bottom:'32%',left:'50%',transform:'translateX(-50%)'});
+  px(f,{position:'absolute',bottom:'0',width:'160px',height:'72px',background:'#1a1a2a',border:'2px solid #3a3a5a'});
+  px(f,{position:'absolute',bottom:'70px',left:'76px',width:'3px',height:'28px',background:'#5a5a8a'});
+  px(f,{position:'absolute',bottom:'96px',left:'66px',width:'24px',height:'2px',background:'#5a5a8a'});
+  [10,38,66,94,122].forEach(x=>px(f,{position:'absolute',bottom:'28px',left:x+'px',width:'18px',height:'14px',background:Math.random()>.5?'#2a4a8a':'#111',border:'1px solid #3a3a5a'}));
+  [22,82,142].forEach((x,i)=>px(f,{position:'absolute',bottom:'70px',left:x+'px',width:'6px',height:'6px',background:'#ff3300',borderRadius:'50%',animation:`eyeGlow ${1+i*.3}s ease-in-out infinite`,boxShadow:'0 0 6px #ff3300'}));
+  const dr=px(c,{position:'absolute',top:'18px',left:'28px'});
+  px(dr,{position:'absolute',width:'28px',height:'8px',background:'#3a3a4a',border:'1px solid #6a6a8a'});
+  px(dr,{position:'absolute',top:'2px',left:'-5px',width:'8px',height:'4px',background:'#5a5a7a'});
+  px(dr,{position:'absolute',top:'2px',right:'-5px',width:'8px',height:'4px',background:'#5a5a7a'});
+  px(dr,{position:'absolute',top:'3px',left:'10px',width:'8px',height:'3px',background:'#ff3300',boxShadow:'0 0 4px #ff3300',animation:'eyeGlow 1.5s infinite'});
+  px(c,{position:'absolute',bottom:'0',left:'0',right:'0',height:'32%',background:'#0a0a14'});
+  for(let i=0;i<12;i++)px(c,{position:'absolute',bottom:'31%',left:(i*25+5)+'px',width:'3px',height:'20px',background:'#3a3a5a'});
+  px(c,{position:'absolute',bottom:'47%',left:'0',right:'0',height:'2px',background:'#3a3a5a'});
+}
+function drawGlobal(c){
+  for(let i=0;i<22;i++)px(c,{position:'absolute',top:(Math.random()*50)+'%',left:(Math.random()*100)+'%',width:'2px',height:'2px',background:'#fff',borderRadius:'50%',opacity:(Math.random()*.6+.2).toString()});
+  [[18,62],[42,48],[65,70],[90,52],[112,66],[138,44],[163,58],[188,72],[212,50],[238,64],[262,55],[286,68]].forEach(([l,h])=>px(c,{position:'absolute',bottom:'28%',left:l+'px',width:'22px',height:h+'px',background:'#050515',border:'1px solid #1a1a3a'}));
+  px(c,{position:'absolute',bottom:'24%',left:'0',right:'0',height:'6%',background:'linear-gradient(180deg,rgba(60,80,200,.3),transparent)'});
+  const sym=px(c,{position:'absolute',top:'10px',left:'50%',transform:'translateX(-50%)',fontFamily:"'VT323',monospace",fontSize:'2.2rem',color:'#ff3366',textShadow:'0 0 12px #ff3366',animation:'eyeGlow 2s ease-in-out infinite',lineHeight:'1'});
+  sym.textContent='⊗ LIFESYNC ONLINE';
+  sym.style.fontSize='.8rem';sym.style.fontFamily="'Press Start 2P',monospace";sym.style.letterSpacing='.05em';
+}
+function drawEchidna(c){
+  for(let i=0;i<3;i++)px(c,{position:'absolute',left:'0',right:'0',height:'2px',background:i===1?'rgba(0,255,150,.4)':'rgba(255,0,60,.6)',top:'-2px',animation:`glitch 4s linear ${i*1.3}s infinite`});
+  [[18,52],[40,68],[62,42],[88,60],[115,56],[142,72],[168,46],[195,62],[222,52],[248,68]].forEach(([l,h])=>{
+    const b=px(c,{position:'absolute',bottom:'0',left:l+'px',width:'26px',height:h+'px',background:'#060006',border:'1px solid #200020'});
+    if(Math.random()>.5)px(b,{position:'absolute',top:(5+Math.floor(Math.random()*30))+'px',left:'8px',width:'6px',height:'6px',background:'#ff0033',animation:`wink ${2+Math.random()*2}s ease-in-out ${Math.random()*2}s infinite`});
+  });
+  const core=px(c,{position:'absolute',top:'18px',left:'50%',transform:'translateX(-50%)'});
+  [[-38,8,-42],[-18,4,-72],[18,8,42],[18,4,72],[-44,28,-112],[18,28,112]].forEach(([l,t,r])=>px(core,{position:'absolute',left:(22+l)+'px',top:(18+t)+'px',width:'4px',height:'32px',background:'#ff0033',transformOrigin:'top center',transform:`rotate(${r}deg)`,animation:`arm 2s ease-in-out ${Math.random()}s infinite`}));
+  px(core,{position:'absolute',left:'8px',top:'18px',width:'38px',height:'38px',background:'#180000',border:'2px solid #ff0033',borderRadius:'30% 70% 60% 40%'});
+  px(core,{position:'absolute',left:'22px',top:'30px',width:'12px',height:'12px',background:'#ff0033',borderRadius:'50%',boxShadow:'0 0 12px #ff0033',animation:'eyeGlow 1.5s infinite'});
+}
+function drawDawn(c){
+  px(c,{position:'absolute',top:'4px',left:'50%',transform:'translateX(-50%)',width:'34px',height:'34px',background:'#FFD700',boxShadow:'0 0 0 6px #FFA500,0 0 0 12px rgba(255,200,0,.3),0 0 40px rgba(255,180,0,.5)'});
+  [-30,-15,0,15,30].forEach(d=>px(c,{position:'absolute',top:'0',left:'50%',transformOrigin:'top center',transform:`rotate(${d}deg)`,width:'3px',height:'175px',background:'linear-gradient(180deg,rgba(255,220,100,.5),transparent)'}));
+  px(c,{position:'absolute',bottom:'26%',left:'8%',right:'8%',height:'14%',background:'linear-gradient(180deg,#4a90d0,#2a60a0)',borderRadius:'50% 50% 0 0/10px 10px 0 0'});
+  [[28,8],[88,14],[158,8]].forEach(([l,t],i)=>px(c,{position:'absolute',bottom:(26+t)+'%',left:l+'px',width:'28px',height:'2px',background:'rgba(255,255,255,.6)',borderRadius:'2px',animation:`shim 2s ease-in-out ${i*.7}s infinite`}));
+  const m=px(c,{position:'absolute',bottom:'38%',right:'16px'});
+  px(m,{position:'absolute',bottom:'0',width:'44px',height:'44px',background:'#c8a070',border:'2px solid #8a6030'});
+  px(m,{position:'absolute',bottom:'42px',left:'-4px',width:'0',height:'0',borderLeft:'26px solid transparent',borderRight:'26px solid transparent',borderBottom:'14px solid #7a3a10'});
+  const wh=px(m,{position:'absolute',bottom:'10px',left:'-18px',width:'20px',height:'20px',borderRadius:'50%',border:'3px solid #6B4226',animation:'spin 4s linear infinite'});
+  px(wh,{position:'absolute',top:'50%',left:'0',right:'0',height:'2px',background:'#6B4226',transform:'translateY(-50%)'});
+  px(wh,{position:'absolute',left:'50%',top:'0',bottom:'0',width:'2px',background:'#6B4226',transform:'translateX(-50%)'});
+  [[36,'#ff6688'],[64,'#ffaa33'],[94,'#aa66ff'],[120,'#ff9933']].forEach(([l,col])=>{
+    const f=px(c,{position:'absolute',bottom:'28%',left:l+'px'});
+    px(f,{position:'absolute',bottom:'0',left:'50%',transform:'translateX(-50%)',width:'2px',height:'12px',background:'#2d7a2d'});
+    px(f,{position:'absolute',bottom:'10px',left:'50%',transform:'translateX(-50%)',width:'8px',height:'8px',borderRadius:'50%',background:col});
+  });
+  pine(c,8,null,'40%','sm');pine(c,null,8,'40%','sm');
+  [58,138,218].forEach((l,i)=>{
+    const b=px(c,{position:'absolute',top:(32+i*10)+'px',left:l+'px'});
+    px(b,{position:'absolute',width:'8px',height:'4px',borderTop:'2px solid #333',borderRadius:'50% 50% 0 0'});
+    px(b,{position:'absolute',left:'6px',width:'8px',height:'4px',borderTop:'2px solid #333',borderRadius:'50% 50% 0 0'});
+  });
+  const bikes=px(c,{position:'absolute',bottom:'29%',left:'-60px',display:'flex',gap:'16px',animation:'ride 8s linear infinite'});
+  ['#3a6ea5','#cc4444','#44aa44'].forEach(col=>{
+    const b=px(bikes,{position:'relative',width:'18px',height:'14px'});
+    [0,10].forEach(l=>px(b,{position:'absolute',bottom:'0',left:l+'px',width:'10px',height:'10px',border:'2px solid #333',borderRadius:'50%'}));
+    px(b,{position:'absolute',bottom:'6px',left:'6px',width:'2px',height:'7px',background:col});
+  });
+  px(c,{position:'absolute',bottom:'0',left:'0',right:'0',height:'26%',background:'#7a6040'});
+}
+function drawVirtual(c){
+  for(let i=0;i<30;i++){
+    const cl=['#fff','#60d0ff','#aa66ff','#ff66aa'][Math.floor(Math.random()*4)];
+    px(c,{position:'absolute',top:(Math.random()*90)+'%',left:(Math.random()*100)+'%',width:(Math.random()*3+1)+'px',height:(Math.random()*3+1)+'px',background:cl,borderRadius:'50%',opacity:(Math.random()*.7+.2).toString(),animation:`twinkle ${2+Math.random()*3}s ease-in-out ${Math.random()*2}s infinite`});
+  }
+  px(c,{position:'absolute',top:'18px',left:'28%',width:'44px',height:'44px',borderRadius:'50%',background:'rgba(96,208,255,.2)',boxShadow:'0 0 20px #60d0ff',border:'2px solid #60d0ff',animation:'shim 2s ease-in-out infinite'});
+  px(c,{position:'absolute',top:'18px',right:'22%',width:'44px',height:'44px',borderRadius:'30% 70% 60% 40%',background:'rgba(255,200,100,.15)',boxShadow:'0 0 18px rgba(255,200,100,.5)',border:'2px solid rgba(255,200,100,.6)'});
+  for(let i=0;i<5;i++)px(c,{position:'absolute',top:(Math.random()*80)+'%',left:'0',right:'0',height:'1px',background:`rgba(${Math.random()>.5?'96,208,255':'200,100,255'},.3)`,transform:`rotate(${(Math.random()-.5)*12}deg)`});
+  const fam=px(c,{position:'absolute',bottom:'18%',left:'50%',transform:'translateX(-50%)',display:'flex',gap:'10px',alignItems:'flex-end'});
+  [{h:30,c:'#3a6ea5'},{h:26,c:'#cc8844'},{h:38,c:'#5a8a30'},{h:22,c:'#cc4444'},{h:32,c:'#6a6a8a'}].forEach(({h,c:col})=>{
+    const fig=px(fam,{position:'relative',display:'flex',flexDirection:'column',alignItems:'center',gap:'2px'});
+    px(fig,{width:'8px',height:'8px',background:col,borderRadius:'50%'});
+    px(fig,{width:'10px',height:h+'px',background:col,borderRadius:'2px'});
+  });
+}
+// ============ ANIMATIONS ============
+const css=`
+@keyframes eyeGlow{0%,100%{opacity:.6;box-shadow:0 0 6px currentColor}50%{opacity:1;box-shadow:0 0 14px currentColor}}
+@keyframes ff{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.8) translateX(1px)}}
+@keyframes drip{0%{height:4px;opacity:1}80%{height:16px;opacity:.8}100%{height:16px;opacity:0;transform:translateY(10px)}}
+@keyframes shim{0%,100%{opacity:.3;width:20px}50%{opacity:.8;width:32px}}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes ride{0%{left:-60px}100%{left:110%}}
+@keyframes twinkle{0%,100%{opacity:.3}50%{opacity:1}}
+@keyframes glitch{0%{top:-2px;opacity:0}10%{opacity:1}90%{opacity:.8}100%{top:182px;opacity:0}}
+@keyframes arm{0%,100%{transform:rotate(var(--r,0deg))}50%{transform:rotate(calc(var(--r,0deg) + 15deg))}}
+@keyframes wink{0%,88%,100%{opacity:0}90%,96%{opacity:.8}93%{opacity:.2}}
+@keyframes wglow{0%,100%{opacity:.8}50%{opacity:1}}
+`;
+const st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
+// ============ ENGINE ============
+let cur=null;
+function find(ref){
+  if(typeof ref==='number')return STORY.find(s=>s.ch===ref&&!s.id);
+  return STORY.find(s=>s.id===ref||s.ch===ref);
+}
+function hud(){
+  document.getElementById('hud-ch').textContent=`CH.${S.ch} — PART ${S.part}`;
+  document.getElementById('mkaela').style.width=Math.max(0,Math.min(100,S.kaela))+'%';
+  document.getElementById('mtown').style.width=Math.max(0,Math.min(100,S.town))+'%';
+  const pct=Math.min(Math.round((typeof S.ch==='number'?S.ch:24)/24*100),100);
+  document.getElementById('pfill').style.width=pct+'%';
+  document.getElementById('ppct').textContent=pct+'%';
+}
+function inv(){
+  const el=document.getElementById('inv-items');
+  if(!S.inv.length){el.innerHTML='<span style="font-size:.85rem;color:var(--text-dim)">Nothing yet...</span>';return;}
+  el.innerHTML=S.inv.map(i=>`<div class="inv-item">${i}</div>`).join('');
+}
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2800);
+}
+function setPart(p){
+  document.body.className='';
+  if(p===2)document.body.classList.add('part2');
+  else if(p===3)document.body.classList.add('part3');
+  else if(p==='end')document.body.classList.add('ending');
+  S.part=p;
+}
+function load(ref){
+  const sc=typeof ref==='object'?ref:find(ref);
+  if(!sc){console.error('Scene not found:',ref);return;}
+  cur=sc;S.ch=sc.ch;
+  if(sc.isEnd){doEnding(sc);return;}
+  if(sc.part&&sc.part!==S.part)setPart(sc.part);
+  showIntro(sc);
+}
+function showIntro(sc){
+  document.getElementById('ipart').textContent=sc.pl||`PART ${sc.part}`;
+  document.getElementById('ichnum').textContent=`CHAPTER ${sc.ch}`;
+  document.getElementById('ichtitle').textContent=sc.title;
+  document.getElementById('intro-card').classList.add('active');
+}
+function dismissIntro(){
+  document.getElementById('intro-card').classList.remove('active');
+  render();
+}
+function render(){
+  const sc=cur;
+  renderArt(sc.art);
+  document.getElementById('scene-title').textContent=sc.title;
+  document.getElementById('scene-text').textContent=sc.text;
+  const kb=document.getElementById('kaela-box');
+  if(sc.kaela){document.getElementById('kaela-text').textContent=sc.kaela;kb.classList.add('on');}
+  else kb.classList.remove('on');
+  const ca=document.getElementById('choices');
+  ca.innerHTML='';
+  if(sc.choices&&sc.choices.length){
+    sc.choices.forEach(ch=>{
+      const b=document.createElement('button');
+      b.className='cbtn'+(ch.bp?' bp':'');
+      b.textContent=ch.t;
+      b.onclick=()=>choose(ch);
+      ca.appendChild(b);
+    });
+  } else {
+    setTimeout(()=>{
+      const nch=typeof sc.ch==='number'?sc.ch+1:null;
+      if(nch&&nch<=24){
+        const b=document.createElement('button');
+        b.className='cbtn bp';b.textContent='Continue...';
+        b.onclick=()=>load(nch);ca.appendChild(b);
+      }
+    },100);
+  }
+  hud();inv();save();
+}
+function choose(ch){
+  S.decisions.push({ch:S.ch,title:cur.title,choice:ch.t,bp:!!ch.bp});
+  if(ch.kd)S.kaela=Math.max(0,Math.min(100,S.kaela+ch.kd));
+  if(ch.td)S.town=Math.max(0,Math.min(100,S.town+ch.td));
+  if(ch.inv&&!S.inv.includes(ch.inv)){S.inv.push(ch.inv);toast('★ ITEM: '+ch.inv);}
+  if(ch.flag)S.flags[ch.flag]=true;
+  load(ch.n);
+}
+function doEnding(sc){
+  setPart('end');
+  if(sc.eid&&!S.endings.includes(sc.eid)){S.endings.push(sc.eid);toast('★ ENDING: '+sc.title);}
+  save();
+  renderArt(sc.art);
+  document.getElementById('game-screen').classList.remove('active');
+  const es=document.getElementById('end-screen');
+  es.classList.add('active');
+  document.getElementById('etitle').textContent=sc.title;
+  document.getElementById('etext').textContent=sc.text;
+  document.getElementById('elist').innerHTML=ENDINGS.map(e=>{
+    const f=S.endings.includes(e.id);
+    return`<div class="ei${f?' u':''}">${e.name}${f?' — '+e.desc:''}</div>`;
+  }).join('');
+  // true path check
+  if(sc.eid==='true_path'){
+    const tp=S.decisions.filter(d=>d.bp).length;
+    if(tp===S.decisions.length){
+      const b=document.createElement('span');
+      b.className='tpb';b.textContent='✓ TRUE PATH';
+      document.getElementById('etext').appendChild(document.createElement('br'));
+      document.getElementById('etext').appendChild(b);
+    }
+  }
+}
+// ============ SAVE / LOAD ============
+function save(){try{localStorage.setItem('sr_save',JSON.stringify(S));}catch(e){}}
+function loadSave(){try{const d=localStorage.getItem('sr_save');if(d){S=JSON.parse(d);return true;}}catch(e){}return false;}
+function continueGame(){if(loadSave()){showGame();load(S.ch||1);}}
+function startGame(){
+  S={ch:1,kaela:50,town:80,inv:[],decisions:[],endings:S.endings||[],flags:{},part:1};
+  setPart(1);showGame();load(1);
+}
+function restartGame(){
+  document.getElementById('end-screen').classList.remove('active');
+  startGame();
+}
+function showGame(){
+  document.getElementById('title-screen').style.display='none';
+  document.getElementById('game-screen').classList.add('active');
+  document.getElementById('end-screen').classList.remove('active');
+}
+// ============ LOG / ENDINGS ============
+function showLog(){
+  const d=document.getElementById('dec-log');
+  const c=document.getElementById('dl-content');
+  c.innerHTML=S.decisions.length
+    ?S.decisions.map(d=>`<div class="dl-i"><span class="dl-ch">CH.${d.ch}</span> — ${d.choice}${d.bp?' <span style="color:var(--accent);font-size:.75rem">[BOOK]</span>':''}</div>`).join('')
+    :'<div class="dl-i" style="color:var(--text-dim)">No decisions yet.</div>';
+  d.classList.add('active');
+}
+function hideLog(){document.getElementById('dec-log').classList.remove('active');}
+function showEndings(){
+  const msg=ENDINGS.map(e=>(S.endings.includes(e.id)?'★ ':'☐ ')+e.name+(S.endings.includes(e.id)?'\n   '+e.desc:'')).join('\n\n');
+  alert('ENDINGS FOUND:\n\n'+msg);
+}
+// ============ TITLE INIT ============
+function initTitle(){
+  const ts=document.getElementById('title-scene');
+  // Stars
+  for(let i=0;i<40;i++){
+    const s=document.createElement('div');
+    s.className='ts-star';
+    s.style.left=(Math.random()*100)+'%';
+    s.style.top=(Math.random()*100)+'%';
+    s.style.animationDelay=(Math.random()*3)+'s';
+    ts.appendChild(s);
+  }
+  // Pines
+  [[8,null,'38%','sm'],[28,null,'38%','xs'],[null,12,'38%','sm']].forEach(([l,r,b,sz])=>{
+    const w=px(ts,{position:'absolute',bottom:b,left:l!=null?l+'px':'auto',right:r!=null?r+'px':'auto'});
+    const sizes={sm:{tw:7,th:20},xs:{tw:5,th:14}};
+    const sv=sizes[sz];
+    px(w,{position:'absolute',bottom:'0',left:'50%',transform:'translateX(-50%)',width:sv.tw+'px',height:sv.th+'px',background:'#3d2b1a'});
+    [[26,13,sv.th],[18,10,sv.th+8],[11,7,sv.th+15]].forEach(([tw,th,bt])=>px(w,{position:'absolute',bottom:bt+'px',left:'50%',transform:'translateX(-50%)',width:tw+'px',height:th+'px',background:'#1a4a1a'}));
+  });
+  // Cabin
+  const cab=px(ts,{position:'absolute',bottom:'38%',left:'50%',transform:'translateX(-50%)'});
+  px(cab,{position:'absolute',bottom:'0',width:'40px',height:'30px',background:'#5a3a20',border:'2px solid #3a2010'});
+  px(cab,{position:'absolute',bottom:'28px',left:'-4px',width:'0',height:'0',borderLeft:'24px solid transparent',borderRight:'24px solid transparent',borderBottom:'16px solid #3a2010'});
+  px(cab,{position:'absolute',top:'6px',left:'16px',width:'8px',height:'8px',background:'#ffcc44',boxShadow:'0 0 8px rgba(255,200,60,.8)',animation:'wglow 2s ease-in-out infinite'});
+  // Fire
+  const fi=px(ts,{position:'absolute',bottom:'37%',left:'calc(50% + 24px)'});
+  px(fi,{position:'absolute',bottom:'0',width:'10px',height:'6px',background:'#cc4400',borderRadius:'0 0 50% 50%'});
+  px(fi,{position:'absolute',bottom:'4px',left:'2px',width:'6px',height:'8px',background:'#ff6600',borderRadius:'50% 50% 0 0',animation:'ff .5s ease-in-out infinite'});
+  px(fi,{position:'absolute',bottom:'8px',left:'3px',width:'4px',height:'6px',background:'#ffcc00',borderRadius:'50% 50% 0 0',animation:'ff .5s ease-in-out infinite reverse'});
+  if(loadSave())document.getElementById('cont-btn').style.display='block';
+}
+window.onload=initTitle;
+</script>
+</body>
+</html>
